@@ -1,0 +1,4 @@
+interface IHealtheble
+{
+    void Heal();
+}

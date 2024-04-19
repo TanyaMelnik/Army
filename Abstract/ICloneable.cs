@@ -1,0 +1,4 @@
+interface ICloneable
+{
+    void Clone();
+}

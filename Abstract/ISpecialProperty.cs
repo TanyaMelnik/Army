@@ -1,0 +1,4 @@
+interface ISpecialProperty
+{
+    void DoSpecialProperty();
+}
