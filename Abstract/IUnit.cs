@@ -1,6 +1,6 @@
 namespace Magic{
 
-    abstract class IUnit
+    public abstract class IUnit
     {
         /// <summary>
         /// Здоровье юнита.
