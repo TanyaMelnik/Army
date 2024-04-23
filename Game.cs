@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game.Game
+namespace Magic
 {
-    internal class Class1
+    // Тут сделать через фабрку
+    internal class Game
     {
+        public List<IUnit> CreateArmyRand()
+        {
+            
+        }
     }
 }

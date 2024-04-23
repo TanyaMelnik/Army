@@ -1,10 +1,12 @@
-﻿namespace Magic_Army
+﻿using Game;
+
+namespace Magic
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Hello, World!");
+            User.Start();  
         }
     }
 }

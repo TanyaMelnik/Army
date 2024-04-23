@@ -4,31 +4,37 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Magic;
+using static System.Net.Mime.MediaTypeNames;
 
-namespace Magic
+namespace Game
 {
     class User
-{
-	void Start()
     {
-        Console.WriteLine("Введите 0, если хотите выйти из игры. Введите 1, если хотите начать игру");
-            //ParseToInt(Console.ReadLine());
-            var answer = 2;
-		switch (answer)
-
+        public static void Start()
         {
-
-            case 0:
-                //exit(1);
-                break;
-            case 1:
-                UserGame();
-                break;
+            // Изменить на клавиши / ПОМЕНЯТЬ НА ЧТО-ТО 
+            while (true)
+            {
+                Console.WriteLine("Введите 0, если хотите выйти из игры. Введите 1, если хотите начать игру");
+                // _ говорит компилятору, что эту переменную не будем использовать
+                _ = int.TryParse(Console.ReadLine(), out int answer);
+                switch (answer)
+                {
+                    case 0:
+                        Environment.Exit(0);
+                        break;
+                    case 1:
+                        UserGame();
+                        break;
+                    default:
+                        Console.WriteLine("Неверный вывод");
+                        break;
+                }
             }
         }
-	void UserGame()
-
-    {
+        public static void UserGame()
+        {
             // ЗАДАЧА 1
             // Запрашиваем данные у пользователя о длительности игры и вместимости (cost) армии, передаем их в конструктор Settings
             // Создаём экземпляр Settings и заполняем данные в конструкторе 
@@ -38,15 +44,15 @@ namespace Magic
 
         }
 
-        List<IUnit> CreateArmy(int cost)
-
-    {
+        static List<IUnit> CreateArmy(int cost)
+        {
             // ЗАДАЧА 2
             //Логика создания армий
-            List<IUnit> army = new List<IUnit>();
+            // Добавить выбор создания разных арммий 
+            List<IUnit> army = new();
+            //army=Ga,
             return army;
         }
     }
-
 
 }
