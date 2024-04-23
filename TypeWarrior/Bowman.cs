@@ -1,8 +1,8 @@
 namespace Magic
 {
-    class Browman : IUnit
+    class Bowman : IUnit
     {
-        public Browman()
+        public Bowman()
         {
 
         }
