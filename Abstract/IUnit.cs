@@ -5,27 +5,27 @@ namespace Magic{
         /// <summary>
         /// Здоровье юнита.
         /// </summary>
-        public int health;
+        protected int health;
 
         /// <summary>
         /// Сила юнита. Урон, который может нанести юнит
         /// </summary>
-        public int attack;
+        protected int attack;
 
         /// <summary>
         /// Стоимость юнита.
         /// </summary>
-        public int cost;
+        protected int cost;
 
         /// <summary>
         /// Уклонение юнита.
         /// </summary>
-        public double dodge;
+        protected double dodge;
 
         /// <summary>
         /// Доп защита.
         /// </summary>
-        public int defense;
+        protected int defense;
 
         /// <summary>
         /// Конструктор, который берёт настройки из конфигурации.
@@ -34,7 +34,10 @@ namespace Magic{
         {
 
         }
-
+        public int GetCost()
+        {
+            return cost;
+        }
         /// <summary>
         /// Метод представления юнита.
         /// </summary>
