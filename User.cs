@@ -11,30 +11,9 @@ namespace Game
 {
     class User
     {
-        public static void Start()
-        {
-            // Изменить на клавиши / ПОМЕНЯТЬ НА ЧТО-ТО 
-            while (true)
-            {
-                Console.WriteLine("Введите 0, если хотите выйти из игры. Введите 1, если хотите начать игру");
-                // _ говорит компилятору, что эту переменную не будем использовать
-                _ = int.TryParse(Console.ReadLine(), out int answer);
-                switch (answer)
-                {
-                    case 0:
-                        Environment.Exit(0);
-                        break;
-                    case 1:
-                        UserGame();
-                        break;
-                    default:
-                        Console.WriteLine("Неверный вывод");
-                        break;
-                }
-            }
-        }
         public static void UserGame()
         {
+            Console.WriteLine("Начинаем новую игру!");
             // ЗАДАЧА 1
             // Запрашиваем данные у пользователя о длительности игры и вместимости (cost) армии, передаем их в конструктор Settings
             // Создаём экземпляр Settings и заполняем данные в конструкторе 

@@ -6,7 +6,7 @@ namespace Magic
     {
         static void Main()
         {
-            User.Start();  
+            User.UserGame();  
         }
     }
 }
