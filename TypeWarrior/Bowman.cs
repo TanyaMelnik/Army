@@ -2,10 +2,14 @@ namespace Magic
 {
     class Bowman : IUnit
     {
-        public Bowman()
+        public Bowman(Settings settings)
         {
-
-        }
+            health = settings.Health;
+            attack = 
+            cost =
+            dodge =
+            defense = 
+    }
         public void GetHit(int strength)
         {
             // ”дар по броне 

@@ -7,36 +7,41 @@
     // Пользователь может установить настройки один раз и менять их не имеет права.
     public class Settings
     {
+        static object locker = new object();
+
         // Приватное статическое поле instance, которое хранит единственный экземпляр класса.
         private static Settings? instance;
 
-        private int health;
-        private int cost;
+        public int Health { get; }
+        public int Cost { get; }
 
         // Приватный конструктор предотвращает создание экземпляров класса извне.
         private Settings(int helpHealth, int helpCost)
         {
-            health = helpHealth;
-            cost = helpCost;
+            Health = helpHealth;
+            Cost = helpCost;
         }
 
         // Через публичное статическое свойство GetInstance можно получить доступ к единственному экземпляру класса.
         public static Settings GetInstance(int helpHealth, int helpCost)
         {
-            if (instance != null)
+            lock (locker)
             {
+                if (instance != null)
+                {
+                    return instance;
+                }
+                instance = new Settings(helpHealth, helpCost);
                 return instance;
             }
-            instance = new Settings(helpHealth, helpCost);
-            return instance;
         }
 
 
         // УДАЛИТЬ ЭТО (ПОКА ДЛЯ ПРОВЕРКИ)
         public void Print()
         {
-            Console.WriteLine(health);
-            Console.WriteLine(cost);
+            Console.WriteLine(Health);
+            Console.WriteLine(Cost);
         }
     }
 }

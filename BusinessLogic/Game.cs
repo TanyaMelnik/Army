@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Magic
 {
     public enum UnitType
@@ -22,6 +23,7 @@ namespace Magic
         // Реализация метода из интерфейса
         protected IUnit CreateUnit(UnitType unitType)
         {
+            // НУЖНО ПЕРЕДАВАТЬ В КОНСТРУКТОР ОБЪЕКТ setiings
             switch (unitType)
             {
                 case UnitType.LightWarrior:

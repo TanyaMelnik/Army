@@ -4,29 +4,30 @@
     {
         public static void UserGame()
         {
-            Console.WriteLine("Начинаем новую игру!"); 
+            Console.WriteLine("Начинаем новую игру!");
 
-            UserSettings();
+            Settings settings = UserSettings();
 
             // ЗАДАЧА 1
             // Запрашиваем данные у пользователя о длительности игры и вместимости (cost) армии, передаем их в конструктор Settings
             // Создаём экземпляр Settings и заполняем данные в конструкторе 
-            int cost = 10;
-            List<IUnit> army1 = CreateArmy(cost);
-            List<IUnit> army2 = CreateArmy(cost);
+            List<IUnit> army1 = CreateArmy(settings.Health, settings.Cost);
+            List<IUnit> army2 = CreateArmy(settings.Health, settings.Cost);
 
         }
 
-        public static void UserSettings()
+        public static Settings UserSettings()
         {
-            // Ввод пользователем длительности игры.
-            int health = Healht();
-
             // Ввод стоимость армий пользователем.
             int cost = SetCost();
 
+            // Ввод пользователем длительности игры.
+            int health = Healht();
+
             // Паттерн Singleton. 
             Settings settings = Settings.GetInstance(health, cost);
+
+            return settings;
         }
 
         static int Healht()
@@ -100,7 +101,7 @@
             return cost;
         }
 
-        static List<IUnit> CreateArmy(int cost)
+        static List<IUnit> CreateArmy(int health, int cost)
         {
             // ЗАДАЧА 2
             //Логика создания армий
