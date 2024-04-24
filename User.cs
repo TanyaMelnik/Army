@@ -19,13 +19,14 @@
 
         public static void UserSettings()
         {
-            // Ввод стоимость армий пользователем.
-            int cost = SetCost();
-
             // Ввод пользователем длительности игры.
             int health = Healht();
 
-            // передаем их в конструктор Settings и реализуем Синглтон 
+            // Ввод стоимость армий пользователем.
+            int cost = SetCost();
+
+            // Паттерн Singleton. 
+            Settings settings = Settings.GetInstance(health, cost);
         }
 
         static int Healht()
