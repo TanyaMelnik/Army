@@ -31,6 +31,13 @@ namespace Magic{
         // Максимум 100
         protected int defense;
 
+        /// <summary>
+        /// Конструктор, который берёт настройки из конфигурации.
+        /// </summary>
+        public IUnit(Settings settings)
+        {
+            health = settings.Health;
+        }
         public int GetCost()
         {
             return cost;
