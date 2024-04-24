@@ -34,14 +34,14 @@
 
             Console.CursorVisible = false;
 
-            string[] menuItems = { "Короткая", "Средняя", "Длинная" };
+            string[] menuItems = { "Короткие", "Средние", "Длинные" };
             int selectedItemIndex = 0;
 
             while (true)
             {
                 Console.Clear();
 
-                Console.WriteLine("Выберите длительность игры:");
+                Console.WriteLine("Какие игры по длительности Вы предпочитаете? :");
                 for (int i = 0; i < menuItems.Length; i++)
                 {
                     if (i == selectedItemIndex)
@@ -91,7 +91,7 @@
         static int SetCost()
         {
             int cost;
-            Console.Write("Введите вместимость (стоимость) одной армии от 1 до 30: ");
+            Console.Write("Введите вместимость (стоимость) одной армии от 1 до 30 для дальнейших игр: ");
             while (!int.TryParse(Console.ReadLine(), out cost) || cost < 1 || cost > 30)
             {
                 Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
