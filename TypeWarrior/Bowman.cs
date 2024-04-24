@@ -2,13 +2,12 @@ namespace Magic
 {
     class Bowman : IUnit
     {
-        public Bowman(Settings settings)
+        public Bowman(Settings settings):base(settings)
         {
-            health = settings.Health;
-            attack = 
+/*          attack = 
             cost =
             dodge =
-            defense = 
+            defense = */
     }
         public void GetHit(int strength)
         {

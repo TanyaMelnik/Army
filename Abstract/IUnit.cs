@@ -5,11 +5,13 @@ namespace Magic{
         /// <summary>
         /// Здоровье юнита.
         /// </summary>
+        // Максимум 100.
         protected int health;
 
         /// <summary>
         /// Сила юнита. Урон, который может нанести юнит
         /// </summary>
+        // Максимум 50.
         protected int attack;
 
         /// <summary>
@@ -20,20 +22,15 @@ namespace Magic{
         /// <summary>
         /// Уклонение юнита.
         /// </summary>
+        // Максимум 1
         protected double dodge;
 
         /// <summary>
         /// Доп защита.
         /// </summary>
+        // Максимум 100
         protected int defense;
 
-        /// <summary>
-        /// Конструктор, который берёт настройки из конфигурации.
-        /// </summary>
-        public IUnit()
-        {
-
-        }
         public int GetCost()
         {
             return cost;
