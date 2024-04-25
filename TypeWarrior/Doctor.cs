@@ -20,7 +20,7 @@ namespace Magic
 
         public override string ToString()
         {
-            return string.Format($"Тяжёлый Солдат. Здоровье: {health} Сила: {health} Стоимость: {cost} Броня {defense} ");
+            return string.Format($"Доктор. Здоровье: {health} Сила: {health} Стоимость: {cost} Броня {defense} ");
         }
 
     }

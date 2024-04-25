@@ -110,6 +110,17 @@
             //army=Ga,
             return army;
         }
+
+        // TODO: КАК ИСПОЛЬЗОВАТЬ СОЗДАНИЕ АРМИИ :
+        // Сначала идёт выбор вида армии ( с атакой, с уклонением, черный ящик) . Пока тоже можно реализовать через клавиши
+        // AbstractArmyFactory a = new AttackArmy(); //с атакой
+        // AbstractArmyFactory a = new BlackBoxArmy() // с уклонением
+        // AbstractArmyFactory a =new DodgeArmy() // черный ящик
+        // Затем идёт выбор создания армии ( рандом и баланс)
+        // ArmyCreatedFactories b =new BalanceArmy(a,settings) // балансированно (в параментрах передаём абстрактну фабрику and Settings!)
+        // ArmyCreatedFactories b =new RandomArmy(a,settings) // рандомно
+        // После этого создание армии 
+        // List <IUnit> army=b.CreateArmy(cost)// //  (в параментрах передаём баланс!)
     }
 
 }

@@ -1,4 +1,3 @@
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Magic
 {
@@ -18,7 +17,7 @@ namespace Magic
 
         public override string ToString()
         {
-            return string.Format($"Тяжёлый Солдат. Здоровье: {health} Сила: {health} Стоимость: {cost} Броня {defense} ");
+            return string.Format($"Лучник. Здоровье: {health} Сила: {health} Стоимость: {cost} Броня {defense} ");
         }
 
 

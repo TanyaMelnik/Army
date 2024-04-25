@@ -24,7 +24,10 @@ namespace Magic{
         /// Стоимость юнита.
         /// </summary>
         protected int cost;
-
+        public int Cost
+        {
+            get { return cost; }
+        }
         /// <summary>
         /// Уклонение юнита.
         /// </summary>
