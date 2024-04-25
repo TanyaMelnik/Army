@@ -6,7 +6,7 @@ namespace Magic{
         /// Здоровье юнита.
         /// </summary>
         // Максимум 100.
-        protected int health;
+        public int health;
 
         /// <summary>
         /// Сила юнита. Урон, который может нанести юнит
@@ -29,7 +29,7 @@ namespace Magic{
         /// Доп защита.
         /// </summary>
         // Максимум 100
-        protected int defense;
+        public int defense;
 
         /// <summary>
         /// Конструктор, который берёт настройки из конфигурации.

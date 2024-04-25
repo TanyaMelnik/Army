@@ -1,4 +1,6 @@
+using Magic;
+
 interface ISpecialProperty
 {
-    void DoSpecialProperty();
+    IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number);
 }
