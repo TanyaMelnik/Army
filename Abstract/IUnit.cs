@@ -49,11 +49,18 @@ namespace Magic{
         public abstract string ToString();
 
         /// <summary>
-        /// Метод атаки.
+        /// Метод атаки ближнего боя. Текущий бьёт второго.
         /// </summary>
-        /// <returns>
-        /// Силу атаки от этого юнита.
-        /// </returns>
-        public abstract void Attack(IUnit two);
+        public void Attack(IUnit two)
+        {
+            if (two.defense >= attack) two.defense -= attack;
+            else if (two.defense < attack && two.defense > 0)
+            {
+                int x = attack - two.defense;
+                two.defense = 0;
+                two.health -= x;
+            }
+            else two.health-=attack; 
+        }
     }
 }

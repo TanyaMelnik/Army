@@ -2,10 +2,12 @@ namespace Magic
 {
     class HeavyWarrior : IUnit
     {
-        public HeavyWarrior()
+        public HeavyWarrior(Settings settings) : base(settings)
         {
+            attack = 50;
             cost = 2;
-            defense = health * 2;
+            dodge = 0.05;
+            defense = 100;
         }
         public void GetHit(int strength)
         {
@@ -26,14 +28,17 @@ namespace Magic
 
         }
 
+        // Для проверки
+        public void Print()
+        {
+            Console.WriteLine($"Тяжёлый Солдат. Здоровье: {health} Атака: {attack} Стоимость: {cost} Броня {defense} ");
+        }
+
+        // НЕ РАБОТАЕТ
         public override string ToString()
         {
             return string.Format($"Тяжёлый Солдат. Здоровье: {health} Сила: {health} Стоимость: {cost} Броня {defense} ");
         }
 
-        public override void Attack(IUnit two)
-        {
-
-        }
     }
 }

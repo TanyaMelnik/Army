@@ -2,9 +2,12 @@ namespace Magic
 {
     class Doctor : IUnit
     {
-        public Doctor()
+        public Doctor(Settings settings) : base(settings)
         {
-
+            attack = 10;
+            cost = 4;
+            dodge = 0.1;
+            defense = 0;
         }
         public void GetHit(int strength)
         {
@@ -20,9 +23,5 @@ namespace Magic
             return string.Format($"Тяжёлый Солдат. Здоровье: {health} Сила: {health} Стоимость: {cost} Броня {defense} ");
         }
 
-        public override void Attack(IUnit two)
-        {
-
-        }
     }
 }

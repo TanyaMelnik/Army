@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
+    /*
     public enum UnitType
     {
         LightWarrior,
@@ -183,5 +184,5 @@ namespace Magic
             return unitFactory.CreateArmy(cost);
         }
     }
-
+    */
 }

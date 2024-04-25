@@ -4,10 +4,10 @@ namespace Magic
     {
         public Bowman(Settings settings):base(settings)
         {
-/*          attack = 
-            cost =
-            dodge =
-            defense = */
+            attack = 30;
+            cost = 3;
+            dodge = 0.3;
+            defense = 30;
     }
         public void GetHit(int strength)
         {
@@ -23,9 +23,5 @@ namespace Magic
             return string.Format($"Тяжёлый Солдат. Здоровье: {health} Сила: {health} Стоимость: {cost} Броня {defense} ");
         }
 
-        public override void Attack(IUnit two)
-        {
-
-        }
     }
 }

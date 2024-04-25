@@ -1,9 +1,12 @@
 namespace Magic {
     class LightWarrior : IUnit, ICloneable
     {
-        public LightWarrior()
+        public LightWarrior(Settings settings) : base(settings)
         {
+            attack = 40;
             cost = 1;
+            dodge = 0.2;
+            defense = 50;
         }
         public void GetHit(int strength)
         {
@@ -27,11 +30,6 @@ namespace Magic {
         public override string ToString()
         {
             return string.Format($"Легкий Солдат. Здоровье: {health} Сила: {health} Стоимость: {cost} Броня {defense} ");
-        }
-
-        public override void Attack(IUnit two)
-        {
-           
         }
     } 
 }

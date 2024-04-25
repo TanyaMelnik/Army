@@ -2,10 +2,14 @@ namespace Magic
 {
     class Genetic : IUnit
     {
-        public Genetic()
+        public Genetic(Settings settings) : base(settings)
         {
-            
+            attack = 20;
+            cost = 5;
+            dodge = 0.4;
+            defense = 10;
         }
+
         public void GetHit(int strength)
         {
             // Удар по броне 
@@ -30,9 +34,6 @@ namespace Magic
             return string.Format($"Тяжёлый Солдат. Здоровье: {health} Сила: {health} Стоимость: {cost} Броня {defense} ");
         }
 
-        public override void Attack(IUnit two)
-        {
 
-        }
     }
 }
