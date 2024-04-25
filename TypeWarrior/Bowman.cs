@@ -21,6 +21,8 @@ namespace Magic
             return string.Format($"Тяжёлый Солдат. Здоровье: {health} Сила: {health} Стоимость: {cost} Броня {defense} ");
         }
 
+
+
         // number - это порядковый номер лучника в списке (от 1 до размера своей армии)
         public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
@@ -37,15 +39,8 @@ namespace Magic
                 int aim = rand.Next(0, countEnemy);
 
                 // Цель выбрана - enemyArmy[aim]
-                if (enemyArmy[aim].defense >= arrowDamage) enemyArmy[aim].defense -= arrowDamage;
-                else if (enemyArmy[aim].defense < arrowDamage && enemyArmy[aim].defense > 0)
-                {
-                    int x = arrowDamage - enemyArmy[aim].defense;
-                    enemyArmy[aim].defense = 0;
-                    enemyArmy[aim].health -= x;
-                }
-                else enemyArmy[aim].health -= arrowDamage; 
 
+                enemyArmy[aim].GetHit(arrowDamage);
             }
             return null;
         }

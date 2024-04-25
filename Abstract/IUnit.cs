@@ -6,13 +6,19 @@ namespace Magic{
         /// Здоровье юнита.
         /// </summary>
         // Максимум 100.
-        public int health;
+        protected int health;
+        public int Health { 
+            get { return health; }
+        }
 
         /// <summary>
         /// Сила юнита. Урон, который может нанести юнит
         /// </summary>
         // Максимум 50.
         protected int attack;
+        public int Attack {
+            get { return attack; }
+        }
 
         /// <summary>
         /// Стоимость юнита.
@@ -29,7 +35,11 @@ namespace Magic{
         /// Доп защита.
         /// </summary>
         // Максимум 100
-        public int defense;
+        protected int defense;
+        public int Defense
+        {
+            get { return defense; }
+        }
 
         /// <summary>
         /// Конструктор, который берёт настройки из конфигурации.
@@ -51,7 +61,7 @@ namespace Magic{
         /// <summary>
         /// Метод атаки ближнего боя. Текущий бьёт второго.
         /// </summary>
-        public void Attack(IUnit two)
+/*        public void DoAttack(IUnit two)
         {
             if (two.defense >= attack) two.defense -= attack;
             else if (two.defense < attack && two.defense > 0)
@@ -60,7 +70,32 @@ namespace Magic{
                 two.defense = 0;
                 two.health -= x;
             }
-            else two.health-=attack; 
+            else two.health -= attack;
+        }*/
+
+        /*        public void AttackBo(IUnit two)
+                {
+                    if (two.defense >= attack) two.defense -= attack;
+                    else if (two.defense < attack && two.defense > 0)
+                    {
+                        int x = attack - two.defense;
+                        two.defense = 0;
+                        two.health -= x;
+                    }
+                    else two.health -= attack;
+                }*/
+
+        public void GetHit(int strengthAttack)
+        {
+            if (defense >= strengthAttack) defense -= strengthAttack;
+            else if (defense < strengthAttack && defense > 0)
+            {
+                int x = strengthAttack - defense;
+                defense = 0;
+                health -= x;
+            }
+            else health -= attack;
         }
+
     }
 }
