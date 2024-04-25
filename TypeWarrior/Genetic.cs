@@ -2,11 +2,11 @@ namespace Magic
 {
     class Genetic : IUnit
     {
-        public Genetic(Settings settings) : base(settings)
+        public Genetic(Settings settings, (int , double) percentAttackAndDodge) : base(settings, percentAttackAndDodge)
         {
-            attack = 20;
+            attack += 20;
             cost = 5;
-            dodge = 0.4;
+            dodge += 0.4;
             defense = 10;
         }
 

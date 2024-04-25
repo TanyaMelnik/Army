@@ -30,7 +30,10 @@ namespace Magic{
         /// </summary>
         // Максимум 1
         protected double dodge;
-
+        public double Dodge
+        {
+            get { return dodge; }
+        }
         /// <summary>
         /// Доп защита.
         /// </summary>
@@ -44,9 +47,11 @@ namespace Magic{
         /// <summary>
         /// Конструктор, который берёт настройки из конфигурации.
         /// </summary>
-        public IUnit(Settings settings)
+        public IUnit(Settings settings, (int percentAttack, double percentDodge) percentAttackAndDodge)
         {
             health = settings.Health;
+            attack = percentAttackAndDodge.percentAttack;
+            dodge = percentAttackAndDodge.percentDodge;
         }
         public int GetCost()
         {

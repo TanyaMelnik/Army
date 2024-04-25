@@ -2,11 +2,11 @@ namespace Magic
 {
     class HeavyWarrior : IUnit
     {
-        public HeavyWarrior(Settings settings) : base(settings)
+        public HeavyWarrior(Settings settings, (int, double) percentAttackAndDodge) : base(settings, percentAttackAndDodge)
         {
-            attack = 50;
+            attack += 50;
             cost = 2;
-            dodge = 0.05;
+            dodge += 0.05;
             defense = 100;
         }
         public void GetHit(int strength)

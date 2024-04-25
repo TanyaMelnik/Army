@@ -1,11 +1,11 @@
 namespace Magic {
     class LightWarrior : IUnit, ICloneable
     {
-        public LightWarrior(Settings settings) : base(settings)
+        public LightWarrior(Settings settings, (int , double ) percentAttackAndDodge) : base(settings, percentAttackAndDodge)
         {
-            attack = 40;
+            attack += 40;
             cost = 1;
-            dodge = 0.2;
+            dodge += 0.2;
             defense = 50;
         }
         public void GetHit(int strength)

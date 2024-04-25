@@ -4,11 +4,11 @@ namespace Magic
 {
     class Bowman : IUnit, ISpecialProperty
     {
-        public Bowman(Settings settings) : base(settings)
+        public Bowman(Settings settings, (int, double) percentAttackAndDodge) : base(settings, percentAttackAndDodge)
         {
-            attack = 20;
+            attack += 20;
             cost = 3;
-            dodge = 0.3;
+            dodge += 0.3;
             defense = 30;
         }
 

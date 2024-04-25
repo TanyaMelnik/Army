@@ -2,11 +2,11 @@ namespace Magic
 {
     class Doctor : IUnit
     {
-        public Doctor(Settings settings) : base(settings)
+        public Doctor(Settings settings, (int , double) percentAttackAndDodge) : base(settings, percentAttackAndDodge)
         {
-            attack = 10;
+            attack += 10;
             cost = 4;
-            dodge = 0.1;
+            dodge += 0.1;
             defense = 0;
         }
         public void GetHit(int strength)
