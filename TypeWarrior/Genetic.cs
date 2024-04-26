@@ -1,6 +1,7 @@
+
 namespace Magic
 {
-    class Genetic : IUnit
+    class Genetic : IUnit, ISpecialProperty
     {
         public Genetic(Settings settings, (int , double) percentAttackAndDodge) : base(settings, percentAttackAndDodge)
         {
@@ -34,6 +35,9 @@ namespace Magic
             return string.Format($"Генетик. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} ");
         }
 
-
+        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
