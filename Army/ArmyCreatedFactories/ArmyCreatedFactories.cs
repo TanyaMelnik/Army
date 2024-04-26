@@ -13,7 +13,7 @@ namespace Magic
         protected AbstractArmyFactory army;
         protected Settings settings;
         // Фабричный метод, который создаёт армию конкретного способа
-        public abstract List<IUnit> CreateArmy(int cost);
+        public abstract List<IUnit> CreateArmy();
         public ArmyCreatedFactories(AbstractArmyFactory army, Settings settings) {
             // Выбираем конкретную фабрику создания unit
             this.army = army;

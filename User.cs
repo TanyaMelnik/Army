@@ -1,4 +1,6 @@
-﻿namespace Magic
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Magic
 {
     class User
     {
@@ -11,9 +13,60 @@
             // ЗАДАЧА 1
             // Запрашиваем данные у пользователя о длительности игры и вместимости (cost) армии, передаем их в конструктор Settings
             // Создаём экземпляр Settings и заполняем данные в конструкторе 
-            List<IUnit> army1 = CreateArmy(settings.Health, settings.Cost);
-            List<IUnit> army2 = CreateArmy(settings.Health, settings.Cost);
+           // List<IUnit> army1 = CreateArmy(settings.Health, settings.Cost);
+           // List<IUnit> army2 = CreateArmy(settings.Health, settings.Cost);
+            // 
+            ArmyCreatedFactories bB = new RandomArmy(new AttackArmy(), settings); // балансированно рандомно
 
+            ArmyCreatedFactories aA = new BalanceArmy(new AttackArmy(), settings);// балансированно 
+            List<IUnit> army1 = bB.CreateArmy();
+            foreach (IUnit unit in army1)
+            {
+                Console.WriteLine(unit.ToString());
+            }
+            Console.WriteLine();
+            List<IUnit> army2 = aA.CreateArmy();
+            foreach (IUnit unit in army2)
+            {
+                Console.WriteLine(unit.ToString());
+            }
+            Console.WriteLine();
+            // Прописываем логику игры. Нуждается в переносе в другом классе
+            // Игра работает пока одна армия не умрёт
+            while (army1.Count>1 || army2.Count > 1)
+            {
+                // Логика на проверку получения ударов. Нужны проверки на смерть.!!
+                // Для первых в стеке битва 1:1
+                army1[0].GetHit(army2[0].Attack);
+                Console.Write($"Удар по {army1[0].ToString()}");
+                if (army1[0].Health <= 0)
+                {
+                    Console.Write($"->Умер");
+                    army1.RemoveAt(0);
+                }
+                Console.WriteLine();
+                army2[0].GetHit(army1[0].Attack);
+                Console.Write($"Удар по {army2[0].ToString()}");
+                if (army2[0].Health <= 0)
+                {
+                    Console.Write($"->Умер");
+                    army2.RemoveAt(0);
+                }
+                Console.WriteLine();
+                // Особые 
+                /* for (int i = 1; i < Math.Min(army1.Count, army2.Count); i++)
+                 {
+                     // Если есть спец свойство
+                     if (army2[i] is ISpecialProperty one)
+                     {
+                         one.DoSpecialProperty(army1, army2, i);
+                     }
+                     if (army1[i] is ISpecialProperty two)
+                     {
+                         two.DoSpecialProperty(army1, army2, i);
+                     }
+                 }*/
+            }
         }
 
         public static Settings UserSettings()

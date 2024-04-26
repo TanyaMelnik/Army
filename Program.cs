@@ -7,7 +7,7 @@ namespace Magic
         static void Main()
         {
             User.UserGame();
-            Settings settings = Settings.GetInstance(4, 5);
+            //Settings settings = Settings.GetInstance(4, 5);
            /* HeavyWarrior a = new(settings, (1, 1));
             a.Print();
             HeavyWarrior b = new(settings, (2, 2));
@@ -18,13 +18,13 @@ namespace Magic
             a.Attack(b);
             a.Print();
             b.Print();*/
-            AbstractArmyFactory aA = new AttackArmy(); //с атакой
+            /*AbstractArmyFactory aA = new AttackArmy(); //с атакой
             ArmyCreatedFactories bB = new RandomArmy(aA, settings); // балансированно (в параментрах передаём абстрактну фабрику!)
             List<IUnit> army = bB.CreateArmy(100);
             foreach(IUnit unit in army)
             {
                 Console.WriteLine(unit.ToString());
-            }
+            }*/
 
         }
     }

@@ -103,6 +103,10 @@ namespace Magic{
                 health -= x;
             }
             else health -= attack;
+            /*// Удар по броне 
+            defense = defense - strength >= 0 ? defense - strength : 0;
+            // Удар по здоровью 
+            health = defense - strength < 0 ? health + (defense - strength) : health;*/
         }
 
     }

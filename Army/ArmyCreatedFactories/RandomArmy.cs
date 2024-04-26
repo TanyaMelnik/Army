@@ -11,10 +11,11 @@ namespace Magic
     {
         private readonly Random random = new();
 
-        public override List<IUnit> CreateArmy(int cost)
+        public override List<IUnit> CreateArmy()
         {
+            int cost = setting.Cost;
             List<IUnit> army = [];
-            while (cost >0)
+            while (cost > 0)
             {
                 // Получаем случайный индекс типа юнита из словаря
                 int randomIndex = random.Next(unitCost.Count);
