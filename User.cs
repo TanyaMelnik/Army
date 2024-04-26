@@ -18,7 +18,7 @@ namespace Magic
             // 
             ArmyCreatedFactories bB = new RandomArmy(new AttackArmy(), settings); // балансированно рандомно
 
-            ArmyCreatedFactories aA = new BalanceArmy(new AttackArmy(), settings);// балансированно 
+            ArmyCreatedFactories aA = new BalanceArmy(new BlackBoxArmy(), settings);// балансированно 
             List<IUnit> army1 = bB.CreateArmy();
             foreach (IUnit unit in army1)
             {

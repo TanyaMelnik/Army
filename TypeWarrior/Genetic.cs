@@ -31,7 +31,7 @@ namespace Magic
 
         public override string ToString()
         {
-            return string.Format($"Генетик. Здоровье: {health} Сила: {health} Стоимость: {cost} Броня {defense} ");
+            return string.Format($"Генетик. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} ");
         }
 
 

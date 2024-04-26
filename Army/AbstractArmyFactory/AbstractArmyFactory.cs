@@ -10,14 +10,26 @@ namespace Magic
     abstract class AbstractArmyFactory
     {
         /// <summary>
-        /// Показатель увеличения текущих показателей силы и уклонения.
+        /// Показатель увеличения текущих показателей силы и уклонения. Фабричное свойство 
         /// </summary>
-        public (int, double) percentAttackAndDodge;
-        // Фабричные методы, которые создают конкретеные IUnit
-        public abstract IUnit CreateLightUnit(Settings settings);
-        public abstract IUnit CreateHeavyUnitUnit(Settings settings);
-        public abstract IUnit CreateGeneticUnit(Settings settings);
-        public abstract IUnit CreateDoctorUnit(Settings settings);
-        public abstract IUnit CreateBowmanUnit(Settings setting);
+        protected abstract (int, double) PercentAttackAndDodge { get; }
+        // Методы, которые создают конкретеные IUnit
+        public IUnit CreateLightUnit(Settings settings) {
+            return new LightWarrior(settings, PercentAttackAndDodge);
+        }
+        public IUnit CreateHeavyUnitUnit(Settings settings) {
+            return new HeavyWarrior(settings, PercentAttackAndDodge);
+        }
+        public IUnit CreateGeneticUnit(Settings settings) {
+            return new Genetic(settings, PercentAttackAndDodge);
+        }
+        public IUnit CreateDoctorUnit(Settings settings)
+        {
+            return new Doctor(settings, PercentAttackAndDodge);
+        }
+        public IUnit CreateBowmanUnit(Settings settings)
+        {
+            return new Bowman(settings, PercentAttackAndDodge);
+        }
     }
 }
