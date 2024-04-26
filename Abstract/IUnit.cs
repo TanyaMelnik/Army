@@ -66,33 +66,6 @@ namespace Magic{
         /// <returns></returns>
         public abstract string ToString();
 
-        /// <summary>
-        /// Метод атаки ближнего боя. Текущий бьёт второго.
-        /// </summary>
-/*        public void DoAttack(IUnit two)
-        {
-            if (two.defense >= attack) two.defense -= attack;
-            else if (two.defense < attack && two.defense > 0)
-            {
-                int x = attack - two.defense;
-                two.defense = 0;
-                two.health -= x;
-            }
-            else two.health -= attack;
-        }*/
-
-        /*        public void AttackBo(IUnit two)
-                {
-                    if (two.defense >= attack) two.defense -= attack;
-                    else if (two.defense < attack && two.defense > 0)
-                    {
-                        int x = attack - two.defense;
-                        two.defense = 0;
-                        two.health -= x;
-                    }
-                    else two.health -= attack;
-                }*/
-
         public void GetHit(int strengthAttack)
         {
             if (defense >= strengthAttack) defense -= strengthAttack;
