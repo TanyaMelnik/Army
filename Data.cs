@@ -5,13 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace Game
+namespace Magic
 {
     public class Data
     {
-        WriteInFile(string logFilePath, string text)
+        public static void WriteInFile(string logFilePath, string text)
         {
-
+            using (StreamWriter log = File.AppendText(logFilePath))
+            {
+                log.WriteLine(text);
+            }
         }
     }
 }
