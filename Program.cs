@@ -5,13 +5,22 @@ namespace Magic
     {
         static void Main()
         {
-            Console.Beep(300, 500);
+            Settings aa = Settings.GetInstance(100, 100);
+            Bowman b = new((5,-5));
+            Console.WriteLine(b.ToString());
+            b.GetHit(11);
+            Console.WriteLine(b.ToString());
+            LogGetAttack a = new(b, (1, 1));
+            Console.WriteLine(a.ToString());
+            a.GetHit(10);
+            Console.WriteLine(a.ToString());
+            /*Console.Beep(300, 500);
             Console.Beep(300, 500);
             Console.Beep(300, 500);
             Console.Beep(250, 500);
             Console.Beep(350, 250);
             Console.Beep(300, 500);
-            Console.Beep(250, 500);
+            Console.Beep(250, 500);*/
             User.UserGame();
             //Settings settings = Settings.GetInstance(4, 5);
            /* HeavyWarrior a = new(settings, (1, 1));
