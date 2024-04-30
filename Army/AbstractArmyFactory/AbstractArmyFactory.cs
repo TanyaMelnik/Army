@@ -15,21 +15,21 @@ namespace Magic
         protected abstract (int, double) PercentAttackAndDodge { get; }
         // Методы, которые создают конкретеные IUnit
         public IUnit CreateLightUnit(Settings settings) {
-            return new LightWarrior(settings, PercentAttackAndDodge);
+            return new LogGetAttack(new LightWarrior(settings, PercentAttackAndDodge), settings, PercentAttackAndDodge);
         }
         public IUnit CreateHeavyUnitUnit(Settings settings) {
-            return new HeavyWarrior(settings, PercentAttackAndDodge);
+            return new LogGetAttack(new HeavyWarrior(settings, PercentAttackAndDodge), settings, PercentAttackAndDodge);
         }
         public IUnit CreateGeneticUnit(Settings settings) {
-            return new Genetic(settings, PercentAttackAndDodge);
+            return new LogGetAttack(new Genetic(settings, PercentAttackAndDodge), settings, PercentAttackAndDodge);
         }
         public IUnit CreateDoctorUnit(Settings settings)
         {
-            return new Doctor(settings, PercentAttackAndDodge);
+            return new LogGetAttack(new Doctor(settings, PercentAttackAndDodge), settings, PercentAttackAndDodge);
         }
         public IUnit CreateBowmanUnit(Settings settings)
         {
-            return new Bowman(settings, PercentAttackAndDodge);
+            return new LogGetAttack(new Bowman(settings, PercentAttackAndDodge), settings, PercentAttackAndDodge);
         }
     }
 }
