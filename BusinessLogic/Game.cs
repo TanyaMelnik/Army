@@ -28,10 +28,84 @@ namespace Magic
         }
         public static void DoSpecial(List<IUnit> army1, List<IUnit> army2)
         {
-            for (int i = 0; i < army1.Count; i++)
-            {
-
+            /*int i = 1;
+            if (army2.Count<1 || army1.Count < 1){
+                return;
             }
+            // Добавить проверки + генетик !!!
+            while (i< Math.Max(army2.Count, army1.Count))
+            {
+                LogGetAttack unitTemp1 = (LogGetAttack)army1[i];
+                if (unitTemp1.unit is ISpecialProperty unit1)
+                {
+                    Console.WriteLine($"Special Удар от {unitTemp1.unit} ");
+                    var proxy = new ProxyLogSpecial(unit1);
+                    // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
+                    if (army1.Count > 0 && army2.Count > 0) proxy.DoSpecialProperty(army1, army2, i);
+                }
+                LogGetAttack unitTemp2 = (LogGetAttack)army2[i];
+                if (unitTemp2.unit is ISpecialProperty unit2)
+                {
+                    Console.WriteLine($"Special Удар от {unitTemp2.unit} ");
+                    var proxy = new ProxyLogSpecial(unit2);
+                    // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
+                    if (army1.Count > 0 && army2.Count > 0) proxy.DoSpecialProperty(army1, army2, i);
+                }
+            }
+*/
+
+
+
+
+            for (int i = 1; i < Math.Min(army2.Count, army1.Count); i++)
+            {
+                LogGetAttack unitTemp1 = (LogGetAttack)army1[i];
+                if (unitTemp1.unit is ISpecialProperty unit1)
+                {
+                    Console.WriteLine($"Special Удар от {unitTemp1.unit} ");
+                    var proxy = new ProxyLogSpecial(unit1);
+                    // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
+                    if (army1.Count > 0 && army2.Count > 0) proxy.DoSpecialProperty(army1, army2, i);
+                }
+                LogGetAttack unitTemp2 = (LogGetAttack)army2[i];
+                if (unitTemp2.unit is ISpecialProperty unit2)
+                {
+                    Console.WriteLine($"Special Удар от {unitTemp2.unit} ");
+                    var proxy = new ProxyLogSpecial(unit2);
+                    // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
+                    if (army1.Count > 0 && army2.Count > 0) proxy.DoSpecialProperty(army1, army2, i);
+                }
+            }
+            // Если армии разных размеров, то продолжают спец атаки.
+            if (army1.Count > army2.Count)
+            {
+                for (int i = army2.Count; i < army1.Count; i++)
+                {
+                    LogGetAttack unitTemp1 = (LogGetAttack)army1[i];
+                    if (unitTemp1.unit is ISpecialProperty unit1)
+                    {
+                        Console.WriteLine($"Special Удар от {unitTemp1.unit} ");
+                        var proxy = new ProxyLogSpecial(unit1);
+                        // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
+                        if (army1.Count > 0 && army2.Count > 0) proxy.DoSpecialProperty(army1, army2, i);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = army1.Count; i < army2.Count; i++)
+                {
+                    LogGetAttack unitTemp2 = (LogGetAttack)army2[i];
+                    if (unitTemp2.unit is ISpecialProperty unit2)
+                    {
+                        Console.WriteLine($"Special Удар от {unitTemp2.unit} ");
+                        var proxy = new ProxyLogSpecial(unit2);
+                        // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
+                        if (army1.Count > 0 && army2.Count > 0) proxy.DoSpecialProperty(army1, army2, i);
+                    }
+                }
+            }
+
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Magic
 {
     class LogGetAttack(IUnit unit, (int percentAttack, double percentDodge) percentAttackAndDodge) : IUnit(percentAttackAndDodge)
     {
-        IUnit unit = unit;
+        public IUnit unit = unit;
         // Абстрактный класс записи
         const string logFilePath = "logHitUnit.txt";
         public override int Health()

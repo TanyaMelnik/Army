@@ -59,7 +59,8 @@ namespace Magic
                 // Для первых 
                 Game.Fight(army1, army2);
                 // Для остальных
-                Gaame.DoSpecial(army1, army2);
+                Game.DoSpecial(army1, army2);
+
                 countStep++;
             }
         }
