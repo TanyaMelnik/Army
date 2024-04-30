@@ -1,8 +1,13 @@
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Magic
 {
-    class Doctor : IUnit, ISpecialProperty
+    class Doctor : IUnit, ISpecialProperty, IHealtheble
     {
+        // Уникальные характеристики доктора.
+        int radiusAttack = 2;
+        int arrowDamage = 40;
         public Doctor((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 10;
@@ -10,20 +15,43 @@ namespace Magic
             dodge += 0.1;
             defense = 0;
         }
-
-        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        // Специальное свойство - лечить 
+        public IUnit DoSpecialProperty(List<IUnit> ownArmy, int number)
         {
-            throw new NotImplementedException();
+            for (int i = 0;i<= radiusAttack; i++)
+            {
+                // Если впереди стоящий существует 
+                if (number + i < ownArmy.Count)
+                { 
+                    // Если его можно вылечить 
+                    if (ownArmy[number + i] is IHealtheble patient)
+                    {
+                        patient.Heal(arrowDamage);
+                        return null;
+                    }
+                }
+                else
+                {
+                    // Если сзади стоящий существует 
+                    if (number - i >= 0)
+                    {
+                        // Если его можно вылечить 
+                        if (ownArmy[number - i] is IHealtheble patient)
+                        {
+                            patient.Heal(arrowDamage);
+                            return null;
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
-        /*public void GetHit(int strength)
-{
-   // Удар по броне 
-   defense = defense - strength >= 0 ? defense - strength : 0;
-   // Удар по здоровью 
-   health = defense - strength < 0 ? health + (defense - strength) : health;
-   // Проверка и действия, если смерть ..... 
-}*/
+        public void Heal(int arrowDamage)
+        {
+            // Нельзя лечить больше, чем максимальное здоровье
+            health = (health + arrowDamage) < Settings.GetInstance(0, 0).Health ? (health + arrowDamage) : Settings.GetInstance(0, 0).Health;
+        }
 
         public override string ToString()
         {

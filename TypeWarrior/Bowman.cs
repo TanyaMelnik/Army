@@ -1,7 +1,7 @@
 
 namespace Magic
 {
-    class Bowman : IUnit, ISpecialProperty
+    class Bowman : IUnit, ISpecialProperty, ICloneable, IHealtheble
     {
         public Bowman((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
@@ -20,10 +20,8 @@ namespace Magic
             return string.Format($"Лучник. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
         }
 
-
-
         // number - это порядковый номер лучника в списке (от 1 до размера своей армии)
-        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        public IUnit DoSpecialProperty(List<IUnit> enemyArmy, int number)
         {
             if (number < radiusAttack + 1)
             {
@@ -31,18 +29,22 @@ namespace Magic
                 int countEnemy = (radiusAttack + 1) - number;
                 // Если количество противников меньше найденного числа.
                 if (countEnemy > enemyArmy.Count) countEnemy = enemyArmy.Count;
-
-                // Рандомно выбираем цель.
-                var rand = new Random();
-                // От 0 включительно до countEnemy не включительно
-                int aim = rand.Next(0, countEnemy);
-
-                // Цель выбрана - enemyArmy[aim]
-
+                // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно
+                int aim = new Random().Next(0, countEnemy);
+                // Цель выбрана - enemyArmy[aim
                 enemyArmy[aim].GetHit(arrowDamage);
             }
             return null;
         }
+        public IUnit Clone()
+        {
+            return new LogGetAttack(new Bowman((attack - 20, dodge - 0.3)), (attack - 20, dodge - 0.3));
+        }
 
+        public void Heal(int arrowDamage)
+        {
+            // Нельзя лечить больше, чем максимальное здоровье
+            health = (health + arrowDamage) < Settings.GetInstance(0, 0).Health ? (health + arrowDamage) : Settings.GetInstance(0, 0).Health;
+        }
     }
 }

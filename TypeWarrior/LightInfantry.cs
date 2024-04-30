@@ -1,5 +1,5 @@
 namespace Magic {
-    class LightWarrior : IUnit, ICloneable
+    class LightWarrior : IUnit, ICloneable,IHealtheble
     {
         public LightWarrior((int , double ) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
@@ -14,21 +14,11 @@ namespace Magic {
             return new LogGetAttack(new LightWarrior((attack - 40, dodge - 0.2)), (attack-40, dodge-0.2));
         }
 
-        /*public void GetHit(int strength)
-{
-   // Удар по броне 
-   defense = defense - strength >= 0 ? defense - strength : 0;
-   // Удар по здоровью 
-   health = defense - strength < 0 ? health + (defense - strength) : health;
-   // Проверка и действия, если смерть ..... 
-}*/
-
-        public int DoAttack()
+        public void Heal(int arrowDamage)
         {
-            return attack;
-        }
-
-     
+            // Нельзя лечить больше, чем максимальное здоровье
+            health = (health + arrowDamage) < Settings.GetInstance(0, 0).Health ? (health + arrowDamage) : Settings.GetInstance(0, 0).Health;
+        } 
 
         public override string ToString()
         {

@@ -1,8 +1,12 @@
 
 namespace Magic
 {
-    class Genetic : IUnit, ISpecialProperty
+    class Genetic : IUnit, ISpecialProperty, IHealtheble
     {
+        /// <summary>
+        /// Процент клонирования - 10%
+        /// </summary>
+        double procentClone=0.1;
         public Genetic((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 20;
@@ -11,33 +15,31 @@ namespace Magic
             defense = 10;
         }
 
-        /*public void GetHit(int strength)
-        {
-            // Удар по броне 
-            defense = defense - strength >= 0 ? defense - strength : 0;
-            // Удар по здоровью 
-            health = defense - strength < 0 ? health + (defense - strength) : health;
-            // Проверка и действия, если смерть ..... 
-        }*/
-
-        public int DoAttack()
-        {
-            return attack;
-        }
-
-        public void Clone()
-        {
-
-        }
-
         public override string ToString()
         {
             return string.Format($"Генетик. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
         }
 
-        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        public IUnit DoSpecialProperty(List<IUnit> ownArmy, int number)
         {
-            throw new NotImplementedException();
+            // Вероятность клонирования 10%
+            if (procentClone >= new Random().NextDouble()) {
+                for (int i = 0; i < ownArmy.Count; i++)
+                {
+                    // Если его можно клонировать 
+                    if (ownArmy[i] is ICloneable clone)
+                    {
+                        return clone.Clone();
+                    }
+                }
+            }
+            return null;
+        }
+
+        public void Heal(int arrowDamage)
+        {
+            // Нельзя лечить больше, чем максимальное здоровье
+            health = (health + arrowDamage) < Settings.GetInstance(0, 0).Health ? (health + arrowDamage) : Settings.GetInstance(0, 0).Health;
         }
     }
 }

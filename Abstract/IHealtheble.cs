@@ -1,4 +1,4 @@
 interface IHealtheble
 {
-    void Heal();
+    void Heal(int arrowDamage);
 }
