@@ -11,7 +11,24 @@ namespace Magic
 
             // Инициализация настроек.
             UserSettings();
-
+            /*Console.WriteLine(Settings.GetInstance(0,0).Health+" "+ Settings.GetInstance(0, 0).Cost);*/
+            /* // Создание первой армии.
+             AbstractArmyFactory abstractArmyFactory1 = new AttackArmy();
+             ArmyCreatedFactories armyCreatedFactories1 = new BalanceArmy(abstractArmyFactory1);
+             List<IUnit> army1 = armyCreatedFactories1.CreateArmy();
+             for (int i = 0; i < army1.Count; i++) {
+                 Console.WriteLine(army1[i]);
+             }
+             // Создание второй армии.
+             AbstractArmyFactory abstractArmyFactory2 = new AttackArmy();
+             ArmyCreatedFactories armyCreatedFactories2 = new BalanceArmy(abstractArmyFactory2);
+             List<IUnit> army2 = armyCreatedFactories2.CreateArmy();
+             for (int i = 0; i < army1.Count; i++)
+             {
+                 Console.WriteLine(army2[i]);
+             }
+             Console.WriteLine();
+             Console.WriteLine();*/
             // Создание первой армии.
             AbstractArmyFactory abstractArmyFactory1 = AddUnitStats();
             ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1);
@@ -243,9 +260,13 @@ namespace Magic
 
         static void PrintArmy(List<IUnit> army)
         {
-            foreach (IUnit unit in army)
+            /*foreach (unit in army)
             {
-                Console.WriteLine(unit.ToString());
+                Console.WriteLine($"{unit.GetType()} {unit.ToString()}");
+            }*/
+            for (int i = 0;i < army.Count; i++)
+            {
+                Console.WriteLine(army[i].ToString());
             }
         }
 

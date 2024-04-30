@@ -14,6 +14,7 @@ namespace Magic
         // Фабричный метод, который создаёт армию конкретного способа
         public abstract List<IUnit> CreateArmy();
         public ArmyCreatedFactories(AbstractArmyFactory army) {
+           
             // Выбираем конкретную фабрику создания unit
             this.army = army;
             unitCost = [];

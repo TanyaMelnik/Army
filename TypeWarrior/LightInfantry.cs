@@ -24,5 +24,23 @@ namespace Magic {
         {
             return string.Format($"Легкий Солдат. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} Уклонение {dodge}");
         }
+        public override void GetHit(int strengthAttack)
+        {
+            Random random = new Random();
+            double randomNumber = random.NextDouble();
+            //Если уклонение не произошло => unit получает урон 
+            if (dodge < randomNumber)
+            {
+                if (defense >= strengthAttack) defense -= strengthAttack;
+                else if (defense < strengthAttack && defense > 0)
+                {
+                    int x = strengthAttack - defense;
+                    defense = 0;
+                    health -= x;
+                }
+                else health -= attack;
+            }
+
+        }
     } 
 }

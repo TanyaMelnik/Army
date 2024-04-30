@@ -22,6 +22,9 @@ namespace Magic
                 // Создаем армию с учетом сбалансированности
                 foreach (var unitTypePair in sortedUnitTypes)
                 {
+                    if (cost <= 0){
+                        return army;
+                    }
                     var unitType = unitTypePair.Key;
                     var unitCostValue = unitTypePair.Value;
 

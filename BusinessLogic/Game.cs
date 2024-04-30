@@ -12,6 +12,11 @@ namespace Magic
     {
         public static void Fight(List<IUnit> army1, List<IUnit> army2)
         {
+            /*Console.WriteLine("//////");
+            Console.WriteLine(army2[0].Health);
+            army2[0].GetHit(army1[0].Attack);
+            Console.WriteLine(army2[0].Health);
+            Console.WriteLine("//////");*/
             army2[0].GetHit(army1[0].Attack);
             if (army2[0].Health < 0) army2.RemoveAt(0); // ЗДЕСЬ ВЫЗЫВАТЬ ПРОКСИ
             army1[0].GetHit(army2[0].Attack);

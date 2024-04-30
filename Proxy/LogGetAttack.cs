@@ -17,7 +17,7 @@ namespace Magic
         {
             return unit.ToString();
         }
-        public new void GetHit(int strengthAttack)
+        public override void GetHit(int strengthAttack)
         {
             using (StreamWriter log = File.AppendText(logFilePath))
             {
