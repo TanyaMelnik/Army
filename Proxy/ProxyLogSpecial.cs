@@ -17,10 +17,8 @@ namespace Magic
         }
         public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            using (StreamWriter log = File.AppendText(logFilePath))
-            {
-                log.WriteLine($"[{DateTime.Now}] Special Удар от {unit.GetType()}");
-            }
+            string text = $"[{DateTime.Now}] Special Удар от {unit.GetType()}";
+            Data.WriteInFile(logFilePath, text);
             return unit.DoSpecialProperty(ownArmy, enemyArmy, number);
         }
     }

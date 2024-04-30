@@ -27,10 +27,8 @@ namespace Magic
         }
         public override void GetHit(int strengthAttack)
         {
-            using (StreamWriter log = File.AppendText(logFilePath))
-            {
-                log.WriteLine($"[{DateTime.Now}] Удар по {unit.GetType()} уроном {strengthAttack} ");
-            }
+            string text = $"[{DateTime.Now}] Удар по {unit.GetType()} уроном {strengthAttack} ";
+            Data.WriteInFile(logFilePath, text);
             unit.GetHit(strengthAttack);
         }
     }    
