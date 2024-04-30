@@ -21,7 +21,7 @@ namespace Magic
         }
 
         // number - это порядковый номер лучника в списке (от 1 до размера своей армии)
-        public IUnit DoSpecialProperty(List<IUnit> enemyArmy, int number)
+        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             if (number < radiusAttack + 1)
             {

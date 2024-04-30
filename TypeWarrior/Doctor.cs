@@ -16,7 +16,7 @@ namespace Magic
             defense = 0;
         }
         // Специальное свойство - лечить 
-        public IUnit DoSpecialProperty(List<IUnit> ownArmy, int number)
+        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             for (int i = 0;i<= radiusAttack; i++)
             {

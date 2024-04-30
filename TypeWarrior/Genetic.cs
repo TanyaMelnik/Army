@@ -20,7 +20,7 @@ namespace Magic
             return string.Format($"Генетик. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
         }
 
-        public IUnit DoSpecialProperty(List<IUnit> ownArmy, int number)
+        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             // Вероятность клонирования 10%
             if (procentClone >= new Random().NextDouble()) {
