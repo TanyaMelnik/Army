@@ -11,7 +11,7 @@ namespace Magic
     {
         public void DeleteUnit(List<IUnit> army, int numberUnit);
     }
-    class DeadUnit
+    class DeadUnit : Dead
     {
         public void DeleteUnit(List<IUnit> army, int numberUnit)
         {

@@ -45,8 +45,9 @@ namespace Magic
             //Запуск основного цикла игры.
             int countStep = 1;
             // Пока в одной из армий остались воины.
-            while (army1.Count > 0 || army2.Count > 0)
+            while (army1.Count > 0 && army2.Count > 0)
             {
+                Console.WriteLine("Ход номер " + countStep);
                 // Вывод армий на экран.
                 Console.WriteLine("Армия 1:");
                 PrintArmy(army1);
@@ -55,9 +56,10 @@ namespace Magic
                 PrintArmy(army2);
                 Console.WriteLine();
 
-                Console.WriteLine("Ход номер " + countStep);
-                // ЕЩЁ НЕ РЕАЛИЗОВАНО
+                // Для первых 
                 Game.Fight(army1, army2);
+                // Для остальных
+                Gaame.DoSpecial(army1, army2);
                 countStep++;
             }
         }

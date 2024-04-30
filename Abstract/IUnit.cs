@@ -10,18 +10,14 @@ namespace Magic{
         /// </summary>
         // Максимум 100.
         protected int health = Settings.GetInstance(0,0).Health;
-        public int Health { 
-            get { return health; }
-        }
+        public abstract int Health();
 
         /// <summary>
         /// Сила юнита. Урон, который может нанести юнит
         /// </summary>
         // Максимум 50.
         protected int attack = percentAttackAndDodge.percentAttack;
-        public int Attack {
-            get { return attack; }
-        }
+        public abstract int Attack();
 
         /// <summary>
         /// Стоимость юнита.

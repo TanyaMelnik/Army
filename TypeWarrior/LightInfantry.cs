@@ -42,5 +42,14 @@ namespace Magic {
             }
 
         }
+
+        public override int Health()
+        {
+            return health;
+        }
+        public override int Attack()
+        {
+            return attack;
+        }
     } 
 }

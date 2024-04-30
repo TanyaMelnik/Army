@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,14 @@ namespace Magic
         IUnit unit = unit;
         // Абстрактный класс записи
         const string logFilePath = "logHitUnit.txt";
-
+        public override int Health()
+        {
+            return unit.Health();
+        }
+        public override int Attack()
+        {
+            return unit.Attack();
+        }
         public override string ToString()
         {
             return unit.ToString();
