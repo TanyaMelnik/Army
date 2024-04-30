@@ -1,12 +1,15 @@
 namespace Magic{
 
-    public abstract class IUnit
+    /// <summary>
+    /// Конструктор, который берёт настройки из конфигурации.
+    /// </summary>
+    public abstract class IUnit(Settings settings, (int percentAttack, double percentDodge) percentAttackAndDodge)
     {
         /// <summary>
         /// Здоровье юнита.
         /// </summary>
         // Максимум 100.
-        protected int health;
+        protected int health = settings.Health;
         public int Health { 
             get { return health; }
         }
@@ -15,7 +18,7 @@ namespace Magic{
         /// Сила юнита. Урон, который может нанести юнит
         /// </summary>
         // Максимум 50.
-        protected int attack;
+        protected int attack = percentAttackAndDodge.percentAttack;
         public int Attack {
             get { return attack; }
         }
@@ -32,7 +35,7 @@ namespace Magic{
         /// Уклонение юнита.
         /// </summary>
         // Максимум 1
-        protected double dodge;
+        protected double dodge = percentAttackAndDodge.percentDodge;
         public double Dodge
         {
             get { return dodge; }
@@ -47,15 +50,6 @@ namespace Magic{
             get { return defense; }
         }
 
-        /// <summary>
-        /// Конструктор, который берёт настройки из конфигурации.
-        /// </summary>
-        public IUnit(Settings settings, (int percentAttack, double percentDodge) percentAttackAndDodge)
-        {
-            health = settings.Health;
-            attack = percentAttackAndDodge.percentAttack;
-            dodge = percentAttackAndDodge.percentDodge;
-        }
         public int GetCost()
         {
             return cost;
@@ -64,22 +58,24 @@ namespace Magic{
         /// Метод представления юнита.
         /// </summary>
         /// <returns></returns>
-        public abstract string ToString();
+        public override abstract string ToString();
 
         public void GetHit(int strengthAttack)
         {
-            if (defense >= strengthAttack) defense -= strengthAttack;
-            else if (defense < strengthAttack && defense > 0)
+            Random random = new Random();
+            double randomNumber = random.NextDouble();
+            // Если уклонение не произошло => unit получает урон 
+            if (Dodge < randomNumber)
             {
-                int x = strengthAttack - defense;
-                defense = 0;
-                health -= x;
+                if (defense >= strengthAttack) defense -= strengthAttack;
+                else if (defense < strengthAttack && defense > 0)
+                {
+                    int x = strengthAttack - defense;
+                    defense = 0;
+                    health -= x;
+                }
+                else health -= attack;
             }
-            else health -= attack;
-            /*// Удар по броне 
-            defense = defense - strength >= 0 ? defense - strength : 0;
-            // Удар по здоровью 
-            health = defense - strength < 0 ? health + (defense - strength) : health;*/
         }
 
     }
