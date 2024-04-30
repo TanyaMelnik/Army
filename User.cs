@@ -10,22 +10,22 @@ namespace Magic
 
             Settings settings = UserSettings();
 
-            // ЗАДАЧА 1
-            // Запрашиваем данные у пользователя о длительности игры и вместимости (cost) армии, передаем их в конструктор Settings
-            // Создаём экземпляр Settings и заполняем данные в конструкторе 
-           // List<IUnit> army1 = CreateArmy(settings.Health, settings.Cost);
-           // List<IUnit> army2 = CreateArmy(settings.Health, settings.Cost);
-            // 
-            ArmyCreatedFactories bB = new RandomArmy(new AttackArmy(), settings); // балансированно рандомно
+            // Добавить создание второй армии
 
-            ArmyCreatedFactories aA = new BalanceArmy(new BlackBoxArmy(), settings);// балансированно 
-            List<IUnit> army1 = bB.CreateArmy();
+            AbstractArmyFactory abstractArmyFactory = AddUnitStats();
+
+            ArmyCreatedFactories armyCreatedFactories = SelectSetUnits(abstractArmyFactory, settings);
+
+            List<IUnit> army1 = armyCreatedFactories.CreateArmy();
+
             foreach (IUnit unit in army1)
             {
                 Console.WriteLine(unit.ToString());
             }
             Console.WriteLine();
-            List<IUnit> army2 = aA.CreateArmy();
+
+            List<IUnit> army2 = armyCreatedFactories.CreateArmy();
+
             foreach (IUnit unit in army2)
             {
                 Console.WriteLine(unit.ToString());
@@ -76,7 +76,7 @@ namespace Magic
             }
         }
 
-        public static Settings UserSettings()
+        static Settings UserSettings()
         {
             // Ввод стоимость армий пользователем.
             int cost = SetCost();
@@ -89,7 +89,6 @@ namespace Magic
 
             return settings;
         }
-
         static int Healht()
         {
             int health = -1;
@@ -134,14 +133,14 @@ namespace Magic
                         break;
 
                     case ConsoleKey.Enter:
-                        health = ExecuteMenuItem(selectedItemIndex);
+                        health = ExecuteMenuItemDuration(selectedItemIndex);
                         break;
                 }
                 if (keyInfo.Key == ConsoleKey.Enter) break;
             }
             return health;
         }
-        static int ExecuteMenuItem(int index)
+        static int ExecuteMenuItemDuration(int index)
         {
             Console.Clear();
             Console.WriteLine($"Вы выбрали: {index + 1}");
@@ -159,6 +158,124 @@ namespace Magic
                 Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
             }
             return cost;
+        }
+
+        static AbstractArmyFactory AddUnitStats() 
+        {
+            AbstractArmyFactory abstractArmyFactory = null;
+
+            string[] menuItems = { "С сильной атакой", "С большим процентом уклонения", "С рандомными характеристиками" };
+            int selectedItemIndex = 0;
+
+            while (true)
+            {
+                Console.Clear();
+
+                Console.WriteLine("Какую армию Вы хотите создать? :");
+                for (int i = 0; i < menuItems.Length; i++)
+                {
+                    if (i == selectedItemIndex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.Write(">");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
+
+                    Console.WriteLine(" " + menuItems[i]);
+
+                    Console.ResetColor();
+                }
+
+                ConsoleKeyInfo keyInfo = Console.ReadKey();
+                switch (keyInfo.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        selectedItemIndex = (selectedItemIndex - 1 + menuItems.Length) % menuItems.Length;
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        selectedItemIndex = (selectedItemIndex + 1) % menuItems.Length;
+                        break;
+
+                    case ConsoleKey.Enter:
+                        abstractArmyFactory = ExecuteMenuItemStats(selectedItemIndex);
+                        break;
+                }
+                if (keyInfo.Key == ConsoleKey.Enter) break;
+            }
+            return abstractArmyFactory;
+        }
+        static AbstractArmyFactory ExecuteMenuItemStats(int index)
+        {
+            Console.Clear();
+            Console.WriteLine($"Вы выбрали: {index + 1}");
+            if (index == 0) return new AttackArmy();
+            else if (index == 1) return new DodgeArmy();
+            else if (index == 2) return new BlackBoxArmy();
+            return null;
+        }
+
+        static ArmyCreatedFactories SelectSetUnits(AbstractArmyFactory abstractArmyFactory, Settings settings)
+        {
+            ArmyCreatedFactories armyCreatedFactories = null;
+
+            string[] menuItems = { "Сбалансированно", "Рандомно"};
+            int selectedItemIndex = 0;
+
+            while (true)
+            {
+                Console.Clear();
+
+                Console.WriteLine("Как набрать воинов в армию? :");
+                for (int i = 0; i < menuItems.Length; i++)
+                {
+                    if (i == selectedItemIndex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.Write(">");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
+
+                    Console.WriteLine(" " + menuItems[i]);
+
+                    Console.ResetColor();
+                }
+
+                ConsoleKeyInfo keyInfo = Console.ReadKey();
+                switch (keyInfo.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        selectedItemIndex = (selectedItemIndex - 1 + menuItems.Length) % menuItems.Length;
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        selectedItemIndex = (selectedItemIndex + 1) % menuItems.Length;
+                        break;
+
+                    case ConsoleKey.Enter:
+                        armyCreatedFactories = ExecuteMenuItemSetUnits(selectedItemIndex, abstractArmyFactory, settings);
+                        break;
+                }
+                if (keyInfo.Key == ConsoleKey.Enter) break;
+            }
+            return armyCreatedFactories;
+        }
+
+        static ArmyCreatedFactories ExecuteMenuItemSetUnits(int index, AbstractArmyFactory abstractArmyFactory, Settings settings)
+        {
+            Console.Clear();
+            Console.WriteLine($"Вы выбрали: {index + 1}");
+            if (index == 0) return new BalanceArmy(abstractArmyFactory, settings);
+            else if (index == 1) return new RandomArmy(abstractArmyFactory, settings);
+            return null;
         }
 
         static List<IUnit> CreateArmy(int health, int cost)
