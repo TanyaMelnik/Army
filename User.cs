@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Magic
 {
@@ -8,32 +9,56 @@ namespace Magic
         {
             Console.WriteLine("Начинаем новую игру!");
 
+            // Инициализация настроек.
             UserSettings();
 
-            // Добавить создание второй армии
+            // Создание первой армии.
+            AbstractArmyFactory abstractArmyFactory1 = AddUnitStats();
+            ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1);
+            List<IUnit> army1 = armyCreatedFactories1.CreateArmy();
 
-            AbstractArmyFactory abstractArmyFactory = AddUnitStats();
+            // Создание второй армии.
+            AbstractArmyFactory abstractArmyFactory2 = AddUnitStats();
+            ArmyCreatedFactories armyCreatedFactories2 = SelectSetUnits(abstractArmyFactory2);
+            List<IUnit> army2 = armyCreatedFactories2.CreateArmy();
 
-            ArmyCreatedFactories armyCreatedFactories = SelectSetUnits(abstractArmyFactory);
-
-            List<IUnit> army1 = armyCreatedFactories.CreateArmy();
-
-            foreach (IUnit unit in army1)
+            // Выбор армии, которая ходит первая
+            Console.WriteLine("Выберите армию, которая ходит первая (1 или 2): ");
+            int choise = 0;
+            while (!int.TryParse(Console.ReadLine(), out choise) || choise < 1 || choise > 2)
             {
-                Console.WriteLine(unit.ToString());
+                Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
             }
-            Console.WriteLine();
-
-            List<IUnit> army2 = armyCreatedFactories.CreateArmy();
-
-            foreach (IUnit unit in army2)
+            if (choise == 2) 
             {
-                Console.WriteLine(unit.ToString());
+                List<IUnit> armyHelp = army1;
+                army1 = army2;
+                army2 = armyHelp;
             }
-            Console.WriteLine();
-            // Прописываем логику игры. Нуждается в переносе в другом классе
-            // Игра работает пока одна армия не умрёт
-            while (army1.Count>2 || army2.Count > 2)
+
+            //Запуск основного цикла игры.
+            int countStep = 1;
+            // Пока в одной из армий остались воины.
+            while (army1.Count > 0 || army2.Count > 0)
+            {
+                // Вывод армий на экран.
+                Console.WriteLine("Армия 1:");
+                PrintArmy(army1);
+                Console.WriteLine();
+                Console.WriteLine("Армия 2:");
+                PrintArmy(army2);
+                Console.WriteLine();
+
+                Console.WriteLine("Ход номер " + countStep);
+                // ЕЩЁ НЕ РЕАЛИЗОВАНО
+                Game.Fight(army1, army2);
+                countStep++;
+            }
+
+
+                // Прописываем логику игры. Нуждается в переносе в другом классе
+                // Игра работает пока одна армия не умрёт
+                while (army1.Count>2 || army2.Count > 2)
             {
                 // Логика на проверку получения ударов. Нужны проверки на смерть.!!
                 // Для первых в стеке битва 1:1
@@ -101,7 +126,7 @@ namespace Magic
             {
                 Console.Clear();
 
-                Console.WriteLine("Какие игры по длительности Вы предпочитаете? :");
+                Console.WriteLine("Какие игры по длительности Вы предпочитаете?");
                 for (int i = 0; i < menuItems.Length; i++)
                 {
                     if (i == selectedItemIndex)
@@ -142,7 +167,6 @@ namespace Magic
         static int ExecuteMenuItemDuration(int index)
         {
             Console.Clear();
-            Console.WriteLine($"Вы выбрали: {index + 1}");
             if (index == 0) return 50;
             else if (index == 1) return 75;
             else if (index == 2) return 100;
@@ -170,7 +194,7 @@ namespace Magic
             {
                 Console.Clear();
 
-                Console.WriteLine("Какую армию Вы хотите создать? :");
+                Console.WriteLine("Какую армию Вы хотите создать?");
                 for (int i = 0; i < menuItems.Length; i++)
                 {
                     if (i == selectedItemIndex)
@@ -211,13 +235,11 @@ namespace Magic
         static AbstractArmyFactory ExecuteMenuItemStats(int index)
         {
             Console.Clear();
-            Console.WriteLine($"Вы выбрали: {index + 1}");
             if (index == 0) return new AttackArmy();
             else if (index == 1) return new DodgeArmy();
             else if (index == 2) return new BlackBoxArmy();
             return null;
         }
-
         static ArmyCreatedFactories SelectSetUnits(AbstractArmyFactory abstractArmyFactory)
         {
             ArmyCreatedFactories armyCreatedFactories = null;
@@ -229,7 +251,7 @@ namespace Magic
             {
                 Console.Clear();
 
-                Console.WriteLine("Как набрать воинов в армию? :");
+                Console.WriteLine("Как набрать воинов в армию?");
                 for (int i = 0; i < menuItems.Length; i++)
                 {
                     if (i == selectedItemIndex)
@@ -267,36 +289,35 @@ namespace Magic
             }
             return armyCreatedFactories;
         }
-
         static ArmyCreatedFactories ExecuteMenuItemSetUnits(int index, AbstractArmyFactory abstractArmyFactory)
         {
             Console.Clear();
-            Console.WriteLine($"Вы выбрали: {index + 1}");
             if (index == 0) return new BalanceArmy(abstractArmyFactory);
             else if (index == 1) return new RandomArmy(abstractArmyFactory);
             return null;
         }
 
-        static List<IUnit> CreateArmy(int health, int cost)
+        static void PrintArmy(List<IUnit> army)
         {
-            // ЗАДАЧА 2
-            //Логика создания армий
-            // Добавить выбор создания разных арммий 
-            List<IUnit> army = new();
-            //army=Ga,
-            return army;
+            foreach (IUnit unit in army)
+            {
+                Console.WriteLine(unit.ToString());
+            }
         }
-
-        // TODO: КАК ИСПОЛЬЗОВАТЬ СОЗДАНИЕ АРМИИ :
-        // Сначала идёт выбор вида армии ( с атакой, с уклонением, черный ящик) . Пока тоже можно реализовать через клавиши
-        // AbstractArmyFactory a = new AttackArmy(); //с атакой
-        // AbstractArmyFactory a = new BlackBoxArmy() // с уклонением
-        // AbstractArmyFactory a =new DodgeArmy() // черный ящик
-        // Затем идёт выбор создания армии ( рандом и баланс)
-        // ArmyCreatedFactories b =new BalanceArmy(a,settings) // балансированно (в параментрах передаём абстрактну фабрику and Settings!)
-        // ArmyCreatedFactories b =new RandomArmy(a,settings) // рандомно
-        // После этого создание армии 
-        // List <IUnit> army=b.CreateArmy(cost)// //  (в параментрах передаём баланс!)
     }
 
 }
+
+
+
+
+// TODO: КАК ИСПОЛЬЗОВАТЬ СОЗДАНИЕ АРМИИ :
+// Сначала идёт выбор вида армии ( с атакой, с уклонением, черный ящик) . Пока тоже можно реализовать через клавиши
+// AbstractArmyFactory a = new AttackArmy(); //с атакой
+// AbstractArmyFactory a = new BlackBoxArmy() // с уклонением
+// AbstractArmyFactory a =new DodgeArmy() // черный ящик
+// Затем идёт выбор создания армии ( рандом и баланс)
+// ArmyCreatedFactories b =new BalanceArmy(a,settings) // балансированно (в параментрах передаём абстрактну фабрику and Settings!)
+// ArmyCreatedFactories b =new RandomArmy(a,settings) // рандомно
+// После этого создание армии 
+// List <IUnit> army=b.CreateArmy(cost)// //  (в параментрах передаём баланс!)
