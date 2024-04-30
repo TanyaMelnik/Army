@@ -3,7 +3,7 @@ namespace Magic
 {
     class Bowman : IUnit, ISpecialProperty
     {
-        public Bowman(Settings settings, (int, double) percentAttackAndDodge) : base(settings, percentAttackAndDodge)
+        public Bowman((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 20;
             cost = 3;
@@ -17,7 +17,7 @@ namespace Magic
 
         public override string ToString()
         {
-            return string.Format($"Лучник. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} ");
+            return string.Format($"Лучник. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
         }
 
 

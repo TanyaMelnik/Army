@@ -8,13 +8,13 @@ namespace Magic
         {
             Console.WriteLine("Начинаем новую игру!");
 
-            Settings settings = UserSettings();
+            UserSettings();
 
             // Добавить создание второй армии
 
             AbstractArmyFactory abstractArmyFactory = AddUnitStats();
 
-            ArmyCreatedFactories armyCreatedFactories = SelectSetUnits(abstractArmyFactory, settings);
+            ArmyCreatedFactories armyCreatedFactories = SelectSetUnits(abstractArmyFactory);
 
             List<IUnit> army1 = armyCreatedFactories.CreateArmy();
 
@@ -76,7 +76,7 @@ namespace Magic
             }
         }
 
-        static Settings UserSettings()
+        static void UserSettings()
         {
             // Ввод стоимость армий пользователем.
             int cost = SetCost();
@@ -85,9 +85,8 @@ namespace Magic
             int health = Healht();
 
             // Паттерн Singleton. 
-            Settings settings = Settings.GetInstance(health, cost);
+            Settings.GetInstance(health, cost);
 
-            return settings;
         }
         static int Healht()
         {
@@ -219,7 +218,7 @@ namespace Magic
             return null;
         }
 
-        static ArmyCreatedFactories SelectSetUnits(AbstractArmyFactory abstractArmyFactory, Settings settings)
+        static ArmyCreatedFactories SelectSetUnits(AbstractArmyFactory abstractArmyFactory)
         {
             ArmyCreatedFactories armyCreatedFactories = null;
 
@@ -261,7 +260,7 @@ namespace Magic
                         break;
 
                     case ConsoleKey.Enter:
-                        armyCreatedFactories = ExecuteMenuItemSetUnits(selectedItemIndex, abstractArmyFactory, settings);
+                        armyCreatedFactories = ExecuteMenuItemSetUnits(selectedItemIndex, abstractArmyFactory);
                         break;
                 }
                 if (keyInfo.Key == ConsoleKey.Enter) break;
@@ -269,12 +268,12 @@ namespace Magic
             return armyCreatedFactories;
         }
 
-        static ArmyCreatedFactories ExecuteMenuItemSetUnits(int index, AbstractArmyFactory abstractArmyFactory, Settings settings)
+        static ArmyCreatedFactories ExecuteMenuItemSetUnits(int index, AbstractArmyFactory abstractArmyFactory)
         {
             Console.Clear();
             Console.WriteLine($"Вы выбрали: {index + 1}");
-            if (index == 0) return new BalanceArmy(abstractArmyFactory, settings);
-            else if (index == 1) return new RandomArmy(abstractArmyFactory, settings);
+            if (index == 0) return new BalanceArmy(abstractArmyFactory);
+            else if (index == 1) return new RandomArmy(abstractArmyFactory);
             return null;
         }
 

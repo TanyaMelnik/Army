@@ -3,7 +3,7 @@ namespace Magic
 {
     class Genetic : IUnit, ISpecialProperty
     {
-        public Genetic(Settings settings, (int , double) percentAttackAndDodge) : base(settings, percentAttackAndDodge)
+        public Genetic((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 20;
             cost = 5;
@@ -32,7 +32,7 @@ namespace Magic
 
         public override string ToString()
         {
-            return string.Format($"Генетик. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} ");
+            return string.Format($"Генетик. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
         }
 
         public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)

@@ -14,22 +14,22 @@ namespace Magic
         /// </summary>
         protected abstract (int, double) PercentAttackAndDodge { get; }
         // Методы, которые создают конкретеные IUnit
-        public IUnit CreateLightUnit(Settings settings) {
-            return new LogGetAttack(new LightWarrior(settings, PercentAttackAndDodge), settings, PercentAttackAndDodge);
+        public IUnit CreateLightUnit() {
+            return new LogGetAttack(new LightWarrior(PercentAttackAndDodge), PercentAttackAndDodge);
         }
-        public IUnit CreateHeavyUnitUnit(Settings settings) {
-            return new LogGetAttack(new HeavyWarrior(settings, PercentAttackAndDodge), settings, PercentAttackAndDodge);
+        public IUnit CreateHeavyUnitUnit() {
+            return new LogGetAttack(new HeavyWarrior(PercentAttackAndDodge), PercentAttackAndDodge);
         }
-        public IUnit CreateGeneticUnit(Settings settings) {
-            return new LogGetAttack(new Genetic(settings, PercentAttackAndDodge), settings, PercentAttackAndDodge);
+        public IUnit CreateGeneticUnit() {
+            return new LogGetAttack(new Genetic(PercentAttackAndDodge), PercentAttackAndDodge);
         }
-        public IUnit CreateDoctorUnit(Settings settings)
+        public IUnit CreateDoctorUnit()
         {
-            return new LogGetAttack(new Doctor(settings, PercentAttackAndDodge), settings, PercentAttackAndDodge);
+            return new LogGetAttack(new Doctor(PercentAttackAndDodge), PercentAttackAndDodge);
         }
-        public IUnit CreateBowmanUnit(Settings settings)
+        public IUnit CreateBowmanUnit()
         {
-            return new LogGetAttack(new Bowman(settings, PercentAttackAndDodge), settings, PercentAttackAndDodge);
+            return new LogGetAttack(new Bowman(PercentAttackAndDodge), PercentAttackAndDodge);
         }
     }
 }

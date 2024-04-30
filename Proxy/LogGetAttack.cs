@@ -7,7 +7,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Magic
 {
-    class LogGetAttack(IUnit unit, Settings settings, (int percentAttack, double percentDodge) percentAttackAndDodge) : IUnit(settings, percentAttackAndDodge)
+    class LogGetAttack(IUnit unit, (int percentAttack, double percentDodge) percentAttackAndDodge) : IUnit(percentAttackAndDodge)
     {
         IUnit unit = unit;
         // Абстрактный класс записи

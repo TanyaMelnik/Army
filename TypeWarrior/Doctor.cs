@@ -3,7 +3,7 @@ namespace Magic
 {
     class Doctor : IUnit, ISpecialProperty
     {
-        public Doctor(Settings settings, (int , double) percentAttackAndDodge) : base(settings, percentAttackAndDodge)
+        public Doctor((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 10;
             cost = 4;
@@ -27,7 +27,7 @@ namespace Magic
 
         public override string ToString()
         {
-            return string.Format($"Доктор. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} ");
+            return string.Format($"Доктор. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
         }
 
     }

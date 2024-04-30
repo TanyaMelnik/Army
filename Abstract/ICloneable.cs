@@ -1,4 +1,7 @@
-interface ICloneable
+namespace Magic
 {
-    void Clone();
+    interface ICloneable
+    {
+        public IUnit Clone();
+    }
 }

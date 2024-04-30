@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
-    class BalanceArmy(AbstractArmyFactory army, Settings setting) : ArmyCreatedFactories(army,setting)
+    class BalanceArmy(AbstractArmyFactory army) : ArmyCreatedFactories(army)
     {
         public override List<IUnit> CreateArmy()
         {
-            int cost = setting.Cost;
+            int cost = Settings.GetInstance(0, 0).Cost;
             List<IUnit> army = [];
             // Сортируем типы юнитов по возрастанию стоимости
             var sortedUnitTypes = unitCost.OrderBy(pair => pair.Value);

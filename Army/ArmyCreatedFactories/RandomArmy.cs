@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
-    class RandomArmy(AbstractArmyFactory army, Settings setting) : ArmyCreatedFactories(army, setting)
+    class RandomArmy(AbstractArmyFactory army) : ArmyCreatedFactories(army)
     {
         private readonly Random random = new();
 
         public override List<IUnit> CreateArmy()
         {
-            int cost = setting.Cost;
+            int cost = Settings.GetInstance(0, 0).Cost;
             List<IUnit> army = [];
             while (cost > 0)
             {

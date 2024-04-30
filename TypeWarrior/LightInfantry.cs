@@ -1,35 +1,38 @@
 namespace Magic {
     class LightWarrior : IUnit, ICloneable
     {
-        public LightWarrior(Settings settings, (int , double ) percentAttackAndDodge) : base(settings, percentAttackAndDodge)
+        public LightWarrior((int , double ) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 40;
             cost = 1;
             dodge += 0.2;
             defense = 50;
         }
-        /*public void GetHit(int strength)
+
+        public IUnit Clone()
         {
-            // Удар по броне 
-            defense = defense - strength >= 0 ? defense - strength : 0;
-            // Удар по здоровью 
-            health = defense - strength < 0 ? health + (defense - strength) : health;
-            // Проверка и действия, если смерть ..... 
-        }*/
+            return new LogGetAttack(new LightWarrior((attack - 40, dodge - 0.2)), (attack-40, dodge-0.2));
+        }
+
+        /*public void GetHit(int strength)
+{
+   // Удар по броне 
+   defense = defense - strength >= 0 ? defense - strength : 0;
+   // Удар по здоровью 
+   health = defense - strength < 0 ? health + (defense - strength) : health;
+   // Проверка и действия, если смерть ..... 
+}*/
 
         public int DoAttack()
         {
             return attack;
         }
 
-        public void Clone()
-        {
-            
-        }
+     
 
         public override string ToString()
         {
-            return string.Format($"Легкий Солдат. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} ");
+            return string.Format($"Легкий Солдат. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} Уклонение {dodge}");
         }
     } 
 }

@@ -3,13 +3,13 @@ namespace Magic{
     /// <summary>
     /// Конструктор, который берёт настройки из конфигурации.
     /// </summary>
-    public abstract class IUnit(Settings settings, (int percentAttack, double percentDodge) percentAttackAndDodge)
+    public abstract class IUnit((int percentAttack, double percentDodge) percentAttackAndDodge)
     {
         /// <summary>
         /// Здоровье юнита.
         /// </summary>
         // Максимум 100.
-        protected int health = settings.Health;
+        protected int health = Settings.GetInstance(0,0).Health;
         public int Health { 
             get { return health; }
         }

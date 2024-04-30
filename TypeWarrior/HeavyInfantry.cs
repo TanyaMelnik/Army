@@ -2,7 +2,7 @@ namespace Magic
 {
     class HeavyWarrior : IUnit
     {
-        public HeavyWarrior(Settings settings, (int, double) percentAttackAndDodge) : base(settings, percentAttackAndDodge)
+        public HeavyWarrior((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 50;
             cost = 2;
@@ -37,7 +37,7 @@ namespace Magic
         // НЕ РАБОТАЕТ
         public override string ToString()
         {
-            return string.Format($"Тяжёлый Солдат. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} ");
+            return string.Format($"Тяжёлый Солдат. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} Уклонение {dodge} ");
         }
 
     }
