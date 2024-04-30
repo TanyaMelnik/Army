@@ -43,51 +43,6 @@ namespace Magic
                 Game.Fight(army1, army2);
                 countStep++;
             }
-
-
-            // Прописываем логику игры. Нуждается в переносе в другом классе
-            // Игра работает пока одна армия не умрёт
-            /*while (army1.Count > 2 || army2.Count > 2)
-            {
-                // Логика на проверку получения ударов. Нужны проверки на смерть.!!
-                // Для первых в стеке битва 1:1
-                army1[0].GetHit(army2[0].Attack);
-                Console.Write($"Удар по {army1[0].ToString()}");
-                if (army1[0].Health <= 0)
-                {
-                    Console.Write($"->Умер");
-                    army1.RemoveAt(0);
-                }
-                Console.WriteLine();
-                army2[0].GetHit(army1[0].Attack);
-                Console.Write($"Удар по {army2[0].ToString()}");
-                if (army2[0].Health <= 0)
-                {
-                    Console.Write($"->Умер");
-                    army2.RemoveAt(0);
-                }
-                Console.WriteLine();
-                // Особые 
-                for (int i = 1; i < Math.Min(army1.Count, army2.Count); i++)
-                {
-                    // Если есть спец свойство
-                    if (army2[i] is ISpecialProperty one)
-                    {
-                        // Создание экземпляра ProxyLogSpecial
-                        var proxy = new ProxyLogSpecial(one);
-                        // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
-                        proxy.DoSpecialProperty(army1, army2, i);
-                    }
-                    if (army1[i] is ISpecialProperty two)
-                    {
-                        Console.WriteLine($"Special Удар от {army1[i]} ");
-                        two.DoSpecialProperty(army1, army2, i);
-                        var proxy = new ProxyLogSpecial(two);
-                        // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
-                        proxy.DoSpecialProperty(army1, army2, i);
-                    }
-                }
-            }*/
         }
 
         static void UserSettings()
