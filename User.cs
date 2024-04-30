@@ -23,18 +23,7 @@ namespace Magic
             List<IUnit> army2 = armyCreatedFactories2.CreateArmy();
 
             // Выбор армии, которая ходит первая
-            Console.WriteLine("Выберите армию, которая ходит первая (1 или 2): ");
-            int choise = 0;
-            while (!int.TryParse(Console.ReadLine(), out choise) || choise < 1 || choise > 2)
-            {
-                Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
-            }
-            if (choise == 2) 
-            {
-                List<IUnit> armyHelp = army1;
-                army1 = army2;
-                army2 = armyHelp;
-            }
+            ChoiseFirstArmy(ref army1, ref army2);
 
             //Запуск основного цикла игры.
             int countStep = 1;
@@ -56,9 +45,9 @@ namespace Magic
             }
 
 
-                // Прописываем логику игры. Нуждается в переносе в другом классе
-                // Игра работает пока одна армия не умрёт
-                while (army1.Count>2 || army2.Count > 2)
+            // Прописываем логику игры. Нуждается в переносе в другом классе
+            // Игра работает пока одна армия не умрёт
+            /*while (army1.Count > 2 || army2.Count > 2)
             {
                 // Логика на проверку получения ударов. Нужны проверки на смерть.!!
                 // Для первых в стеке битва 1:1
@@ -91,14 +80,14 @@ namespace Magic
                     }
                     if (army1[i] is ISpecialProperty two)
                     {
-                        /*Console.WriteLine($"Special Удар от {army1[i]} ");
-                        two.DoSpecialProperty(army1, army2, i);*/
+                        Console.WriteLine($"Special Удар от {army1[i]} ");
+                        two.DoSpecialProperty(army1, army2, i);
                         var proxy = new ProxyLogSpecial(two);
                         // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
                         proxy.DoSpecialProperty(army1, army2, i);
                     }
                 }
-            }
+            }*/
         }
 
         static void UserSettings()
@@ -183,7 +172,7 @@ namespace Magic
             return cost;
         }
 
-        static AbstractArmyFactory AddUnitStats() 
+        static AbstractArmyFactory AddUnitStats()
         {
             AbstractArmyFactory abstractArmyFactory = null;
 
@@ -244,7 +233,7 @@ namespace Magic
         {
             ArmyCreatedFactories armyCreatedFactories = null;
 
-            string[] menuItems = { "Сбалансированно", "Рандомно"};
+            string[] menuItems = { "Сбалансированно", "Рандомно" };
             int selectedItemIndex = 0;
 
             while (true)
@@ -304,6 +293,23 @@ namespace Magic
                 Console.WriteLine(unit.ToString());
             }
         }
+
+        static void ChoiseFirstArmy(ref List<IUnit> army1, ref List<IUnit> army2)
+        {
+            Console.WriteLine("Выберите армию, которая ходит первая (1 или 2): ");
+            int choise;
+            while (!int.TryParse(Console.ReadLine(), out choise) || choise < 1 || choise > 2)
+            {
+                Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
+            }
+            if (choise == 2)
+            {
+                List<IUnit> armyHelp = army1;
+                army1 = army2;
+                army2 = armyHelp;
+            }
+        }
+
     }
 
 }

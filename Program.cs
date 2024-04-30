@@ -5,13 +5,14 @@ namespace Magic
     {
         static void Main()
         {
-            Console.Beep(300, 500);
-            Console.Beep(300, 500);
-            Console.Beep(300, 500);
-            Console.Beep(250, 500);
-            Console.Beep(350, 250);
-            Console.Beep(300, 500);
-            Console.Beep(250, 500);
+
+            /*            Console.Beep(300, 500);
+                        Console.Beep(300, 500);
+                        Console.Beep(300, 500);
+                        Console.Beep(250, 500);
+                        Console.Beep(350, 250);
+                        Console.Beep(300, 500);
+                        Console.Beep(250, 500);*/
             User.UserGame();
             //Settings settings = Settings.GetInstance(4, 5);
            /* HeavyWarrior a = new(settings, (1, 1));

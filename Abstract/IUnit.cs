@@ -64,8 +64,8 @@ namespace Magic{
         {
             Random random = new Random();
             double randomNumber = random.NextDouble();
-            // ≈сли уклонение не произошло => unit получает урон 
-            if (Dodge < randomNumber)
+            //≈сли уклонение не произошло => unit получает урон 
+            if (dodge < randomNumber)
             {
                 if (defense >= strengthAttack) defense -= strengthAttack;
                 else if (defense < strengthAttack && defense > 0)
