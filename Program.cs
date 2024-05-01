@@ -18,6 +18,7 @@ namespace Magic
             {
                 Console.WriteLine($"Special Удар от {a} ");
             }*/
+            
             User.UserGame();
             //LogGetAttack a=new()
             //Settings settings = Settings.GetInstance(100, 5);

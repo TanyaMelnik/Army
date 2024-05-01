@@ -31,5 +31,24 @@ namespace Magic
             Data.WriteInFile(logFilePath, text);
             unit.GetHit(strengthAttack);
         }
+
+        public override string Name()
+        {
+            return unit.Name();
+        }
+
+        public override double Dodge()
+        {
+            return unit.Dodge();
+        }
+
+        public override int Defense()
+        {
+            return unit.Defense();
+        }
+        public override int Cost()
+        {
+            return unit.Cost();
+        }
     }    
 }

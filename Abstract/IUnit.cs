@@ -5,6 +5,8 @@ namespace Magic{
     /// </summary>
     public abstract class IUnit((int percentAttack, double percentDodge) percentAttackAndDodge)
     {
+        protected string name;
+        public abstract string Name();
         /// <summary>
         /// Здоровье юнита.
         /// </summary>
@@ -23,28 +25,19 @@ namespace Magic{
         /// Стоимость юнита.
         /// </summary>
         protected int cost;
-        public int Cost
-        {
-            get { return cost; }
-        }
+        public abstract int Cost();
         /// <summary>
         /// Уклонение юнита.
         /// </summary>
         // Максимум 1
         protected double dodge = percentAttackAndDodge.percentDodge;
-        public double Dodge
-        {
-            get { return dodge; }
-        }
+        public abstract double Dodge();
         /// <summary>
         /// Доп защита.
         /// </summary>
         // Максимум 100
         protected int defense;
-        public int Defense
-        {
-            get { return defense; }
-        }
+        public abstract int Defense();
 
         public int GetCost()
         {
