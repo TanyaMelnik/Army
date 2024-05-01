@@ -48,6 +48,9 @@ namespace Magic
             while (army1.Count > 0 && army2.Count > 0)
             {
                 Console.WriteLine("Ход номер " + countStep);
+                // Проверка на декораторы 
+                Game.CheckDecorator(army1);
+                Game.CheckDecorator(army2);
                 // Вывод армий на экран.
                 Console.WriteLine("Армия 1:");
                 PrintArmy(army1);
@@ -67,7 +70,7 @@ namespace Magic
                 PrintArmy(army2);
                 Console.WriteLine();
 
-                // Для остальных
+                // Для спец свойств.
                 Game.DoSpecial(army1, army2);
 
                 countStep++;
