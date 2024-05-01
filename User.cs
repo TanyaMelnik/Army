@@ -85,6 +85,12 @@ namespace Magic
             // Ввод пользователем длительности игры.
             int health = Healht();
 
+            Console.Write("Включить звук при убийстве юнита - введите true. Выключить звуки - введите false:  ");
+            while (!bool.TryParse(Console.ReadLine(), out Settings.sound))
+            {
+                Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
+            }
+
             // Паттерн Singleton. 
             Settings.GetInstance(health, cost);
 

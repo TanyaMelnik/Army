@@ -14,11 +14,12 @@
 
         public int Health { get; }
         public int Cost { get; }
-        // Звук при убийстве unit 
-        public bool Sound { get; set; } = true;
 
-        // Приватный конструктор предотвращает создание экземпляров класса извне.
-        private Settings(int helpHealth, int helpCost)
+        // Звук при убийстве unit 
+        public static bool sound;
+
+    // Приватный конструктор предотвращает создание экземпляров класса извне.
+    private Settings(int helpHealth, int helpCost)
         {
             Health = helpHealth;
             Cost = helpCost;

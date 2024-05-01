@@ -12,7 +12,7 @@ namespace Magic
         public void DeleteUnit(List<IUnit> army, int numberUnit)
         {
             // Если в настройках указан звук => включаем его
-            if (Settings.GetInstance(0, 0).Sound){
+            if (Settings.sound){
                 Console.Beep(300, 500);
                 //Thread.Sleep(1000);
                 /*Console.Beep(300, 500);
