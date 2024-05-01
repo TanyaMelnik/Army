@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Magic
 {
@@ -7,7 +8,6 @@ namespace Magic
     {
         public override string Name() => name;
         // Уникальные характеристики доктора.
-        int radiusAttack = 2;
         int powerTreatment = 40;
         public Doctor((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
@@ -20,36 +20,33 @@ namespace Magic
         // Специальное свойство - лечить 
         public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            for (int i = 0;i<= radiusAttack; i++)
+            // Если впереди стоящий существует 
+            if (number - 1 > 0)
             {
-                // Если впереди стоящий существует 
-                if (number + i < ownArmy.Count)
-                { 
-                    // Если его можно вылечить 
-                    if (ownArmy[number + i] is IHealtheble patient)
-                    {
-                        patient.Heal(powerTreatment);
-                        return null;
-                    }
-                }
-                else
+                // Если его можно вылечить 
+                LogGetAttack unitTemp = (LogGetAttack)ownArmy[number - 1];
+                if (unitTemp.unit is IHealtheble patient)
                 {
-                    // Если сзади стоящий существует 
-                    if (number - i >= 0)
-                    {
-                        // Если его можно вылечить 
-                        if (ownArmy[number - i] is IHealtheble patient)
-                        {
-                            patient.Heal(powerTreatment);
-                            return null;
-                        }
-                    }
+                    patient.Heal(powerTreatment);
+                    Console.WriteLine("Вылечили юнит: " + patient.ToString() + " сила лечения: " + powerTreatment);
                 }
             }
+            else
+            {
+                // Если сзади стоящий существует 
+                if (number + 1 < ownArmy.Count)
+                {
+                    // Если его можно вылечить 
+                    LogGetAttack unitTemp = (LogGetAttack)ownArmy[number - 1];
+                    if (unitTemp.unit is IHealtheble patient)
+                    {
+                        patient.Heal(powerTreatment);
+                        Console.WriteLine("Вылечили юнит: " + patient.ToString() + " сила лечения: " + powerTreatment);
+                    }
+                }   
+            }
             return null;
-        }
-
-       
+        } 
 
         public override string ToString()
         {

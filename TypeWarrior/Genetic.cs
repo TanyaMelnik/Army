@@ -24,8 +24,8 @@ namespace Magic
 
         public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            // Вероятность клонирования 10%
-            if (procentClone >= new Random().NextDouble()) {
+            // Вероятность клонирования 10% ПОМЕНЯТЬ
+            if (1 >= new Random().NextDouble()) {
                 for (int i = 0; i < ownArmy.Count; i++)
                 {
                     // Если его можно клонировать 
