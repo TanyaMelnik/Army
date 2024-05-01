@@ -32,7 +32,6 @@ namespace Magic
                    // LogGetAttack unitTemp = (LogGetAttack)ownArmy[i];
                     if (ownArmy[i] is LogGetAttack lightUnit && lightUnit.unit is ICloneable clone)
                     {
-                        Console.WriteLine("ÃÅÍÅÒÈÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ");
                         return clone.Clone();
                     }
                 }
@@ -61,7 +60,6 @@ namespace Magic
                 }
                 else health -= strengthAttack;
             }
-            else Console.WriteLine("Ïğîèçîøëî óêëîíåíèå îò àòàêè");
         }
         public override int Health()
         {

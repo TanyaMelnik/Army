@@ -16,7 +16,6 @@ namespace Magic
             defense = 30;
             name = unit.Name() + " с щитом";
         }
-        // Подправить имя
         public override string Name() => name;
         public override int Attack() => unit.Attack();
         public override int Defense() => unit.Defense() + defense;

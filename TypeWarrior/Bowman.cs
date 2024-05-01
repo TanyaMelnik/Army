@@ -17,7 +17,6 @@ namespace Magic
         int radiusAttack = 10;
         int arrowDamage = 40;
 
-
         public override string ToString()
         {
             return string.Format($"{Name()}. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
@@ -38,7 +37,6 @@ namespace Magic
                     int aim = new Random().Next(0, countEnemy);
                     // Цель выбрана - enemyArmy[aim]
                     enemyArmy[aim].GetHit(arrowDamage);
-                    Console.WriteLine("Ударил по юниту: " + enemyArmy[aim].ToString() + " с силой " + arrowDamage);
                     ProxyDie proxy = new(new DeadUnit());
                     if (enemyArmy[aim].Health() < 0) proxy.DeleteUnit(enemyArmy, aim);
                 }
@@ -71,7 +69,6 @@ namespace Magic
                 }
                 else health -= strengthAttack;
             }
-            else Console.WriteLine("Произошло уклонение от атаки");
         }
         public override int Health()
         {

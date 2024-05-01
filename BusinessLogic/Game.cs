@@ -14,21 +14,16 @@ namespace Magic
     {
         public static void Fight(List<IUnit> army1, List<IUnit> army2)
         {
-            /*Console.WriteLine("//////");
-            Console.WriteLine(army2[0].Health);
-            army2[0].GetHit(army1[0].Attack);
-            Console.WriteLine(army2[0].Health);
-            Console.WriteLine("//////");*/
             ProxyDie proxy = new(new DeadUnit());
             army2[0].GetHit(army1[0].Attack());
-            if (army2[0].Health() < 0) proxy.DeleteUnit(army2,0); // ЗДЕСЬ ВЫЗЫВАТЬ ПРОКСИ
+            if (army2[0].Health() < 0) proxy.DeleteUnit(army2,0);
             if (army2.Count > 0 ) 
             {
                 army1[0].GetHit(army2[0].Attack());
                 if (army1[0].Health() < 0) proxy.DeleteUnit(army1, 0);
             }
         }
-        // Метод который ищет мертвых
+        // Метод который обновляет армии.
         public static void Update(List<IUnit> army)
         {
             for (int i=0; i<army.Count; i++)
@@ -60,13 +55,11 @@ namespace Magic
                 // Величина армий для проверки 
                 army1Count = army1.Count;
                 army2Count = army2.Count;
-
                 // Применяем специальное свойство из первой армии 
                 if (i < army1.Count)
                 {
                     if (army1[i] is LogGetAttack unitTemp1 && unitTemp1.unit is ISpecialProperty unit1)
                     {
-                        Console.WriteLine($"Special Удар от {unitTemp1.unit} ");
                         var proxy = new ProxyLogSpecial(unit1);
                         // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
                         if (army1.Count > 0 && army2.Count > 0)
@@ -98,7 +91,6 @@ namespace Magic
                 {
                     if (army2[j] is LogGetAttack unitTemp2 && unitTemp2.unit is ISpecialProperty unit2)
                     {
-                        Console.WriteLine($"Special Удар от {unitTemp2.unit} ");
                         var proxy = new ProxyLogSpecial(unit2);
                         if (army1.Count > 0 && army2.Count > 0)
                         {
@@ -131,11 +123,9 @@ namespace Magic
         {
             for (int i = 1; i < army.Count - 1; i++)
             {
-                Console.WriteLine("Зашли");
                 // Если нашли легкого солдата
                 if (army[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
                 {
-                    Console.WriteLine("Что-тоттот");
                     // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем 
                     if (army[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
                     {

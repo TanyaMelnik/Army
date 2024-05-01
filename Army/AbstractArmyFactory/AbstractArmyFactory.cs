@@ -10,10 +10,10 @@ namespace Magic
     abstract class AbstractArmyFactory
     {
         /// <summary>
-        /// Показатель увеличения текущих показателей силы и уклонения. Фабричное свойство 
+        /// Показатель увеличения текущих показателей силы и уклонения.
         /// </summary>
         protected abstract (int, double) PercentAttackAndDodge { get; }
-        // Методы, которые создают конкретеные IUnit
+        // Методы, которые создают конкретеные IUnit.
         public IUnit CreateLightUnit() {
             return new LogGetAttack(new LightWarrior(PercentAttackAndDodge), PercentAttackAndDodge);
         }

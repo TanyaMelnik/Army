@@ -12,11 +12,10 @@ namespace Magic
     {
         public HelmDecorator(IUnit unit, (int, double) persentAttackAndDodge) : base(unit, persentAttackAndDodge)
         {
-            // Защита опции.
+            // Характеристики опции.
             defense = 20;
             name = unit.Name() + " с шлемом";
         }
-        // Подправить имя
         public override string Name() => name;
         public override int Attack() => unit.Attack();
         public override int Defense() => unit.Defense() + defense;

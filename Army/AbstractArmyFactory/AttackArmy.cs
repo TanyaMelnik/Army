@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Magic
 {
     /// <summary>
-    /// Армия с супер атакой
+    /// Армия с супер атакой.
     /// </summary>
     class AttackArmy : AbstractArmyFactory
     {

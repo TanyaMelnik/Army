@@ -14,11 +14,6 @@ namespace Magic
             // Если в настройках указан звук => включаем его
             if (Settings.sound){
                 Console.Beep(300, 500);
-                //Thread.Sleep(1000);
-                /*Console.Beep(300, 500);
-                Console.Beep(300, 500);
-                Console.Beep(250, 500);
-                Console.Beep(350, 250);*/
             }
             unit.DeleteUnit(army, numberUnit); 
         }

@@ -24,11 +24,9 @@ namespace Magic
             if (number - 1 > 0)
             {
                 // Если его можно вылечить 
-                LogGetAttack unitTemp = (LogGetAttack)ownArmy[number - 1];
-                if (unitTemp.unit is IHealtheble patient)
+                if (ownArmy[number - 1] is LogGetAttack unitTemp1 && unitTemp1.unit is IHealtheble patient)
                 {
                     patient.Heal(powerTreatment);
-                    Console.WriteLine("Вылечили юнит: " + patient.ToString() + " сила лечения: " + powerTreatment);
                 }
             }
             else
@@ -37,11 +35,9 @@ namespace Magic
                 if (number + 1 < ownArmy.Count)
                 {
                     // Если его можно вылечить 
-                    LogGetAttack unitTemp = (LogGetAttack)ownArmy[number - 1];
-                    if (unitTemp.unit is IHealtheble patient)
+                    if (ownArmy[number + 1] is LogGetAttack unitTemp2 &&  unitTemp2.unit is IHealtheble patient)
                     {
                         patient.Heal(powerTreatment);
-                        Console.WriteLine("Вылечили юнит: " + patient.ToString() + " сила лечения: " + powerTreatment);
                     }
                 }   
             }
@@ -73,7 +69,6 @@ namespace Magic
                 }
                 else health -= strengthAttack;
             }
-            else Console.WriteLine("Произошло уклонение от атаки");
         }
         public override int Health()
         {

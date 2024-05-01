@@ -1,8 +1,5 @@
-namespace Magic{
-
-    /// <summary>
-    /// Конструктор, который берёт настройки из конфигурации.
-    /// </summary>
+namespace Magic
+{
     public abstract class IUnit((int percentAttack, double percentDodge) percentAttackAndDodge)
     {
         protected string name;
@@ -10,17 +7,13 @@ namespace Magic{
         /// <summary>
         /// Здоровье юнита.
         /// </summary>
-        // Максимум 100.
         protected int health = Settings.GetInstance(0,0).Health;
         public abstract int Health();
-
         /// <summary>
-        /// Сила юнита. Урон, который может нанести юнит
+        /// Сила/урон юнита.
         /// </summary>
-        // Максимум 50.
         protected int attack = percentAttackAndDodge.percentAttack;
         public abstract int Attack();
-
         /// <summary>
         /// Стоимость юнита.
         /// </summary>
@@ -29,16 +22,13 @@ namespace Magic{
         /// <summary>
         /// Уклонение юнита.
         /// </summary>
-        // Максимум 1
         protected double dodge = percentAttackAndDodge.percentDodge;
         public abstract double Dodge();
         /// <summary>
         /// Доп защита.
         /// </summary>
-        // Максимум 100
         protected int defense;
         public abstract int Defense();
-
         public int GetCost()
         {
             return cost;
@@ -46,7 +36,7 @@ namespace Magic{
         /// <summary>
         /// Метод представления юнита.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Строку, представляющий юнит.</returns>
         public override abstract string ToString();
 
         public abstract void GetHit(int strengthAttack);

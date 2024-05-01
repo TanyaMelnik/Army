@@ -18,7 +18,6 @@ namespace Magic
             defense = 10;
             name = unit.Name() + " с пикой";
         }
-        // Подправить имя
         public override string Name() => name;
         public override int Attack() => unit.Attack() + attack;
         public override int Defense() => unit.Defense() + defense;

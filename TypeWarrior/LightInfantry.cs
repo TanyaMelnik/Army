@@ -43,7 +43,6 @@ namespace Magic {
                 }
                 else health -= strengthAttack;
             }
-            else Console.WriteLine("Произошло уклонение от атаки");
         }
 
         public override int Health()

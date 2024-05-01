@@ -11,7 +11,7 @@ namespace Magic
         public readonly Dictionary<Type, int> unitCost;
         // Фабрика создания unit
         protected AbstractArmyFactory army;
-        // Фабричный метод, который создаёт армию конкретного способа
+        // Метод, который создаёт армию конкретного способа
         public abstract List<IUnit> CreateArmy();
         public ArmyCreatedFactories(AbstractArmyFactory army) {
            
