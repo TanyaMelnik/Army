@@ -17,7 +17,7 @@ namespace Magic
             {
                 Random rand = new Random();
                 int randomAttack = rand.Next(0, 26);
-                double randomDodge = rand.NextDouble() * 0.6;
+                double randomDodge = rand.NextDouble() * 0.2;
                 return (randomAttack, randomDodge);
             }
         }

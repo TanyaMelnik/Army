@@ -58,6 +58,15 @@ namespace Magic
 
                 // Для первых 
                 Game.Fight(army1, army2);
+
+                // Вывод армий на экран.
+                Console.WriteLine("Армия 1 после того, как первые побились:");
+                PrintArmy(army1);
+                Console.WriteLine();
+                Console.WriteLine("Армия 2 после того, как первые побились::");
+                PrintArmy(army2);
+                Console.WriteLine();
+
                 // Для остальных
                 Game.DoSpecial(army1, army2);
 

@@ -12,6 +12,6 @@ namespace Magic
     /// </summary>
     class DodgeArmy : AbstractArmyFactory
     {
-        protected override (int, double) PercentAttackAndDodge { get => (0, 0.3); }
+        protected override (int, double) PercentAttackAndDodge { get => (0, 0.2); }
     }
 }
