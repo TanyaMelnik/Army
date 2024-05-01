@@ -18,11 +18,7 @@ namespace Magic
             {
                 Console.WriteLine($"Special Удар от {a} ");
             }*/
-            /*Settings settings = Settings.GetInstance(100, 5);
-            IUnit a = new LogGetAttack(new Bowman((1, 0.0)), (1, 0.0));
-            Console.WriteLine(a);
-            HourseDecorator b = new(a, (1, 0));
-            Console.WriteLine(b);*/
+            
             User.UserGame();
             //LogGetAttack a=new()
             //Settings settings = Settings.GetInstance(100, 5);

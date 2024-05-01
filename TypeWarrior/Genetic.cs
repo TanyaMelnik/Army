@@ -39,10 +39,10 @@ namespace Magic
             return null;
         }
 
-        public void Heal(int arrowDamage)
+        public void Heal(int powerTreatment)
         {
             // Ќельз€ лечить больше, чем максимальное здоровье
-            health = (health + arrowDamage) < Settings.GetInstance(0, 0).Health ? (health + arrowDamage) : Settings.GetInstance(0, 0).Health;
+            health = (health + powerTreatment) < Settings.GetInstance(0, 0).Health ? (health + powerTreatment) : Settings.GetInstance(0, 0).Health;
         }
         public override void GetHit(int strengthAttack)
         {
@@ -58,9 +58,9 @@ namespace Magic
                     defense = 0;
                     health -= x;
                 }
-                else health -= attack;
+                else health -= strengthAttack;
             }
-
+            else Console.WriteLine("ѕроизошло уклонение от атаки");
         }
         public override int Health()
         {

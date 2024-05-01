@@ -11,15 +11,15 @@ namespace Magic
             defense = 100;
             name = "Тяжёлый Солдат";
         }
-        public void Heal(int arrowDamage)
-        {
-            // Нельзя лечить больше, чем максимальное здоровье
-            health = (health + arrowDamage) < Settings.GetInstance(0, 0).Health ? (health + arrowDamage) : Settings.GetInstance(0, 0).Health;
-        }
 
         public override string ToString()
         {
             return string.Format($"{Name()}. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} Уклонение {dodge} ");
+        }
+        public void Heal(int powerTreatment)
+        {
+            // Нельзя лечить больше, чем максимальное здоровье
+            health = (health + powerTreatment) < Settings.GetInstance(0, 0).Health ? (health + powerTreatment) : Settings.GetInstance(0, 0).Health;
         }
         public override void GetHit(int strengthAttack)
         {
@@ -35,9 +35,9 @@ namespace Magic
                     defense = 0;
                     health -= x;
                 }
-                else health -= attack;
+                else health -= strengthAttack;
             }
-
+            else Console.WriteLine("Произошло уклонение от атаки");
         }
 
         public override int Health()

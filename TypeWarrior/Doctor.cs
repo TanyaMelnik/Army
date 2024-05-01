@@ -8,7 +8,7 @@ namespace Magic
         public override string Name() => name;
         // Уникальные характеристики доктора.
         int radiusAttack = 2;
-        int arrowDamage = 40;
+        int powerTreatment = 40;
         public Doctor((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 10;
@@ -28,7 +28,7 @@ namespace Magic
                     // Если его можно вылечить 
                     if (ownArmy[number + i] is IHealtheble patient)
                     {
-                        patient.Heal(arrowDamage);
+                        patient.Heal(powerTreatment);
                         return null;
                     }
                 }
@@ -40,7 +40,7 @@ namespace Magic
                         // Если его можно вылечить 
                         if (ownArmy[number - i] is IHealtheble patient)
                         {
-                            patient.Heal(arrowDamage);
+                            patient.Heal(powerTreatment);
                             return null;
                         }
                     }
@@ -49,15 +49,16 @@ namespace Magic
             return null;
         }
 
-        public void Heal(int arrowDamage)
-        {
-            // Нельзя лечить больше, чем максимальное здоровье
-            health = (health + arrowDamage) < Settings.GetInstance(0, 0).Health ? (health + arrowDamage) : Settings.GetInstance(0, 0).Health;
-        }
+       
 
         public override string ToString()
         {
             return string.Format($"{Name()}. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
+        }
+        public void Heal(int powerTreatment)
+        {
+            // Нельзя лечить больше, чем максимальное здоровье
+            health = (health + powerTreatment) < Settings.GetInstance(0, 0).Health ? (health + powerTreatment) : Settings.GetInstance(0, 0).Health;
         }
         public override void GetHit(int strengthAttack)
         {
@@ -73,9 +74,9 @@ namespace Magic
                     defense = 0;
                     health -= x;
                 }
-                else health -= attack;
+                else health -= strengthAttack;
             }
-
+            else Console.WriteLine("Произошло уклонение от атаки");
         }
         public override int Health()
         {

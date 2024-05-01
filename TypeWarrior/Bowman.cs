@@ -26,7 +26,8 @@ namespace Magic
         // number - это пор€дковый номер лучника в списке (от 1 до размера своей армии)
         public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            if (enemyArmy.Count > 0){
+            if (enemyArmy.Count > 0)
+            {
                 if (number < radiusAttack + 1)
                 {
                     // “еоретическое количество врагов, в которых он может попасть.
@@ -37,6 +38,7 @@ namespace Magic
                     int aim = new Random().Next(0, countEnemy);
                     // ÷ель выбрана - enemyArmy[aim]
                     enemyArmy[aim].GetHit(arrowDamage);
+                    Console.WriteLine("”дарил по юниту: " + enemyArmy[aim].ToString() + " с силой " + arrowDamage);
                     ProxyDie proxy = new(new DeadUnit());
                     if (enemyArmy[aim].Health() < 0) proxy.DeleteUnit(enemyArmy, aim);
                 }
@@ -48,10 +50,10 @@ namespace Magic
             return new LogGetAttack(new Bowman((attack - 20, dodge - 0.3)), (attack - 20, dodge - 0.3));
         }
 
-        public void Heal(int arrowDamage)
+        public void Heal(int powerTreatment)
         {
             // Ќельз€ лечить больше, чем максимальное здоровье
-            health = (health + arrowDamage) < Settings.GetInstance(0, 0).Health ? (health + arrowDamage) : Settings.GetInstance(0, 0).Health;
+            health = (health + powerTreatment) < Settings.GetInstance(0, 0).Health ? (health + powerTreatment) : Settings.GetInstance(0, 0).Health;
         }
         public override void GetHit(int strengthAttack)
         {
@@ -67,9 +69,9 @@ namespace Magic
                     defense = 0;
                     health -= x;
                 }
-                else health -= attack;
+                else health -= strengthAttack;
             }
-
+            else Console.WriteLine("ѕроизошло уклонение от атаки");
         }
         public override int Health()
         {
