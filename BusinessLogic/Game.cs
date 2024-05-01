@@ -57,7 +57,6 @@ namespace Magic
             // Добавить проверки + генетик !!!
             while (i < Math.Max(army1Count, army2Count) && j < Math.Max(army1Count, army2Count))
             {
-                Console.WriteLine($"ЗАШЛИ В ЦИКЛ {i}  { j}") ;
                 // Величина армий для проверки 
                 army1Count = army1.Count;
                 army2Count = army2.Count;
@@ -132,9 +131,11 @@ namespace Magic
         {
             for (int i = 1; i < army.Count - 1; i++)
             {
+                Console.WriteLine("Зашли");
                 // Если нашли легкого солдата
                 if (army[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
                 {
+                    Console.WriteLine("Что-тоттот");
                     // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем 
                     if (army[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
                     {

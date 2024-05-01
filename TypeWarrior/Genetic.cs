@@ -29,9 +29,10 @@ namespace Magic
                 for (int i = 0; i < ownArmy.Count; i++)
                 {
                     // Åñëè åãî ìîæíî êëîíèðîâàòü 
-                    LogGetAttack unitTemp = (LogGetAttack)ownArmy[i];
-                    if (unitTemp.unit is ICloneable clone)
+                   // LogGetAttack unitTemp = (LogGetAttack)ownArmy[i];
+                    if (ownArmy[i] is LogGetAttack lightUnit && lightUnit.unit is ICloneable clone)
                     {
+                        Console.WriteLine("ÃÅÍÅÒÈÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ");
                         return clone.Clone();
                     }
                 }
