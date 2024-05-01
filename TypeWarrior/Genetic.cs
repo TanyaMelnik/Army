@@ -3,6 +3,7 @@ namespace Magic
 {
     class Genetic : IUnit, ISpecialProperty, IHealtheble
     {
+        public override string Name() => name;
         /// <summary>
         /// Процент клонирования - 10%
         /// </summary>
@@ -13,11 +14,12 @@ namespace Magic
             cost = 5;
             dodge += 0.4;
             defense = 10;
+            name = "Генетик";
         }
 
         public override string ToString()
         {
-            return string.Format($"Генетик. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
+            return string.Format($"{Name()}. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
         }
 
         public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
@@ -27,7 +29,8 @@ namespace Magic
                 for (int i = 0; i < ownArmy.Count; i++)
                 {
                     // Если его можно клонировать 
-                    if (ownArmy[i] is ICloneable clone)
+                    LogGetAttack unitTemp = (LogGetAttack)ownArmy[i];
+                    if (unitTemp.unit is ICloneable clone)
                     {
                         return clone.Clone();
                     }
@@ -66,6 +69,18 @@ namespace Magic
         public override int Attack()
         {
             return attack;
+        }
+        public override int Defense()
+        {
+            return defense;
+        }
+        public override double Dodge()
+        {
+            return dodge;
+        }
+        public override int Cost()
+        {
+            return cost;
         }
     }
 }

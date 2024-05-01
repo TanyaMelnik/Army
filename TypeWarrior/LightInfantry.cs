@@ -1,12 +1,15 @@
 namespace Magic {
     class LightWarrior : IUnit, ICloneable,IHealtheble
     {
+        public override string Name() => name;
+
         public LightWarrior((int , double ) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 40;
             cost = 1;
             dodge += 0.2;
             defense = 50;
+            name = "Легкий солдат";
         }
 
         public IUnit Clone()
@@ -22,7 +25,7 @@ namespace Magic {
 
         public override string ToString()
         {
-            return string.Format($"Легкий Солдат. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} Уклонение {dodge}");
+            return string.Format($"{Name()}. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} Уклонение {dodge}");
         }
         public override void GetHit(int strengthAttack)
         {
@@ -50,6 +53,20 @@ namespace Magic {
         public override int Attack()
         {
             return attack;
+        }
+        public override int Defense()
+        {
+            return defense;
+        }
+
+        public override double Dodge()
+        {
+            return dodge;
+        }
+
+        public override int Cost()
+        {
+            return cost;
         }
     } 
 }

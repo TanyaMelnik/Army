@@ -3,38 +3,43 @@ namespace Magic
 {
     class Bowman : IUnit, ISpecialProperty, ICloneable, IHealtheble
     {
+        public override string Name() => name;
         public Bowman((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 20;
             cost = 3;
             dodge += 0.3;
             defense = 30;
+            name = "Лучник";
         }
 
         // Уникальные характеристики лучника.
         int radiusAttack = 10;
         int arrowDamage = 40;
 
+
         public override string ToString()
         {
-            return string.Format($"Лучник. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
+            return string.Format($"{Name()}. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
         }
 
         // number - это порядковый номер лучника в списке (от 1 до размера своей армии)
         public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            if (number < radiusAttack + 1)
-            {
-                // Теоретическое количество врагов, в которых он может попасть.
-                int countEnemy = (radiusAttack + 1) - number;
-                // Если количество противников меньше найденного числа.
-                if (countEnemy > enemyArmy.Count) countEnemy = enemyArmy.Count;
-                // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно
-                int aim = new Random().Next(0, countEnemy);
-                // Цель выбрана - enemyArmy[aim]
-                enemyArmy[aim].GetHit(arrowDamage);
-                ProxyDie proxy = new(new DeadUnit());
-                if (enemyArmy[aim].Health() < 0) proxy.DeleteUnit(enemyArmy, aim);
+            if (enemyArmy.Count > 0){
+                if (number < radiusAttack + 1)
+                {
+                    // Теоретическое количество врагов, в которых он может попасть.
+                    int countEnemy = (radiusAttack + 1) - number;
+                    // Если количество противников меньше найденного числа.
+                    if (countEnemy > enemyArmy.Count) countEnemy = enemyArmy.Count;
+                    // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно
+                    int aim = new Random().Next(0, countEnemy);
+                    // Цель выбрана - enemyArmy[aim]
+                    enemyArmy[aim].GetHit(arrowDamage);
+                    ProxyDie proxy = new(new DeadUnit());
+                    if (enemyArmy[aim].Health() < 0) proxy.DeleteUnit(enemyArmy, aim);
+                }
             }
             return null;
         }
@@ -73,6 +78,18 @@ namespace Magic
         public override int Attack()
         {
             return attack;
+        }
+        public override int Defense()
+        {
+            return defense;
+        }
+        public override double Dodge()
+        {
+            return dodge;
+        }
+        public override int Cost()
+        {
+            return cost;
         }
     }
 }

@@ -13,95 +13,152 @@ namespace Magic
      
     }
     // Конкретные декораторы - конь
-    public class HourseDecorator(IUnit unit, (int, double) persentAttackAndDodge) : OptionDecorator(unit, persentAttackAndDodge)
+    public class HourseDecorator : OptionDecorator
     {
-        public override int Attack()
+        public HourseDecorator(IUnit unit, (int, double) persentAttackAndDodge):base (unit, persentAttackAndDodge)
         {
-            throw new NotImplementedException();
+            // Характеристики опции.
+            attack = 25;
+            defense =  20;
+            name = unit.Name() + " с конём";
         }
-
+        // Подправить имя
+        public override string Name() => name;
+        public override int Attack() => unit.Attack() + attack;
+        public override int Defense() => unit.Defense() + defense;
+        public override double Dodge() => unit.Dodge();
+        public override int Cost() => unit.Cost();
         public override void GetHit(int strengthAttack)
         {
-            throw new NotImplementedException();
+            // Если опция сбивается 
+            if (strengthAttack - defense >= 0)
+            {
+                unit.GetHit(strengthAttack - defense);
+                // Убираем опцию
+                defense = 0;
+                attack = 0;
+                name = unit.Name();
+            }
+            else
+            {
+                defense -= strengthAttack;
+            }
         }
-
-        public override int Health()
-        {
-            throw new NotImplementedException();
-        }
-
+        public override int Health()=>unit.Health();
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return string.Format($"{Name()}. Здоровье: {Health()} Сила: {Attack()} Стоимость: {Cost()} Броня {Defense()} Уклонение {Dodge()}");
         }
+       
     }
     // Конкретные декораторы - пика
-    public class PikeDecorator(IUnit unit, (int, double) persentAttackAndDodge) : OptionDecorator(unit, persentAttackAndDodge)
+    public class PikeDecorator : OptionDecorator
     {
-        public override int Attack()
+        public PikeDecorator(IUnit unit, (int, double) persentAttackAndDodge) : base(unit, persentAttackAndDodge)
         {
-            throw new NotImplementedException();
+            // Характеристики опции.
+            attack = 15;
+            defense = 10;
+            name = unit.Name() + " с пикой";
         }
-
+        // Подправить имя
+        public override string Name() => name;
+        public override int Attack() => unit.Attack() + attack;
+        public override int Defense() => unit.Defense() + defense;
+        public override double Dodge() => unit.Dodge();
+        public override int Health() => unit.Health();
         public override void GetHit(int strengthAttack)
         {
-            throw new NotImplementedException();
+            // Если опция сбивается 
+            if (strengthAttack - defense >= 0)
+            {
+                unit.GetHit(strengthAttack - defense);
+                // Убираем опцию
+                defense = 0;
+                attack = 0;
+                name = unit.Name();
+            }
+            else
+            {
+                defense -= strengthAttack;
+            }
         }
-
-        public override int Health()
-        {
-            throw new NotImplementedException();
-        }
-
+        public override int Cost() => unit.Cost();
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return string.Format($"{Name()}. Здоровье: {Health()} Сила: {Attack()} Стоимость: {Cost()} Броня {Defense()} Уклонение {unit.Dodge}");
         }
     }
-    // Конкретные декораторы - шит
-    public class ShieldDecorator(IUnit unit, (int, double) persentAttackAndDodge) : OptionDecorator(unit, persentAttackAndDodge)
+    // Конкретные декораторы - щит
+    public class ShieldDecorator : OptionDecorator
     {
-        public override int Attack()
+        public ShieldDecorator(IUnit unit, (int, double) persentAttackAndDodge) : base(unit, persentAttackAndDodge)
         {
-            throw new NotImplementedException();
+            // Характеристики опции.
+            defense = 30;
+            name = unit.Name() + " с щитом";
         }
-
+        // Подправить имя
+        public override string Name() => name;
+        public override int Attack() => unit.Attack();
+        public override int Defense() => unit.Defense() + defense;
+        public override double Dodge() => unit.Dodge();
+        public override int Health() => unit.Health();
+        public override int Cost() => unit.Cost();
         public override void GetHit(int strengthAttack)
         {
-            throw new NotImplementedException();
+            // Если опция сбивается 
+            if (strengthAttack - defense >= 0)
+            {
+                unit.GetHit(strengthAttack - defense);
+                // Убираем опцию
+                defense = 0;
+                name = unit.Name();
+            }
+            else
+            {
+                defense -= strengthAttack;
+            }
         }
-
-        public override int Health()
-        {
-            throw new NotImplementedException();
-        }
-
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return string.Format($"{Name()}. Здоровье: {Health()} Сила: {Attack()} Стоимость: {Cost()} Броня {Defense()} Уклонение {Dodge()}");
         }
     }
-    // Конкретные декораторы - щит 
-    public class HelmDecorator(IUnit unit, (int, double) persentAttackAndDodge) : OptionDecorator(unit, persentAttackAndDodge)
+    // Конкретные декораторы - шлем 
+    public class HelmDecorator : OptionDecorator
     {
-        public override int Attack()
+        public HelmDecorator(IUnit unit, (int, double) persentAttackAndDodge) : base(unit, persentAttackAndDodge)
         {
-            throw new NotImplementedException();
+            // Защита опции.
+            defense = 20;
+            name = unit.Name() + " с шлемом";
         }
-
+        // Подправить имя
+        public override string Name() => name;
+        public override int Attack() => unit.Attack();
+        public override int Defense() => unit.Defense() + defense;
+        public override double Dodge() => unit.Dodge();
+        public override int Health() => unit.Health();
+        public override int Cost() => unit.Cost();
         public override void GetHit(int strengthAttack)
         {
-            throw new NotImplementedException();
+            // Если опция сбивается 
+            if (strengthAttack - defense >= 0)
+            {
+                unit.GetHit(strengthAttack - defense);
+                // Убираем опцию
+                defense = 0;
+                name = unit.Name();
+            }
+            else
+            {
+                defense -= strengthAttack;
+            }
         }
-
-        public override int Health()
-        {
-            throw new NotImplementedException();
-        }
-
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return string.Format($"{Name()}. Здоровье: {Health()} Сила: {Attack()} Стоимость: {Cost()} Броня {Defense()} Уклонение {Dodge()}");
         }
     }
 }
