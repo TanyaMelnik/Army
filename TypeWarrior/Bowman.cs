@@ -48,6 +48,14 @@ namespace Magic
             return new LogGetAttack(new Bowman((attack - 20, dodge - 0.3)), (attack - 20, dodge - 0.3));
         }
 
+        public override IUnit MakeClone(IUnit unit)
+        {
+            var a = new Bowman((attack - 20, dodge - 0.3));
+            a.health = unit.Health();
+            a.defense = unit.Defense();
+            return a;
+        }
+
         public void Heal(int powerTreatment)
         {
             // Ќельз€ лечить больше, чем максимальное здоровье
