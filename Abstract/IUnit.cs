@@ -40,7 +40,10 @@ namespace Magic
         public override abstract string ToString();
 
         public abstract void GetHit(int strengthAttack);
-        
+        public IUnit MakeClone(IUnit unit)
+        {
+            return 
+        }
 
     }
 }

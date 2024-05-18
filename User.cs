@@ -24,6 +24,11 @@ namespace Magic
             // Выбор армии, которая ходит первая
             ChoiseFirstArmy(ref army1, ref army2);
 
+            /*MakeMeleeFight a = new(army1, army2);
+            Console.WriteLine(a.deffender.ToString());
+            a.Execute();
+            Console.WriteLine(a.deffender.ToString());*/
+
             //Запуск основного цикла игры.
             int countStep = 1;
             // Пока в одной из армий остались воины.
