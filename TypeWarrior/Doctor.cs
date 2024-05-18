@@ -90,5 +90,14 @@ namespace Magic
         {
             return cost;
         }
+
+        public override IUnit MakeClone()
+        {
+            var a = new Doctor((attack - 10, dodge - 0.1));
+            a.health = health;
+            a.defense = defense;
+            return a;
+        }
+
     }
 }

@@ -67,5 +67,12 @@ namespace Magic {
         {
             return cost;
         }
+        public override IUnit MakeClone()
+        {
+            var a = new LightWarrior((attack - 40, dodge - 0.2));
+            a.health = health;
+            a.defense = defense;
+            return a;
+        }
     } 
 }

@@ -45,5 +45,9 @@ namespace Magic
             return string.Format($"{Name()}. Здоровье: {Health()} Сила: {Attack()} Стоимость: {Cost()} Броня {Defense()} Уклонение {Dodge()}");
         }
 
+        public override IUnit MakeClone()
+        {
+            return unit.MakeClone();
+        }
     }
 }

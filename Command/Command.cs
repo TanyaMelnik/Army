@@ -24,7 +24,7 @@ namespace Magic
         // Конструктор команды, принимающий атакующую армию 
         public MakeMeleeFight(List<IUnit> army1, List<IUnit> army2)
         {
-            deffender = army2[0] ;
+            deffender = army2[0].MakeClone();
             _army1 = army1;
             _army2 = army2;
            // Проинициализировать массив ударов 

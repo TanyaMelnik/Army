@@ -59,5 +59,13 @@ namespace Magic
         {
             return cost;
         }
+
+        public override IUnit MakeClone()
+        {
+            var a = new HeavyWarrior((attack - 50, dodge - 0.05));
+            a.health = health;
+            a.defense = defense;
+            return a;
+        }
     }
 }

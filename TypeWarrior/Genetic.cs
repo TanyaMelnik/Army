@@ -81,5 +81,13 @@ namespace Magic
         {
             return cost;
         }
+
+        public override IUnit MakeClone()
+        {
+            var a = new Genetic((attack - 20, dodge - 0.4));
+            a.health = health;
+            a.defense = defense;
+            return a;
+        }
     }
 }

@@ -49,5 +49,10 @@ namespace Magic
         {
             return unit.Cost();
         }
+
+        public override IUnit MakeClone()
+        {
+            return unit.MakeClone();
+        }
     }    
 }
