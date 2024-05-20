@@ -96,7 +96,7 @@ namespace Magic
             var a = new Doctor((attack - 10, dodge - 0.1));
             a.health = health;
             a.defense = defense;
-            return a;
+            return new LogGetAttack(a, (attack - 10, dodge - 0.1));
         }
 
     }

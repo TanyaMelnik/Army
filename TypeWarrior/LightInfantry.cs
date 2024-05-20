@@ -72,7 +72,7 @@ namespace Magic {
             var a = new LightWarrior((attack - 40, dodge - 0.2));
             a.health = health;
             a.defense = defense;
-            return a;
+            return new LogGetAttack(a, (attack - 40, dodge - 0.2));
         }
     } 
 }

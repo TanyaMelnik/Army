@@ -96,7 +96,7 @@ namespace Magic
             var a = new Bowman((attack - 20, dodge - 0.3));
             a.health = health;
             a.defense = defense;
-            return a;
+            return new LogGetAttack(a, (attack - 20, dodge - 0.3));
         }
     }
 }

@@ -65,7 +65,7 @@ namespace Magic
             var a = new HeavyWarrior((attack - 50, dodge - 0.05));
             a.health = health;
             a.defense = defense;
-            return a;
+            return new LogGetAttack(a, (attack - 50, dodge - 0.05));
         }
     }
 }

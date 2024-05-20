@@ -87,7 +87,7 @@ namespace Magic
             var a = new Genetic((attack - 20, dodge - 0.4));
             a.health = health;
             a.defense = defense;
-            return a;
+            return new LogGetAttack(a, (attack - 20, dodge - 0.4));
         }
     }
 }
