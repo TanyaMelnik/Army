@@ -26,13 +26,22 @@
             throw new NotImplementedException();
         }
     }
-
+    enum TypeConstruction
+    {
+        Сolumn,
+        Battalion,
+        WallToWall
+    }
     // Команда для смены построения
+    // Реализация - менять команды без пользователя ( программа сама меняет на следующую)
     public class ChangeTypeConstruction : ICommand
     {
+        ITypeConstruction _TypeConstruction;
+        // Меняем стратегию и запоминаем старую
         public void Execute()
         {
-            throw new NotImplementedException();
+            _oldITypeConstruction = _newITypeConstruction;
+            //_newITypeConstruction= newITypeConstruction;
         }
 
         public void Undo()
@@ -43,7 +52,7 @@
         // Здесь ничего не будет, это чтобы работал интерфейс 
         public void Redo()
         {
-            throw new NotImplementedException();
+            return;
         }
     }
 }
