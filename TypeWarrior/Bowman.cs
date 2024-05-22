@@ -16,6 +16,7 @@ namespace Magic
         // Уникальные характеристики лучника.
         int radiusAttack = 10;
         int arrowDamage = 40;
+        double procent = 0.9;
 
         public override string ToString()
         {
@@ -25,18 +26,21 @@ namespace Magic
         // number - это порядковый номер лучника в списке (от 1 до размера своей армии)
         public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            if (enemyArmy.Count > 0)
+            if (procent >= new Random().NextDouble())
             {
-                if (number < radiusAttack + 1)
+                if (enemyArmy.Count > 0)
                 {
-                    // Теоретическое количество врагов, в которых он может попасть.
-                    int countEnemy = (radiusAttack + 1) - number;
-                    // Если количество противников меньше найденного числа.
-                    if (countEnemy > enemyArmy.Count) countEnemy = enemyArmy.Count;
-                    // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно
-                    int aim = new Random().Next(0, countEnemy);
-                    // Цель выбрана - enemyArmy[aim]
-                    enemyArmy[aim].GetHit(arrowDamage);
+                    if (number < radiusAttack + 1)
+                    {
+                        // Теоретическое количество врагов, в которых он может попасть.
+                        int countEnemy = (radiusAttack + 1) - number;
+                        // Если количество противников меньше найденного числа.
+                        if (countEnemy > enemyArmy.Count) countEnemy = enemyArmy.Count;
+                        // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно
+                        int aim = new Random().Next(0, countEnemy);
+                        // Цель выбрана - enemyArmy[aim]
+                        enemyArmy[aim].GetHit(arrowDamage);
+                    }
                 }
             }
             return null;

@@ -9,6 +9,8 @@ namespace Magic
         public override string Name() => name;
         // Уникальные характеристики доктора.
         int powerTreatment = 40;
+        double procent = 0.9;
+
         public Doctor((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 10;
@@ -17,29 +19,35 @@ namespace Magic
             defense = 0;
             name = "Доктор";
         }
+
+
+
         // Специальное свойство - лечить 
         public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            // Если впереди стоящий существует 
-            if (number - 1 > 0)
+            if (procent >= new Random().NextDouble())
             {
-                // Если его можно вылечить 
-                if (ownArmy[number - 1] is LogGetAttack unitTemp1 && unitTemp1.unit is IHealtheble patient)
-                {
-                    patient.Heal(powerTreatment);
-                }
-            }
-            else
-            {
-                // Если сзади стоящий существует 
-                if (number + 1 < ownArmy.Count)
+                // Если впереди стоящий существует 
+                if (number - 1 > 0)
                 {
                     // Если его можно вылечить 
-                    if (ownArmy[number + 1] is LogGetAttack unitTemp2 &&  unitTemp2.unit is IHealtheble patient)
+                    if (ownArmy[number - 1] is LogGetAttack unitTemp1 && unitTemp1.unit is IHealtheble patient)
                     {
                         patient.Heal(powerTreatment);
                     }
-                }   
+                }
+                else
+                {
+                    // Если сзади стоящий существует 
+                    if (number + 1 < ownArmy.Count)
+                    {
+                        // Если его можно вылечить 
+                        if (ownArmy[number + 1] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
+                        {
+                            patient.Heal(powerTreatment);
+                        }
+                    }
+                }
             }
             return null;
         } 
