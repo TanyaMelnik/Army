@@ -79,9 +79,7 @@ namespace Magic
             return new LogGetAttack(a, (attack - 20, dodge - 0.3));
         }
 
-
-        // number - это порядковый номер лучника в списке (от 1 до размера своей армии)
-        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        public IUnit DoSpecialPropertyСolumn(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             if (procent >= new Random().NextDouble())
             {
@@ -103,11 +101,6 @@ namespace Magic
             return null;
         }
 
-        public IUnit DoSpecialPropertyСolumn(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
-        {
-            throw new NotImplementedException();
-        }
-
         public IUnit DoSpecialPropertyBattalion(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             throw new NotImplementedException();
@@ -115,7 +108,26 @@ namespace Magic
 
         public IUnit DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            throw new NotImplementedException();
+            if (procent >= new Random().NextDouble())
+            {
+                if (enemyArmy.Count > 0)
+                {
+                    // Первый враг, в который может попасть лучник
+                    int endEnemy = enemyArmy.Count - 1 >= number - radiusAttack + 1 ? enemyArmy.Count - 1 : -1;
+                    // Если радиус меньше чем дальность до первого врага
+                    if (endEnemy<0)
+                    {
+                        return null;
+                    }
+                    // Последний враг, в который может попасть лучник
+                    int startEnemy = number - radiusAttack + 1>= 0? number - radiusAttack + 1:0;
+                    // Рандомно выбираем цель. От startEnemy включительно до endEnemy не включительно
+                    int aim = new Random().Next(startEnemy, endEnemy+1);
+                    // Цель выбрана - enemyArmy[aim]
+                    enemyArmy[aim].GetHit(arrowDamage);
+                }
+            }
+            return null;
         }
     }
 }

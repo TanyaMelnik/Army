@@ -73,7 +73,7 @@ namespace Magic
             return new LogGetAttack(a, (attack - 20, dodge - 0.4));
         }
 
-        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        public IUnit DoSpecialProperty—olumn(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             // ¬ÂÓˇÚÌÓÒÚ¸ ÍÎÓÌËÓ‚‡ÌËˇ 10% œŒÃ≈Õﬂ“‹
             if (procentClone >= new Random().NextDouble())
@@ -91,11 +91,6 @@ namespace Magic
             return null;
         }
 
-        public IUnit DoSpecialProperty—olumn(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
-        {
-            throw new NotImplementedException();
-        }
-
         public IUnit DoSpecialPropertyBattalion(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             throw new NotImplementedException();
@@ -103,7 +98,20 @@ namespace Magic
 
         public IUnit DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            throw new NotImplementedException();
+            // ¬ÂÓˇÚÌÓÒÚ¸ ÍÎÓÌËÓ‚‡ÌËˇ 10% œŒÃ≈Õﬂ“‹
+            if (procentClone >= new Random().NextDouble())
+            {
+                for (int i = 0; i < ownArmy.Count; i++)
+                {
+                    // ≈ÒÎË Â„Ó ÏÓÊÌÓ ÍÎÓÌËÓ‚‡Ú¸ 
+                    // LogGetAttack unitTemp = (LogGetAttack)ownArmy[i];
+                    if (ownArmy[i] is LogGetAttack lightUnit && lightUnit.unit is ICloneable clone)
+                    {
+                        return clone.Clone();
+                    }
+                }
+            }
+            return null;
         }
     }
 }
