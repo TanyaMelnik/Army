@@ -9,6 +9,11 @@ namespace Magic
 {
     class Battalion : ITypeConstruction, Dead
     {
+        public void CheckDecorator(List<IUnit> army1, List<IUnit> army2)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteUnit(List<IUnit> army, int numberUnit)
         {
             for (int i = numberUnit; i < army.Count()-3; i+=3)
@@ -160,11 +165,13 @@ namespace Magic
             }
         }
 
+        // СДЕЛАТЬ
         public void Show(List<IUnit> army1, List<IUnit> army2)
         {
             throw new NotImplementedException();
         }
 
+        //СДЕЛАТЬ
         public void Update(List<IUnit> army)
         {
             for (int i = 0; i < army.Count; i++)
@@ -176,6 +183,11 @@ namespace Magic
                     proxy.DeleteUnit(army, i);
                 }
             }
+        }
+
+        string ITypeConstruction.Show(List<IUnit> army1, List<IUnit> army2)
+        {
+            throw new NotImplementedException();
         }
     }
 }
