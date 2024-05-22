@@ -22,23 +22,6 @@ namespace Magic
             return string.Format($"{Name()}. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
         }
 
-        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
-        {
-            // Вероятность клонирования 10% ПОМЕНЯТЬ
-            if (procentClone >= new Random().NextDouble()) {
-                for (int i = 0; i < ownArmy.Count; i++)
-                {
-                    // Если его можно клонировать 
-                   // LogGetAttack unitTemp = (LogGetAttack)ownArmy[i];
-                    if (ownArmy[i] is LogGetAttack lightUnit && lightUnit.unit is ICloneable clone)
-                    {
-                        return clone.Clone();
-                    }
-                }
-            }
-            return null;
-        }
-
         public void Heal(int powerTreatment)
         {
             // Нельзя лечить больше, чем максимальное здоровье
@@ -88,6 +71,39 @@ namespace Magic
             a.health = health;
             a.defense = defense;
             return new LogGetAttack(a, (attack - 20, dodge - 0.4));
+        }
+
+        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            // Вероятность клонирования 10% ПОМЕНЯТЬ
+            if (procentClone >= new Random().NextDouble())
+            {
+                for (int i = 0; i < ownArmy.Count; i++)
+                {
+                    // Если его можно клонировать 
+                    // LogGetAttack unitTemp = (LogGetAttack)ownArmy[i];
+                    if (ownArmy[i] is LogGetAttack lightUnit && lightUnit.unit is ICloneable clone)
+                    {
+                        return clone.Clone();
+                    }
+                }
+            }
+            return null;
+        }
+
+        public IUnit DoSpecialPropertyСolumn(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IUnit DoSpecialPropertyBattalion(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IUnit DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            throw new NotImplementedException();
         }
     }
 }

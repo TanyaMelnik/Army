@@ -20,38 +20,6 @@ namespace Magic
             name = "Доктор";
         }
 
-
-
-        // Специальное свойство - лечить 
-        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
-        {
-            if (procent >= new Random().NextDouble())
-            {
-                // Если впереди стоящий существует 
-                if (number - 1 > 0)
-                {
-                    // Если его можно вылечить 
-                    if (ownArmy[number - 1] is LogGetAttack unitTemp1 && unitTemp1.unit is IHealtheble patient)
-                    {
-                        patient.Heal(powerTreatment);
-                    }
-                }
-                else
-                {
-                    // Если сзади стоящий существует 
-                    if (number + 1 < ownArmy.Count)
-                    {
-                        // Если его можно вылечить 
-                        if (ownArmy[number + 1] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
-                        {
-                            patient.Heal(powerTreatment);
-                        }
-                    }
-                }
-            }
-            return null;
-        } 
-
         public override string ToString()
         {
             return string.Format($"{Name()}. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
@@ -107,5 +75,49 @@ namespace Magic
             return new LogGetAttack(a, (attack - 10, dodge - 0.1));
         }
 
+        // Специальное свойство - лечить 
+        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            if (procent >= new Random().NextDouble())
+            {
+                // Если впереди стоящий существует 
+                if (number - 1 > 0)
+                {
+                    // Если его можно вылечить 
+                    if (ownArmy[number - 1] is LogGetAttack unitTemp1 && unitTemp1.unit is IHealtheble patient)
+                    {
+                        patient.Heal(powerTreatment);
+                    }
+                }
+                else
+                {
+                    // Если сзади стоящий существует 
+                    if (number + 1 < ownArmy.Count)
+                    {
+                        // Если его можно вылечить 
+                        if (ownArmy[number + 1] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
+                        {
+                            patient.Heal(powerTreatment);
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public IUnit DoSpecialPropertyСolumn(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IUnit DoSpecialPropertyBattalion(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IUnit DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

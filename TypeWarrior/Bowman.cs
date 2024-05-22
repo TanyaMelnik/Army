@@ -23,28 +23,6 @@ namespace Magic
             return string.Format($"{Name()}. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense}  Уклонение {dodge} ");
         }
 
-        // number - это порядковый номер лучника в списке (от 1 до размера своей армии)
-        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
-        {
-            if (procent >= new Random().NextDouble())
-            {
-                if (enemyArmy.Count > 0)
-                {
-                    if (number < radiusAttack + 1)
-                    {
-                        // Теоретическое количество врагов, в которых он может попасть.
-                        int countEnemy = (radiusAttack + 1) - number;
-                        // Если количество противников меньше найденного числа.
-                        if (countEnemy > enemyArmy.Count) countEnemy = enemyArmy.Count;
-                        // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно
-                        int aim = new Random().Next(0, countEnemy);
-                        // Цель выбрана - enemyArmy[aim]
-                        enemyArmy[aim].GetHit(arrowDamage);
-                    }
-                }
-            }
-            return null;
-        }
         public IUnit Clone()
         {
             return new LogGetAttack(new Bowman((attack - 20, dodge - 0.3)), (attack - 20, dodge - 0.3));
@@ -99,6 +77,45 @@ namespace Magic
             a.health = health;
             a.defense = defense;
             return new LogGetAttack(a, (attack - 20, dodge - 0.3));
+        }
+
+
+        // number - это порядковый номер лучника в списке (от 1 до размера своей армии)
+        public IUnit DoSpecialProperty(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            if (procent >= new Random().NextDouble())
+            {
+                if (enemyArmy.Count > 0)
+                {
+                    if (number < radiusAttack + 1)
+                    {
+                        // Теоретическое количество врагов, в которых он может попасть.
+                        int countEnemy = (radiusAttack + 1) - number;
+                        // Если количество противников меньше найденного числа.
+                        if (countEnemy > enemyArmy.Count) countEnemy = enemyArmy.Count;
+                        // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно
+                        int aim = new Random().Next(0, countEnemy);
+                        // Цель выбрана - enemyArmy[aim]
+                        enemyArmy[aim].GetHit(arrowDamage);
+                    }
+                }
+            }
+            return null;
+        }
+
+        public IUnit DoSpecialPropertyСolumn(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IUnit DoSpecialPropertyBattalion(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IUnit DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        {
+            throw new NotImplementedException();
         }
     }
 }
