@@ -166,9 +166,20 @@ namespace Magic
         }
 
         // СДЕЛАТЬ
-        public void Show(List<IUnit> army1, List<IUnit> army2)
+        public string Show(List<IUnit> army1, List<IUnit> army2)
         {
-            throw new NotImplementedException();
+           StringBuilder s = new();
+            s.Append("Армия 1: \n");
+            for (int i = 0; i < army1.Count; i++)
+            {
+                s.Append(army1[i].ToString()+"\n");
+            }
+            s.Append("Армия 2: \n");
+            for (int i = 0; i < army2.Count; i++)
+            {
+                s.Append(army2[i].ToString() + "\n");
+            }
+            return s.ToString();
         }
 
         //СДЕЛАТЬ
@@ -183,11 +194,6 @@ namespace Magic
                     proxy.DeleteUnit(army, i);
                 }
             }
-        }
-
-        string ITypeConstruction.Show(List<IUnit> army1, List<IUnit> army2)
-        {
-            throw new NotImplementedException();
         }
     }
 }
