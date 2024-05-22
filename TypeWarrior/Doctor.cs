@@ -82,7 +82,7 @@ namespace Magic
             if (procent >= new Random().NextDouble())
             {
                 // Если впереди стоящий существует 
-                if (number - 1 > 0)
+                if (number - 1 >= 0)
                 {
                     // Если его можно вылечить 
                     if (ownArmy[number - 1] is LogGetAttack unitTemp1 && unitTemp1.unit is IHealtheble patient)
@@ -93,7 +93,7 @@ namespace Magic
                 else
                 {
                     // Если сзади стоящий существует 
-                    if (number + 1 < ownArmy.Count)
+                    if (number + 1 <= ownArmy.Count-1)
                     {
                         // Если его можно вылечить 
                         if (ownArmy[number + 1] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
@@ -110,8 +110,8 @@ namespace Magic
         {
             if (procent >= new Random().NextDouble())
             {
-                // Если справа стоящий существует 
-                if (number - 1 > 0)
+                // Если влева стоящий существует 
+                if (number % 3 != 0 && number - 1 >= 0)
                 {
                     // Если его можно вылечить 
                     if (ownArmy[number - 1] is LogGetAttack unitTemp1 && unitTemp1.unit is IHealtheble patient)
@@ -120,7 +120,7 @@ namespace Magic
                     }
                 }
                 // Если слева стоящий существует 
-                else if (number + 1 < ownArmy.Count)
+                else if (number % 3 != 2 &&  number + 1 <= ownArmy.Count-1 )
                 {
                         // Если его можно вылечить 
                         if (ownArmy[number + 1] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
@@ -129,7 +129,7 @@ namespace Magic
                         }
                 }
                 // Если впереди стоящий существует 
-                else if (number -3 < ownArmy.Count)
+                else if (number - 3 >=0)
                 {
                     // Если его можно вылечить 
                     if (ownArmy[number - 3] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
@@ -138,7 +138,7 @@ namespace Magic
                     }
                 }
                 // Если сзади стоящий существует 
-                else if (number +3 < ownArmy.Count)
+                else if (number +3 <= ownArmy.Count-1)
                 {
                     // Если его можно вылечить 
                     if (ownArmy[number + 3] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
@@ -155,7 +155,7 @@ namespace Magic
             if (procent >= new Random().NextDouble())
             {
                 // Если справа стоящий существует 
-                if (number - 1 > 0)
+                if (number - 1 >= 0)
                 {
                     // Если его можно вылечить 
                     if (ownArmy[number - 1] is LogGetAttack unitTemp1 && unitTemp1.unit is IHealtheble patient)
@@ -166,7 +166,7 @@ namespace Magic
                 else
                 {
                     // Если слева стоящий существует 
-                    if (number + 1 < ownArmy.Count)
+                    if (number + 1 <= ownArmy.Count-1)
                     {
                         // Если его можно вылечить 
                         if (ownArmy[number + 1] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
