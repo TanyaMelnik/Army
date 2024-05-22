@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Magic
@@ -9,8 +10,21 @@ namespace Magic
         {
             Console.WriteLine("Начинаем новую игру!");
 
-            // Инициализация настроек.
+            // Инициализация настроек. Это не пункт меню, так как это устанавливается один раз и это нельзя поменять
             UserSettings();
+
+            // Выбор построения армий, вынести в отдельную функцию
+            Console.WriteLine("Выберите тип построения армий");
+            Console.WriteLine("1. Колонна");
+            Console.WriteLine("2. Три в ряд");
+            Console.WriteLine("3. Стенка на стенку");
+            int TypeConstruction = -1;
+            while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
+            {
+                Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
+            }
+            Console.Write("Ваш ответ: ");
+
             // Создание первой армии.
             AbstractArmyFactory abstractArmyFactory1 = AddUnitStats();
             ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1);
@@ -24,44 +38,84 @@ namespace Magic
             // Выбор армии, которая ходит первая
             ChoiseFirstArmy(ref army1, ref army2);
 
-            MakeMeleeFight a = new(army1, army2);
-            Console.WriteLine(a.deffender.ToString());
-            a.Execute();
-            Console.WriteLine(a.deffender.ToString());
+
+            Console.WriteLine("Выберите пункт меню");
+            Console.WriteLine("1. Сделать ход");
+            Console.WriteLine("2. Отменить ход");
+            Console.WriteLine("3. Повторить ход");
+            Console.WriteLine("4. Поменять построение");
+            Console.WriteLine("5. Отменить смену построения");
+            int menu = -1;
+            while (!int.TryParse(Console.ReadLine(), out menu) || menu < 1 || menu > 5)
+            {
+                Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
+            }
+            Console.Write("Ваш ответ: ");
+            switch (menu)
+            {
+                case 1:
+                    
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                default:
+                    //Возможно не надо
+                    //Console.WriteLine("Неверный ввод, повторите попытку");
+                    return;
+            }
+
+
+
+            /*            MakeMeleeFight a = new(army1, army2);
+                        Console.WriteLine(a.deffender.ToString());
+                        a.Execute();
+                        Console.WriteLine(a.deffender.ToString());*/
+
+
+
+
+
 
             //Запуск основного цикла игры.
-            int countStep = 1;
+            //int countStep = 1;
             // Пока в одной из армий остались воины.
-            while (army1.Count > 0 && army2.Count > 0)
-            {
-                Console.WriteLine("Ход номер " + countStep);
-                // Проверка на декораторы 
-                Game.CheckDecorator(army1);
-                Game.CheckDecorator(army2);
-                // Вывод армий на экран.
-                Console.WriteLine("Армия 1:");
-                PrintArmy(army1);
-                Console.WriteLine();
-                Console.WriteLine("Армия 2:");
-                PrintArmy(army2);
-                Console.WriteLine();
+            /*            while (army1.Count > 0 && army2.Count > 0)
+                        {
+                            Console.WriteLine("Ход номер " + countStep);
+                            // Проверка на декораторы, ПОМЕНЯТЬ
+                            Game.CheckDecorator(army1);
+                            Game.CheckDecorator(army2);
+                            // Вывод армий на экран.
+                            Console.WriteLine("Армия 1:");
+                            PrintArmy(army1);
+                            Console.WriteLine();
+                            Console.WriteLine("Армия 2:");
+                            PrintArmy(army2);
+                            Console.WriteLine();
 
-                // Для первых 
-                Game.Fight(army1, army2);
+                            // Для первых 
+                            Game.Fight(army1, army2);
 
-                // Вывод армий на экран.
-                Console.WriteLine("Армия 1 после того, как первые побились:");
-                PrintArmy(army1);
-                Console.WriteLine();
-                Console.WriteLine("Армия 2 после того, как первые побились::");
-                PrintArmy(army2);
-                Console.WriteLine();
+                            // Вывод армий на экран.
+                            Console.WriteLine("Армия 1 после того, как первые побились:");
+                            PrintArmy(army1);
+                            Console.WriteLine();
+                            Console.WriteLine("Армия 2 после того, как первые побились::");
+                            PrintArmy(army2);
+                            Console.WriteLine();
 
-                // Для спец свойств.
-                Game.DoSpecial(army1, army2);
+                            // Для спец свойств.
+                            Game.DoSpecial(army1, army2);
 
-                countStep++;
-            }
+                            countStep++;
+                        }*/
         }
 
         static void UserSettings()
@@ -72,11 +126,14 @@ namespace Magic
             // Ввод пользователем длительности игры.
             int health = Healht();
 
-            Console.Write("Включить звук при убийстве юнита - введите true. Выключить звуки - введите false:  ");
+            // ПОМЕНЯТЬ
+            Settings.sound = false;
+
+/*            Console.Write("Включить звук при убийстве юнита - введите true. Выключить звуки - введите false:  ");
             while (!bool.TryParse(Console.ReadLine(), out Settings.sound))
             {
                 Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
-            }
+            }*/
 
             // Паттерн Singleton. 
             Settings.GetInstance(health, cost);
