@@ -83,12 +83,12 @@ namespace Magic
         {
             if (procent >= new Random().NextDouble())
             {
-                if (enemyArmy.Count > 0)
+                if (enemyArmy.Count + 1 > 0)
                 {
-                    if (number < radiusAttack + 1)
+                    if (number < radiusAttack)
                     {
                         // Теоретическое количество врагов, в которых он может попасть.
-                        int countEnemy = (radiusAttack + 1) - number;
+                        int countEnemy = radiusAttack - number;
                         // Если количество противников меньше найденного числа.
                         if (countEnemy > enemyArmy.Count) countEnemy = enemyArmy.Count;
                         // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно
@@ -103,7 +103,26 @@ namespace Magic
 
         public IUnit DoSpecialPropertyBattalion(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            throw new NotImplementedException();
+            if (procent >= new Random().NextDouble())
+            {
+                if (enemyArmy.Count > 0)
+                {
+                    if (number < radiusAttack*3)
+                    {
+                        // Теоретическое количество врагов, в которых он может попасть. нужно разделить на 3, округлить вверх и умнножить на 3
+                        double a = (radiusAttack * 3 - number) / 3.0;
+                        double b = Math.Ceiling(a);
+                        int countEnemy = (int)b*3;
+                        // Если количество противников меньше найденного числа.
+                        if (countEnemy > enemyArmy.Count) countEnemy = enemyArmy.Count;
+                        // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно
+                        int aim = new Random().Next(0, countEnemy);
+                        // Цель выбрана - enemyArmy[aim]
+                        enemyArmy[aim].GetHit(arrowDamage);
+                    }
+                }
+            }
+            return null;
         }
 
         public IUnit DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
