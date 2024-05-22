@@ -129,27 +129,26 @@ namespace Magic
                         }
                 }
                 // Если впереди стоящий существует 
-                else if (number + 1 < ownArmy.Count)
+                else if (number -3 < ownArmy.Count)
                 {
-                    /*// Если его можно вылечить 
-                    if (ownArmy[number + 1] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
+                    // Если его можно вылечить 
+                    if (ownArmy[number - 3] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
                     {
                         patient.Heal(powerTreatment);
-                    }*/
+                    }
                 }
                 // Если сзади стоящий существует 
-                else if (number + 1 < ownArmy.Count)
+                else if (number +3 < ownArmy.Count)
                 {
-                    /*// Если его можно вылечить 
-                    if (ownArmy[number + 1] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
+                    // Если его можно вылечить 
+                    if (ownArmy[number + 3] is LogGetAttack unitTemp2 && unitTemp2.unit is IHealtheble patient)
                     {
                         patient.Heal(powerTreatment);
-                    }*/
+                    }
                 }
             }
             return null;
         }
-    }
 
         public IUnit DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {

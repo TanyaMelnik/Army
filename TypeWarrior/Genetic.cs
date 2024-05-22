@@ -93,12 +93,23 @@ namespace Magic
 
         public IUnit DoSpecialPropertyBattalion(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            throw new NotImplementedException();
+            if (procentClone >= new Random().NextDouble())
+            {
+                for (int i = 0; i < ownArmy.Count; i++)
+                {
+                    // Если его можно клонировать 
+                    // LogGetAttack unitTemp = (LogGetAttack)ownArmy[i];
+                    if (ownArmy[i] is LogGetAttack lightUnit && lightUnit.unit is ICloneable clone)
+                    {
+                        return clone.Clone();
+                    }
+                }
+            }
+            return null;
         }
 
         public IUnit DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            // Вероятность клонирования 10% ПОМЕНЯТЬ
             if (procentClone >= new Random().NextDouble())
             {
                 for (int i = 0; i < ownArmy.Count; i++)
