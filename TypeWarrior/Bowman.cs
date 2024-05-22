@@ -37,8 +37,6 @@ namespace Magic
                     int aim = new Random().Next(0, countEnemy);
                     // Цель выбрана - enemyArmy[aim]
                     enemyArmy[aim].GetHit(arrowDamage);
-                    ProxyDie proxy = new(new DeadUnit());
-                    if (enemyArmy[aim].Health() < 0) proxy.DeleteUnit(enemyArmy, aim);
                 }
             }
             return null;

@@ -55,6 +55,7 @@ namespace Magic
                             // Если был не генетик => проверяем число второй армии.
                             else
                             {
+                                Update(army2);
                                 // Если во второй армии убили 
                                 if (army2.Count != army2Count)
                                 {
@@ -85,7 +86,7 @@ namespace Magic
                             // Если был не генетик => проверяем число второй армии.
                             else
                             {
-                                Update(army1);
+                                Update(army2);
                                 // Если во второй армии убили 
                                 if (army1.Count != army1Count)
                                 {
@@ -98,7 +99,19 @@ namespace Magic
                 }
             }
         }
-
+        // Метод который обновляет армии.
+        public void Update(List<IUnit> army)
+        {
+            for (int i = 0; i < army.Count; i++)
+            {
+                // Если нашли мертвого юнита - удаляем его из армии.
+                if (army[i].Health() <= 0)
+                {
+                    ProxyDie proxy = new(new Сolumn());
+                    proxy.DeleteUnit(army, i);
+                }
+            }
+        }
         public void MakeMeleeFight(List<IUnit> army1, List<IUnit> army2)
         {
             ProxyDie proxy = new(new Сolumn());
