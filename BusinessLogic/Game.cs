@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Linq;
@@ -24,6 +24,7 @@ namespace Magic
             }
         }
         // Метод который обновляет армии.
+        // ВОЗМОЖНО ЭТО ЛИШНЕЕЕЕЕЕЕЕЕЕЕЕЕ !
         public static void Update(List<IUnit> army)
         {
             for (int i=0; i<army.Count; i++)
@@ -141,3 +142,4 @@ namespace Magic
         }
     }
 }
+*/
