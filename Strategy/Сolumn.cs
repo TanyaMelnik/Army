@@ -44,7 +44,7 @@ namespace Magic
                         // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
                         if (army1.Count > 0 && army2.Count > 0)
                         {
-                            IUnit newUnit = proxy.DoSpecialProperty(army1, army2, i);
+                            IUnit newUnit = proxy.DoSpecialPropertyСolumn(army1, army2, i);
                             // Если генетик склонировал солдата
                             if (newUnit != null)
                             {
@@ -70,7 +70,7 @@ namespace Magic
                         if (army1.Count > 0 && army2.Count > 0)
                         {
                             // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
-                            IUnit newUnit2 = proxy.DoSpecialProperty(army2, army1, j);
+                            IUnit newUnit2 = proxy.DoSpecialPropertyСolumn(army2, army1, j);
                             // Если генетик склонировал солдата
                             if (newUnit2 != null)
                             {
@@ -130,21 +130,37 @@ namespace Magic
             return s.ToString();
         }
 
-        public void CheckDecorator(List<IUnit> army)
+        public void CheckDecorator(List<IUnit> army1, List<IUnit> army2)
         {
-            for (int i = 1; i < army.Count - 1; i++)
+            for (int i = 1; i < army1.Count - 1; i++)
             {
                 // Если нашли легкого солдата
-                if (army[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
+                if (army1[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
                 {
                     // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем 
-                    if (army[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
+                    if (army1[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
                     {
-                        army[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                        army1[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
                     }
-                    if (army[i - 1] is LogGetAttack heavyUnit2 && heavyUnit2.unit is HeavyWarrior)
+                    if (army1[i - 1] is LogGetAttack heavyUnit2 && heavyUnit2.unit is HeavyWarrior)
                     {
-                        army[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                        army1[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i - 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                    }
+                }
+            }
+            for (int i = 1; i < army2.Count - 1; i++)
+            {
+                // Если нашли легкого солдата
+                if (army2[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
+                {
+                    // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем 
+                    if (army2[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
+                    {
+                        army2[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                    }
+                    if (army2[i - 1] is LogGetAttack heavyUnit2 && heavyUnit2.unit is HeavyWarrior)
+                    {
+                        army2[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i - 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
                     }
                 }
             }

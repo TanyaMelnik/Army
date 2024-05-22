@@ -12,19 +12,23 @@ namespace Magic
     {
         public void CheckDecorator(List<IUnit> army1, List<IUnit> army2)
         {
-            for (int i = 1; i < army.Count - 1; i++)
+            // Защищающаяся армия ( с меньшим количеством)
+            List<IUnit> defender = army1.Count < army2.Count ? army1 : army2;
+            // Атакующая армия ( с большим количеством)
+            List<IUnit> attacker = army1.Count > army2.Count ? army1 : army2;
+            for (int i = defender.Count; i < attacker.Count - 1; i++)
             {
                 // Если нашли легкого солдата
-                if (army[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
+                if (attacker[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
                 {
                     // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем 
-                    if (army[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
+                    if (attacker[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
                     {
-                        army[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                        attacker[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(attacker[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
                     }
-                    if (army[i - 1] is LogGetAttack heavyUnit2 && heavyUnit2.unit is HeavyWarrior)
+                    if (attacker[i - 1] is LogGetAttack heavyUnit2 && heavyUnit2.unit is HeavyWarrior)
                     {
-                        army[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                        attacker[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(attacker[i - 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
                     }
                 }
             }
@@ -50,7 +54,7 @@ namespace Magic
                 {
                     // Обёртка для логирования 
                     var proxy = new ProxyLogSpecial(unit1);
-                    IUnit newUnit = proxy.DoSpecialProperty(attacker, defender, i);
+                    IUnit newUnit = proxy.DoSpecialPropertyWallToWall(attacker, defender, i);
                     // Если генетик склонировал солдата
                     if (newUnit != null)
                     {
