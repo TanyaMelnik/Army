@@ -101,7 +101,7 @@ namespace Magic
 
         public void MakeMeleeFight(List<IUnit> army1, List<IUnit> army2)
         {
-            ProxyDie proxy = new(new DeadUnit());
+            ProxyDie proxy = new(new Сolumn());
             army2[0].GetHit(army1[0].Attack());
             if (army2[0].Health() < 0) proxy.DeleteUnit(army2, 0);
             if (army2.Count > 0)

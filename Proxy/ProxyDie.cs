@@ -1,6 +1,10 @@
 ﻿
 namespace Magic
 {
+    interface Dead
+    {
+        public void DeleteUnit(List<IUnit> army, int numberUnit);
+    }
     class ProxyDie:Dead
     {
         Dead unit;
