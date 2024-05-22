@@ -56,11 +56,6 @@ namespace Magic
                             else
                             {
                                 Update(army2);
-                                // Если во второй армии убили 
-                                if (army2.Count != army2Count)
-                                {
-                                    j--;
-                                }
                             }
                         }
                     }
@@ -86,12 +81,7 @@ namespace Magic
                             // Если был не генетик => проверяем число второй армии.
                             else
                             {
-                                Update(army2);
-                                // Если во второй армии убили 
-                                if (army1.Count != army1Count)
-                                {
-                                    i--;
-                                }
+                                Update(army1);
                             }
                         }
                     }
@@ -124,9 +114,40 @@ namespace Magic
             }
         }
 
-        public void Show(List<IUnit> army1, List<IUnit> army2)
+        public string Show(List<IUnit> army1, List<IUnit> army2)
         {
-            throw new NotImplementedException();
+            StringBuilder s = new();
+            s.Append("Армия 1: \n");
+            for (int i = 0; i < army1.Count; i++)
+            {
+                s.Append(army1[i].ToString()+"\n");
+            }
+            s.Append("Армия 2: \n");
+            for (int i = 0; i < army2.Count; i++)
+            {
+                s.Append(army2[i].ToString() + "\n");
+            }
+            return s.ToString();
+        }
+
+        public void CheckDecorator(List<IUnit> army)
+        {
+            for (int i = 1; i < army.Count - 1; i++)
+            {
+                // Если нашли легкого солдата
+                if (army[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
+                {
+                    // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем 
+                    if (army[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
+                    {
+                        army[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                    }
+                    if (army[i - 1] is LogGetAttack heavyUnit2 && heavyUnit2.unit is HeavyWarrior)
+                    {
+                        army[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                    }
+                }
+            }
         }
     }
 }

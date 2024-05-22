@@ -14,7 +14,9 @@ namespace Magic
         void DoSpecialProperties(List<IUnit> army1, List<IUnit> army2);
         // Проверка убитых солдат
         void Update(List<IUnit> army);
+        // Проверка на декораторы
+        void CheckDecorator(List<IUnit> army1, List<IUnit> army2);
         // Состав армии 
-        void Show(List<IUnit> army1, List<IUnit> army2);
+        string Show(List<IUnit> army1, List<IUnit> army2);
     }
 }
