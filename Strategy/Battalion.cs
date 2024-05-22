@@ -1,9 +1,4 @@
-﻿using Magic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Magic
 {
@@ -11,7 +6,38 @@ namespace Magic
     {
         public void CheckDecorator(List<IUnit> army1, List<IUnit> army2)
         {
-            throw new NotImplementedException();
+            for (int i = 1; i < army1.Count - 1; i++)
+            {
+                // Если нашли легкого солдата
+                if (army1[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
+                {
+                    // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем 
+                    if (i % 3 != 2 && i + 1 <= army1.Count - 1 && army1[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
+                    {
+                        army1[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                    }
+                    if (i % 3 != 0 && i - 1 >= 0 && army1[i - 1] is LogGetAttack heavyUnit2 && heavyUnit2.unit is HeavyWarrior)
+                    {
+                        army1[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i - 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                    }
+                }
+            }
+            for (int i = 1; i < army2.Count - 1; i++)
+            {
+                // Если нашли легкого солдата
+                if (army2[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
+                {
+                    // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем 
+                    if (i % 3 != 2 && i + 1 <= army2.Count - 1 && army2[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
+                    {
+                        army2[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                    }
+                    if (i % 3 != 0 && i - 1 >= 0 && army2[i - 1] is LogGetAttack heavyUnit2 && heavyUnit2.unit is HeavyWarrior)
+                    {
+                        army2[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i - 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                    }
+                }
+            }
         }
 
         public void DeleteUnit(List<IUnit> army, int numberUnit)
@@ -165,7 +191,7 @@ namespace Magic
             }
         }
 
-        // СДЕЛАТЬ
+        // СДЕЛАТЬ по другому, если не будет графики
         public string Show(List<IUnit> army1, List<IUnit> army2)
         {
            StringBuilder s = new();
@@ -182,7 +208,6 @@ namespace Magic
             return s.ToString();
         }
 
-        //СДЕЛАТЬ
         public void Update(List<IUnit> army)
         {
             for (int i = 0; i < army.Count; i++)
