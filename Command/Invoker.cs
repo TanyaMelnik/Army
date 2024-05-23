@@ -1,79 +1,11 @@
-﻿namespace Magic 
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Magic
 {
-    // Интерфейс команды, объявляющий метод Execute
-    public interface ICommand
-    {
-        void Execute();
-        void Undo();
-        void Redo();
-    }
-
-    // Команда для пунктов: сделать, отменить и повторить ход
-    public class MakeMove : ICommand
-    {
-        List<IUnit> army1;
-        List<IUnit> army2;
-
-        public MakeMove(List<IUnit> army1, List<IUnit> army2)
-        {
-            this.army1 = army1;
-            this.army2 = army2;
-        }
-
-        // Сделать новый ход
-        public void Execute()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Undo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Redo()
-        {
-            throw new NotImplementedException();
-        }
-    }
-    enum TypeConstruction
-    {
-        Сolumn,
-        Battalion,
-        WallToWall
-    }
-    // Команда для смены построения
-    // Реализация - менять команды без пользователя ( программа сама меняет на следующую)
-    public class ChangeTypeConstruction : ICommand
-    {
-        int typeConstruction;
-        ITypeConstruction _typeConstruction;
-
-        public ChangeTypeConstruction(int typeConstruction)
-        {
-            this.typeConstruction = typeConstruction;
-        }
-
-        //ITypeConstruction _TypeConstruction;
-        // Меняем стратегию и запоминаем старую
-        public void Execute()
-        {
-            //_oldITypeConstruction = _newITypeConstruction;
-            //_newITypeConstruction= newITypeConstruction;
-        }
-
-        public void Undo()
-        {
-            throw new NotImplementedException();
-        }
-
-        // Здесь ничего не будет, это чтобы работал интерфейс 
-        public void Redo()
-        {
-            return;
-        }
-    }
-
     class Invoker
     {
         private List<ICommand> _commands = new List<ICommand>();
@@ -218,3 +150,4 @@
          }
      }
  }*/
+//}
