@@ -59,6 +59,8 @@ namespace Magic
                 // Основной цикл игры
                 bool flag = true;
                 bool game = true;
+                // Инициализация изначальных данных
+                Invoker invoker = new Invoker();
                 while (flag)
                 {
                     Console.WriteLine("Выберите пункт меню");
@@ -74,11 +76,7 @@ namespace Magic
                     {
                         Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
                     }
-                    
-
-                    // Инициализация изначальных данных
-                    Invoker invoker = new Invoker();
-
+                   
                     switch (menu)
                     {
                         case 1:
@@ -122,6 +120,7 @@ namespace Magic
                                 invoker.AddCommand(StartMakeMoveAll);
                                 game = invoker.ExecuteCommand();
                             }
+                            if (game == false) Console.WriteLine("В армии нет людей");
                             break;
                     }
                 }

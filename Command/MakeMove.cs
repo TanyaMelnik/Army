@@ -4,7 +4,8 @@
     // Команда для пунктов: сделать, отменить и повторить ход
     class MakeMove : ICommand
     {
-        public ITypeConstruction _typeConstruction;
+        private ITypeConstruction _typeConstruction;
+        public ITypeConstruction _TypeConstruction { get => _typeConstruction; set => _typeConstruction = value; }
         public List<IUnit> oldArmy1;
         public List<IUnit> oldArmy2;
 

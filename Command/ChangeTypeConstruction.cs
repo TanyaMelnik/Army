@@ -12,7 +12,8 @@ namespace Magic
     // Реализация - менять команды без пользователя ( программа сама меняет на следующую)
     class ChangeTypeConstruction : ICommand
     {
-        public ITypeConstruction _typeConstruction;
+        private ITypeConstruction _typeConstruction;
+        public ITypeConstruction _TypeConstruction { get => _typeConstruction; set => _typeConstruction = value; }
         private readonly ITypeConstruction[] strategy;
 
         public ChangeTypeConstruction(ITypeConstruction oldTypeConstruction)
