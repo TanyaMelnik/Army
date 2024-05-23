@@ -8,141 +8,111 @@ namespace Magic
     {
         public static void UserGame()
         {
-            Console.WriteLine("Начинаем новую игру!");
-
-            // Инициализация настроек. Это не пункт меню, так как это устанавливается один раз и это нельзя поменять
-            UserSettings();
-
-            // Создание первой армии.
-            AbstractArmyFactory abstractArmyFactory1 = AddUnitStats();
-            ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1);
-            List<IUnit> army1 = armyCreatedFactories1.CreateArmy();
-
-            // Создание второй армии.
-            AbstractArmyFactory abstractArmyFactory2 = AddUnitStats();
-            ArmyCreatedFactories armyCreatedFactories2 = SelectSetUnits(abstractArmyFactory2);
-            List<IUnit> army2 = armyCreatedFactories2.CreateArmy();
-
-            // Выбор армии, которая ходит первая
-            ChoiseFirstArmy(ref army1, ref army2);
-
-            // Выбор построения армий, вынести в отдельную функцию
-            Console.WriteLine("Выберите тип построения армий");
-            Console.WriteLine("1. Колонна");
-            Console.WriteLine("2. Три в ряд");
-            Console.WriteLine("3. Стенка на стенку");
-            int TypeConstruction = -1;
-            while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
+            bool games = true;
+            while (games)
             {
-                Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
-            }
-            Console.Write("Ваш ответ: ");
-            ITypeConstruction typeConstruction = new Сolumn(army1, army2);
-            switch (TypeConstruction)
-            {
-                case 1:
-                    typeConstruction = new Сolumn(army1, army2);
-                    break;
-                case 2:
-                    typeConstruction = new Battalion(army1, army2);
-                    break;
-                case 3:
-                    typeConstruction = new WallToWall(army1, army2);
-                    break;
+                Console.WriteLine("Начинаем новую игру!");
 
-            }
-            // Счётчик, чтобы бежать по командам.
-            int count = 0;
-            Console.WriteLine("Выберите пункт меню");
-            Console.WriteLine("1. Сделать ход");
-            Console.WriteLine("2. Отменить ход");
-            Console.WriteLine("3. Повторить ход");
-            Console.WriteLine("4. Поменять построение");
-            Console.WriteLine("5. Отменить смену построения");
-            int menu = -1;
-            while (!int.TryParse(Console.ReadLine(), out menu) || menu < 1 || menu > 5)
-            {
-                Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
-            }
-            Console.Write("Ваш ответ: ");
-            // Инициализация изначальных данных
-            ICommand StartMakeMove = new MakeMove(typeConstruction);
-            ICommand StartChangeTypeConstruction = new ChangeTypeConstruction(typeConstruction);
-            switch (menu)
-            {
-                case 1:
-                    
-                    //invoker.AddCommand(createFileCommand);
-                    break;
-                case 2:
-                    
-                    break;
-                case 3:
+                // Инициализация настроек. Это не пункт меню, так как это устанавливается один раз и это нельзя поменять
+                UserSettings();
 
-                    break;
-                case 4:
-                    Console.WriteLine("Выберите тип построения армий");
-                    Console.WriteLine("1. Колонна");
-                    Console.WriteLine("2. Три в ряд");
-                    Console.WriteLine("3. Стенка на стенку");
-                    while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
+                // Создание первой армии.
+                AbstractArmyFactory abstractArmyFactory1 = AddUnitStats();
+                ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1);
+                List<IUnit> army1 = armyCreatedFactories1.CreateArmy();
+
+                // Создание второй армии.
+                AbstractArmyFactory abstractArmyFactory2 = AddUnitStats();
+                ArmyCreatedFactories armyCreatedFactories2 = SelectSetUnits(abstractArmyFactory2);
+                List<IUnit> army2 = armyCreatedFactories2.CreateArmy();
+
+                // Выбор армии, которая ходит первая
+                ChoiseFirstArmy(ref army1, ref army2);
+
+                // Выбор построения армий, вынести в отдельную функцию
+                Console.WriteLine("Выберите тип построения армий");
+                Console.WriteLine("1. Колонна");
+                Console.WriteLine("2. Три в ряд");
+                Console.WriteLine("3. Стенка на стенку");
+                int TypeConstruction = -1;
+                while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
+                {
+                    Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
+                }
+                Console.Write("Ваш ответ: ");
+                ITypeConstruction typeConstruction = new Сolumn(army1, army2);
+                switch (TypeConstruction)
+                {
+                    case 1:
+                        typeConstruction = new Сolumn(army1, army2);
+                        break;
+                    case 2:
+                        typeConstruction = new Battalion(army1, army2);
+                        break;
+                    case 3:
+                        typeConstruction = new WallToWall(army1, army2);
+                        break;
+
+                }
+
+                // Основной цикл игры
+                bool game = true;
+                while (game)
+                {
+                    Console.WriteLine("Выберите пункт меню");
+                    Console.WriteLine("1. Сделать ход");
+                    Console.WriteLine("2. Отменить");
+                    Console.WriteLine("3. Повторить");
+                    Console.WriteLine("4. Поменять построение");
+                    Console.WriteLine("5. Закончить текущую игру");
+                    int menu;
+                    while (!int.TryParse(Console.ReadLine(), out menu) || menu < 1 || menu > 5)
                     {
                         Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
                     }
                     Console.Write("Ваш ответ: ");
-                    ICommand ChangeTypeConstruction = new ChangeTypeConstruction(typeConstruction);
-                    break;
-                default:
-                    //Возможно не надо
-                    //Console.WriteLine("Неверный ввод, повторите попытку");
-                    return;
+
+                    // Инициализация изначальных данных
+                    Invoker invoker = new Invoker();
+
+                    switch (menu)
+                    {
+                        case 1:
+                            ICommand StartMakeMove = new MakeMove(typeConstruction);
+                            invoker.AddCommand(StartMakeMove);
+                            game = invoker.ExecuteCommand();
+                            break;
+                        case 2:
+                            bool flagUndo = invoker.UndoCommand();
+                            if (flagUndo == false) Console.WriteLine("Отмену выполнить невозможно! Сначала сделайте действие!");
+                            break;
+                        case 3:
+                            bool flagRedo = invoker.RedoCommand();
+                            if (flagRedo == false) Console.WriteLine("Повтор выполнить невозможно! Сначала отмените действие!");
+                            break;
+                        case 4:
+                            ICommand ChangeTypeConstruction = new ChangeTypeConstruction(typeConstruction);
+                            invoker.AddCommand(ChangeTypeConstruction);
+                            invoker.ExecuteCommand();
+                            break;
+                        case 5:
+                            game = false;
+                            break;
+                    }
+                }
+
+                Console.WriteLine("Хотите начать новую игру? ");
+                Console.WriteLine("1. Да!");
+                Console.WriteLine("2. Хочу выйти из игры ");
+                Console.Write("Ваш ответ: ");
+                int answer;
+                while (!int.TryParse(Console.ReadLine(), out answer) || answer < 1 || answer > 2)
+                {
+                    Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
+                }
+
+                if (answer == 2) games = false;
             }
-
-
-
-            /*            MakeMeleeFight a = new(army1, army2);
-                        Console.WriteLine(a.deffender.ToString());
-                        a.Execute();
-                        Console.WriteLine(a.deffender.ToString());*/
-
-
-
-
-
-
-            //Запуск основного цикла игры.
-            //int countStep = 1;
-            // Пока в одной из армий остались воины.
-            /*            while (army1.Count > 0 && army2.Count > 0)
-                        {
-                            Console.WriteLine("Ход номер " + countStep);
-                            // Проверка на декораторы, ПОМЕНЯТЬ
-                            Game.CheckDecorator(army1);
-                            Game.CheckDecorator(army2);
-                            // Вывод армий на экран.
-                            Console.WriteLine("Армия 1:");
-                            PrintArmy(army1);
-                            Console.WriteLine();
-                            Console.WriteLine("Армия 2:");
-                            PrintArmy(army2);
-                            Console.WriteLine();
-
-                            // Для первых 
-                            Game.Fight(army1, army2);
-
-                            // Вывод армий на экран.
-                            Console.WriteLine("Армия 1 после того, как первые побились:");
-                            PrintArmy(army1);
-                            Console.WriteLine();
-                            Console.WriteLine("Армия 2 после того, как первые побились::");
-                            PrintArmy(army2);
-                            Console.WriteLine();
-
-                            // Для спец свойств.
-                            Game.DoSpecial(army1, army2);
-
-                            countStep++;
-                        }*/
         }
 
         static void UserSettings()
@@ -377,3 +347,53 @@ namespace Magic
     }
 
 }
+
+
+
+
+
+
+
+/*            MakeMeleeFight a = new(army1, army2);
+            Console.WriteLine(a.deffender.ToString());
+            a.Execute();
+            Console.WriteLine(a.deffender.ToString());*/
+
+
+
+
+
+
+//Запуск основного цикла игры.
+//int countStep = 1;
+// Пока в одной из армий остались воины.
+/*            while (army1.Count > 0 && army2.Count > 0)
+            {
+                Console.WriteLine("Ход номер " + countStep);
+                // Проверка на декораторы, ПОМЕНЯТЬ
+                Game.CheckDecorator(army1);
+                Game.CheckDecorator(army2);
+                // Вывод армий на экран.
+                Console.WriteLine("Армия 1:");
+                PrintArmy(army1);
+                Console.WriteLine();
+                Console.WriteLine("Армия 2:");
+                PrintArmy(army2);
+                Console.WriteLine();
+
+                // Для первых 
+                Game.Fight(army1, army2);
+
+                // Вывод армий на экран.
+                Console.WriteLine("Армия 1 после того, как первые побились:");
+                PrintArmy(army1);
+                Console.WriteLine();
+                Console.WriteLine("Армия 2 после того, как первые побились::");
+                PrintArmy(army2);
+                Console.WriteLine();
+
+                // Для спец свойств.
+                Game.DoSpecial(army1, army2);
+
+                countStep++;
+            }*/
