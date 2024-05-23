@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Magic
 {
@@ -365,6 +366,62 @@ namespace Magic
                 army1 = army2;
                 army2 = armyHelp;
             }
+        }
+        public void Show(Battalion typeConstruction)
+        {
+            StringBuilder s = new();
+            s.Append("Армия 1: \n");
+            for (int i = 0; i < typeConstruction.Army1.Count; i++)
+            {
+                s.Append(typeConstruction.Army1[i].ToString() + "\n");
+            }
+            s.Append("Армия 2: \n");
+            for (int i = 0; i < typeConstruction.Army2.Count; i++)
+            {
+                s.Append(typeConstruction.Army2[i].ToString() + "\n");
+            }
+            Console.WriteLine(s.ToString());
+        }
+        public void Show(Сolumn typeConstruction)
+        {
+            StringBuilder s = new();
+            s.Append("Армия 1: \n");
+            for (int i = 0; i < typeConstruction.Army1.Count; i++)
+            {
+                s.Append(typeConstruction.Army1[i].ToString() + "\n");
+            }
+            s.Append("Армия 2: \n");
+            for (int i = 0; i < typeConstruction.Army2.Count; i++)
+            {
+                s.Append(typeConstruction.Army2[i].ToString() + "\n");
+            }
+            Console.WriteLine(s.ToString());
+        }
+        public void Show(WallToWall typeConstruction)
+        {
+            // Защищающаяся армия ( с меньшим количеством)
+            List<IUnit> defender = typeConstruction.Army1.Count < typeConstruction.Army2.Count ? typeConstruction.Army1 : typeConstruction.Army2;
+            // Атакующая армия ( с большим количеством)
+            List<IUnit> attacker = typeConstruction.Army1.Count > typeConstruction.Army2.Count ? typeConstruction.Army1 : typeConstruction.Army2;
+            StringBuilder s = new();
+            s.Append("Армия 1: \t Армия 2: \n");
+            for (int i = 0; i < defender.Count; i++)
+            {
+                s.Append(defender[i].ToString() + "\t" + attacker[i].ToString() + "\n");
+            }
+            // Если разное количество в армиях
+            for (int i = defender.Count; i < attacker.Count; i++)
+            {
+                if (attacker.Count == typeConstruction.Army1.Count)
+                {
+                    s.Append(typeConstruction.Army1[i].ToString() + "\n");
+                }
+                else
+                {
+                    s.Append("\t" + typeConstruction.Army2[i].ToString() + "\n");
+                }
+            }
+            Console.WriteLine(s.ToString());
         }
 
     }
