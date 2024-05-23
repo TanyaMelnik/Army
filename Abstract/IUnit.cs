@@ -29,10 +29,6 @@ namespace Magic
         /// </summary>
         protected int defense;
         public abstract int Defense();
-        public int GetCost()
-        {
-            return cost;
-        }
         /// <summary>
         /// Метод представления юнита.
         /// </summary>

@@ -41,7 +41,7 @@ namespace Magic
                     // Добавляем тип IUnit и его стоимость в словарь
                     if (unitInstance != null)
                     {
-                        unitCost.Add(unitType, unitInstance.GetCost());
+                        unitCost.Add(unitType, unitInstance.Cost());
                     }
                 }
             }
@@ -67,6 +67,10 @@ namespace Magic
             else if (unitType == typeof(Bowman))
             {
                 return army.CreateBowmanUnit();
+            }
+            else if (unitType == typeof(AdapterGulyayGorod))
+            {
+                return army.CreateGulyayGorodUnit();
             }
             return null;
         }

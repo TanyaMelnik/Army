@@ -31,5 +31,9 @@ namespace Magic
         {
             return new LogGetAttack(new Bowman(PercentAttackAndDodge), PercentAttackAndDodge);
         }
+        public IUnit CreateGulyayGorodUnit()
+        {
+            return new LogGetAttack(new AdapterGulyayGorod((0,0)), (0, 0));
+        }
     }
 }
