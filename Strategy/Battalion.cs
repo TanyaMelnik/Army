@@ -62,7 +62,6 @@ namespace Magic
             int i = 1;
             // Счётчик для army2
             int j = 1;
-
             while (i < Math.Max(army1.Count, army2.Count()) && i < 3 && j < Math.Max(army1.Count, army2.Count()) && j < 3)
             {
                 // Применяем специальное свойство из первой армии 
@@ -89,8 +88,9 @@ namespace Magic
                             }
                         }
                     }
-                    i++;
+                    
                 }
+                i++;
                 // Применяем специальное свойство из второй армии 
                 if (j < army2.Count && j > army1.Count() - 1)
                 {
@@ -114,9 +114,9 @@ namespace Magic
                                 Update(army1);
                             }
                         }
-                    }
-                    j++;
+                    }   
                 }
+                j++;
             }
 
             // Счётчик для army1
@@ -150,8 +150,9 @@ namespace Magic
                             }
                         }
                     }
-                    i++;
+                    
                 }
+                i++;
                 // Применяем специальное свойство из второй армии 
                 if (j < army2.Count)
                 {
@@ -176,13 +177,15 @@ namespace Magic
                             }
                         }
                     }
-                    j++;
+                    
                 }
+                j++;
             }
         }
 
         public void MakeMeleeFight()
         {
+            Console.WriteLine("Начало кулочного боя");
             ProxyDie proxy = new(new Battalion(army1,army2));
             for (int i = 0; i < 3; i++) 
             {
@@ -197,6 +200,7 @@ namespace Magic
                     if (army1[i].Health() < 0) proxy.DeleteUnit(army1, i);
                 }
             }
+            Console.WriteLine("Конец кулочного боя");
         }
 
         // СДЕЛАТЬ по другому, если не будет графики
