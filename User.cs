@@ -65,6 +65,7 @@ namespace Magic
                     Console.WriteLine("3. Повторить");
                     Console.WriteLine("4. Поменять построение");
                     Console.WriteLine("5. Закончить текущую игру");
+                    Console.WriteLine("6. Проиграть игру до конца");
                     int menu;
                     while (!int.TryParse(Console.ReadLine(), out menu) || menu < 1 || menu > 5)
                     {
@@ -97,6 +98,14 @@ namespace Magic
                             break;
                         case 5:
                             game = false;
+                            break;
+                        case 6:
+                            while (game)
+                            {
+                                ICommand StartMakeMoveAll = new MakeMove(typeConstruction);
+                                invoker.AddCommand(StartMakeMoveAll);
+                                game = invoker.ExecuteCommand();
+                            }
                             break;
                     }
                 }
