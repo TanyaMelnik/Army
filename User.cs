@@ -30,32 +30,6 @@ namespace Magic
                 // Выбор армии, которая ходит первая
                 ChoiseFirstArmy(ref army1, ref army2);
 
-                // Выбор построения армий, вынести в отдельную функцию
-                Console.WriteLine("Выберите тип построения армий");
-                Console.WriteLine("1. Колонна");
-                Console.WriteLine("2. Три в ряд");
-                Console.WriteLine("3. Стенка на стенку");
-                int TypeConstruction = -1;
-                Console.Write("Ваш ответ: ");
-                while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
-                {
-                    Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
-                }
-                ITypeConstruction typeConstruction = new Сolumn(army1, army2);
-                switch (TypeConstruction)
-                {
-                    case 1:
-                        typeConstruction = new Сolumn(army1, army2);
-                        break;
-                    case 2:
-                        typeConstruction = new Battalion(army1, army2);
-                        break;
-                    case 3:
-                        typeConstruction = new WallToWall(army1, army2);
-                        break;
-
-                }
-
                 // Основной цикл игры
                 bool flag = true;
                 bool game = true;
@@ -76,7 +50,7 @@ namespace Magic
                     {
                         Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
                     }
-                   
+
                     switch (menu)
                     {
                         case 1:
@@ -138,6 +112,33 @@ namespace Magic
                 if (answer == 2) games = false;
             }
         }
+
+        public static ITypeConstruction ChooseStrategy(ref List<IUnit> army1, ref List<IUnit> army2)
+        {
+            // Выбор построения армий, вынести в отдельную функцию
+            Console.WriteLine("Выберите тип построения армий");
+            Console.WriteLine("1. Колонна");
+            Console.WriteLine("2. Три в ряд");
+            Console.WriteLine("3. Стенка на стенку");
+            int TypeConstruction = -1;
+            Console.Write("Ваш ответ: ");
+            while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
+            {
+                Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
+            }
+            //ITypeConstruction typeConstruction = new Сolumn(army1, army2);
+            switch (TypeConstruction)
+            {
+                case 1:
+                    return new Сolumn(army1, army2);
+                case 2:
+                    return new Battalion(army1, army2);
+                default:
+                    return new WallToWall(army1, army2);
+            }
+        }
+
+
 
         static void UserSettings()
         {
