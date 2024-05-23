@@ -13,6 +13,11 @@ namespace Magic
             // Инициализация настроек. Это не пункт меню, так как это устанавливается один раз и это нельзя поменять
             UserSettings();
 
+            
+            
+            
+
+
             // Выбор построения армий, вынести в отдельную функцию
             Console.WriteLine("Выберите тип построения армий");
             Console.WriteLine("1. Колонна");
@@ -24,8 +29,19 @@ namespace Magic
                 Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
             }
             Console.Write("Ваш ответ: ");
-
-            // 
+            ITypeConstruction typeConstruction;
+            switch (TypeConstruction)
+            {
+                case 1:
+                    typeConstruction = new Сolumn();
+                    break;
+                case 2:
+                    typeConstruction = new Battalion();
+                    break;
+                case 3:
+                    typeConstruction = new WallToWall();
+                    break;
+            }
 
             // Создание первой армии.
             AbstractArmyFactory abstractArmyFactory1 = AddUnitStats();
@@ -56,7 +72,7 @@ namespace Magic
             Console.Write("Ваш ответ: ");
             // Инициализация изначальных данных
             ICommand StartMakeMove = new MakeMove(army1, army2);
-            ICommand StartChangeTypeConstruction = new ChangeTypeConstruction(TypeConstruction);
+            ICommand StartChangeTypeConstruction = new ChangeTypeConstruction(typeConstruction);
             switch (menu)
             {
                 case 1:
@@ -79,7 +95,7 @@ namespace Magic
                         Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
                     }
                     Console.Write("Ваш ответ: ");
-                    ICommand ChangeTypeConstruction = new ChangeTypeConstruction(TypeConstruction);
+                    ICommand ChangeTypeConstruction = new ChangeTypeConstruction(typeConstruction);
                     break;
                 default:
                     //Возможно не надо
