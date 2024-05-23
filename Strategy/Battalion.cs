@@ -50,10 +50,13 @@ namespace Magic
 
         public void DeleteUnit(List<IUnit> army, int numberUnit)
         {
-            for (int i = numberUnit; i < army.Count()-3; i+=3)
+            int i;
+            for (i = numberUnit; i < army.Count()-3; i+=3)
             {
                 army[i] = army[i+3];
             }
+            if (i<army.Count()) army.RemoveAt(i);
+
         }
 
         public void DoSpecialProperties()
@@ -62,10 +65,10 @@ namespace Magic
             int i = 1;
             // Счётчик для army2
             int j = 1;
-            while (i < Math.Max(army1.Count, army2.Count()) && i < 3 && j < Math.Max(army1.Count, army2.Count()) && j < 3)
+            while (i < Math.Max(army1.Count, army2.Count) && i < 3 && j < Math.Max(army1.Count, army2.Count) && j < 3)
             {
                 // Применяем специальное свойство из первой армии 
-                if (i < army1.Count && i > army2.Count()-1)
+                if (i < army1.Count && i > army2.Count-1)
                 {
                     if (army1[i] is LogGetAttack unitTemp1 && unitTemp1.unit is ISpecialProperty unit1)
                     {
@@ -92,7 +95,7 @@ namespace Magic
                 }
                 i++;
                 // Применяем специальное свойство из второй армии 
-                if (j < army2.Count && j > army1.Count() - 1)
+                if (j < army2.Count && j > army1.Count - 1)
                 {
                     if (army2[j] is LogGetAttack unitTemp2 && unitTemp2.unit is ISpecialProperty unit2)
                     {
@@ -124,7 +127,7 @@ namespace Magic
             // Счётчик для army2
             j = 3;
 
-            while (i < Math.Max(army1.Count, army2.Count()) && j < Math.Max(army1.Count, army2.Count()))
+            while (i < Math.Max(army1.Count, army2.Count) && j < Math.Max(army1.Count, army2.Count))
             {
                 // Применяем специальное свойство из первой армии 
                 if (i < army1.Count)
