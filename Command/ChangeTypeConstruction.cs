@@ -18,7 +18,7 @@ namespace Magic
         public ChangeTypeConstruction(ITypeConstruction oldTypeConstruction)
         {
             _typeConstruction = oldTypeConstruction;
-            strategy = [new Сolumn(_typeConstruction.Army1, _typeConstruction.Army2), new Battalion(_typeConstruction.Army1, _typeConstruction.Army2), new WallToWall(_typeConstruction.Army1, _typeConstruction.Army2)]
+            strategy = [new Сolumn(_typeConstruction.Army1, _typeConstruction.Army2), new Battalion(_typeConstruction.Army1, _typeConstruction.Army2), new WallToWall(_typeConstruction.Army1, _typeConstruction.Army2)];
         }
 
         //ITypeConstruction _TypeConstruction;

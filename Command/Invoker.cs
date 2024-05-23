@@ -8,30 +8,49 @@ namespace Magic
 {
     class Invoker
     {
-        private List<ICommand> _commands = new List<ICommand>();
+        private List<ICommand> _commands = [];
+        int _count = -1;
 
-        /*public void AddCommand(ICommand command)
+        public void AddCommand(ICommand command)
         {
             _commands.Add(command);
+            _count++;
         }
 
-        public void ExecuteCommands()
+        public bool ExecuteCommand()
         {
-            foreach (var command in _commands)
+            // Удаляем все команды, начиная с индекса _count(текущее место) и до конца списка
+            if (_count + 1< _commands.Count)
             {
-                command.Execute();
+                _commands.RemoveRange(_count + 1, _commands.Count-_count-1);
             }
-            _commands.Clear();
+            // Выполнить i 
+            return _commands[_count].Execute();
         }
 
-        public void UndoCommands()
+        public bool UndoCommand()
         {
-            for (int i = _commands.Count - 1; i >= 0; i--)
+            if (_count < 0)
             {
-                _commands[i].Undo();
+                // Отменить i 
+                _commands[_count].Undo();
+                _count--;
+                return true;
             }
-            _commands.Clear();
-        }*/
+            return false;
+        }
+        public bool RedoCommand()
+        {
+            // Если после текущей была команда (т.е. была отмена), то можно выполнять повторение
+            if (_count+1< _commands.Count)
+            {
+                // Отменить i 
+                _commands[_count+1].Redo();
+                _count++;
+                return true;
+            }
+            return false;
+        }
     }
 }
 

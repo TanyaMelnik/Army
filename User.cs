@@ -13,37 +13,6 @@ namespace Magic
             // Инициализация настроек. Это не пункт меню, так как это устанавливается один раз и это нельзя поменять
             UserSettings();
 
-            
-            
-            
-
-
-            // Выбор построения армий, вынести в отдельную функцию
-            Console.WriteLine("Выберите тип построения армий");
-            Console.WriteLine("1. Колонна");
-            Console.WriteLine("2. Три в ряд");
-            Console.WriteLine("3. Стенка на стенку");
-            int TypeConstruction = -1;
-            while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
-            {
-                Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
-            }
-            Console.Write("Ваш ответ: ");
-            ITypeConstruction typeConstruction = new Сolumn();
-            switch (TypeConstruction)
-            {
-                case 1:
-                    typeConstruction = new Сolumn();
-                    break;
-                case 2:
-                    typeConstruction = new Battalion();
-                    break;
-                case 3:
-                    typeConstruction = new WallToWall();
-                    break;
-
-            }
-
             // Создание первой армии.
             AbstractArmyFactory abstractArmyFactory1 = AddUnitStats();
             ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1);
@@ -57,6 +26,31 @@ namespace Magic
             // Выбор армии, которая ходит первая
             ChoiseFirstArmy(ref army1, ref army2);
 
+            // Выбор построения армий, вынести в отдельную функцию
+            Console.WriteLine("Выберите тип построения армий");
+            Console.WriteLine("1. Колонна");
+            Console.WriteLine("2. Три в ряд");
+            Console.WriteLine("3. Стенка на стенку");
+            int TypeConstruction = -1;
+            while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
+            {
+                Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
+            }
+            Console.Write("Ваш ответ: ");
+            ITypeConstruction typeConstruction = new Сolumn(army1, army2);
+            switch (TypeConstruction)
+            {
+                case 1:
+                    typeConstruction = new Сolumn(army1, army2);
+                    break;
+                case 2:
+                    typeConstruction = new Battalion(army1, army2);
+                    break;
+                case 3:
+                    typeConstruction = new WallToWall(army1, army2);
+                    break;
+
+            }
             // Счётчик, чтобы бежать по командам.
             int count = 0;
             Console.WriteLine("Выберите пункт меню");
@@ -72,7 +66,7 @@ namespace Magic
             }
             Console.Write("Ваш ответ: ");
             // Инициализация изначальных данных
-            ICommand StartMakeMove = new MakeMove(army1, army2);
+            ICommand StartMakeMove = new MakeMove(typeConstruction);
             ICommand StartChangeTypeConstruction = new ChangeTypeConstruction(typeConstruction);
             switch (menu)
             {
