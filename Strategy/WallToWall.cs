@@ -92,11 +92,11 @@ namespace Magic
                 }
                 // Если противник есть 
                 army2[i].GetHit(army1[i].Attack());
-                if (army2[i].Health() < 0) proxy.DeleteUnit(army2, 0);
-                if (army2.Count > 0)
+                if (army2[i].Health() < 0) proxy.DeleteUnit(army2, i);
+                if (i<army2.Count)
                 {
                     army1[i].GetHit(army2[i].Attack());
-                    if (army1[i].Health() < 0) proxy.DeleteUnit(army1, 0);
+                    if (army1[i].Health() < 0) proxy.DeleteUnit(army1, i);
                 }
             }
         }

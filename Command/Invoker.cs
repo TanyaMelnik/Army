@@ -9,7 +9,9 @@ namespace Magic
     class Invoker
     {
         private List<ICommand> _commands = [];
-        int _count = -1;
+        public List<ICommand> Commands {  get { return _commands; } }
+        public int _count = -1;
+        public int Count { get { return _count; } }
 
         public void AddCommand(ICommand command)
         {

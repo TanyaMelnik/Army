@@ -56,7 +56,7 @@ namespace Magic
                         case 2:
                             bool flagUndo = invoker.UndoCommand();
                             if (!flagUndo) Console.WriteLine("Отмену выполнить невозможно! Сначала сделайте действие!");
-                            else Console.WriteLine(invoker.GetStategy().Show());
+                            else Console.WriteLine(invoker.Commands[invoker.Count + 1]._TypeConstruction.Show());               
                             game = true;
                             break;
                         case 3:
@@ -64,7 +64,7 @@ namespace Magic
                             {
                                 bool flagRedo = invoker.RedoCommand();
                                 if (!flagRedo) Console.WriteLine("Повтор выполнить невозможно! Сначала отмените действие!");
-                                else Console.WriteLine(invoker.GetStategy().Show());
+                                else Console.WriteLine(invoker.Commands[invoker.Count + 1]._TypeConstruction.Show());
                             }
                             else Console.WriteLine("В армии нет людей");
                             break;
@@ -74,6 +74,7 @@ namespace Magic
                                 ICommand ChangeTypeConstruction = new ChangeTypeConstruction(invoker.GetStategy());
                                 invoker.AddCommand(ChangeTypeConstruction);
                                 invoker.ExecuteCommand();
+                                Console.WriteLine($"Поменяли построение на " + invoker.GetStategy());
                             }
                             else Console.WriteLine("В армии нет людей");
                             break;
@@ -86,6 +87,7 @@ namespace Magic
                                 ICommand StartMakeMoveAll = new MakeMove(invoker.GetStategy());
                                 invoker.AddCommand(StartMakeMoveAll);
                                 game = invoker.ExecuteCommand();
+                                Console.WriteLine(StartMakeMoveAll._TypeConstruction.Show());
                             }
                             if (game == false) Console.WriteLine("В армии нет людей");
                             break;
