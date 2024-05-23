@@ -22,7 +22,7 @@ namespace Magic
                 bool game = true;
                 // Инициализация изначальных данных
                 Invoker invoker = new Invoker();
-                invoker.GetStategy().Show();
+                //Console.WriteLine(invoker.GetStategy().Show());
                 while (flag)
                 {
                     Console.WriteLine("Выберите пункт меню");
@@ -38,15 +38,18 @@ namespace Magic
                     {
                         Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
                     }
-
                     switch (menu)
                     {
                         case 1:
                             if (game)
                             {
                                 ICommand StartMakeMove = new MakeMove(invoker.GetStategy());
+                                Console.WriteLine("Армия до битвы:");
+                                Console.WriteLine(StartMakeMove._TypeConstruction.Show());
                                 invoker.AddCommand(StartMakeMove);
                                 game = invoker.ExecuteCommand();
+                                Console.WriteLine("Армия после битвы:");
+                                Console.WriteLine(StartMakeMove._TypeConstruction.Show());
                             }
                             else Console.WriteLine("В армии нет людей");
                             break;
@@ -85,7 +88,8 @@ namespace Magic
                             if (game == false) Console.WriteLine("В армии нет людей");
                             break;
                     }
-                    invoker.GetStategy().Show();
+                    //Console.WriteLine(invoker.GetStategy().Show());
+                   // Console.WriteLine(Show(invoker.GetStategy()));
                 }
 
                 Console.WriteLine("Хотите начать новую игру? ");
@@ -100,6 +104,11 @@ namespace Magic
 
                 if (answer == 2) games = false;
             }
+        }
+
+        private static bool Show(ITypeConstruction typeConstruction)
+        {
+            throw new NotImplementedException();
         }
 
         public static ITypeConstruction ChooseStrategy()

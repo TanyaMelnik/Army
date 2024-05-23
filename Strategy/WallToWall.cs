@@ -91,12 +91,12 @@ namespace Magic
                     break;
                 }
                 // Если противник есть 
-                army2[0].GetHit(army1[0].Attack());
-                if (army2[0].Health() < 0) proxy.DeleteUnit(army2, 0);
+                army2[i].GetHit(army1[i].Attack());
+                if (army2[i].Health() < 0) proxy.DeleteUnit(army2, 0);
                 if (army2.Count > 0)
                 {
-                    army1[0].GetHit(army2[0].Attack());
-                    if (army1[0].Health() < 0) proxy.DeleteUnit(army1, 0);
+                    army1[i].GetHit(army2[i].Attack());
+                    if (army1[i].Health() < 0) proxy.DeleteUnit(army1, 0);
                 }
             }
         }
@@ -106,23 +106,20 @@ namespace Magic
             // Защищающаяся армия ( с меньшим количеством)
             List<IUnit> defender = army1.Count < army2.Count ? army1 : army2;
             // Атакующая армия ( с большим количеством)
-            List<IUnit> attacker = army1.Count > army2.Count ? army1 : army2;
+            List<IUnit> attacker = army1.Count >= army2.Count ? army1 : army2;
             StringBuilder s= new ();
             s.Append("Армия 1: \t Армия 2: \n");
             for (int i = 0; i < defender.Count; i++)
             {
-                s.Append(defender[i].ToString()+ "\t" + attacker[i].ToString()+"\n");
+                s.Append(army1[i].ToString()+ "\t" + army2[i].ToString()+"\n");
             }
-            // Если разное количество в армиях
-            for (int i = defender.Count; i<attacker.Count; i++)
+            for (int i = defender.Count; i < army1.Count; i++)
             {
-                if (attacker.Count== army1.Count){
-                    s.Append(army1[i].ToString() + "\n" );
-                }
-                else
-                {
-                    s.Append("\t" + army2[i].ToString() + "\n");
-                }
+                s.Append(army1[i].ToString() +"нет воина\n");
+            }
+            for (int i = defender.Count; i < army2.Count; i++)
+            {
+                s.Append("нет воина\t" + army2[i].ToString() + "\n");
             }
             return s.ToString();
         }

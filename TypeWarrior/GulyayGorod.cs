@@ -42,7 +42,7 @@ namespace Magic
         }
         public override string ToString()
         {
-            return string.Format($"{Name()}. Здоровье: {health} Сила: {attack} Стоимость: {cost} Броня {defense} Уклонение {dodge}");
+            return string.Format($"{Name()}. Здоровье: {Health()} Сила: {attack} Стоимость: {cost} Броня {defense} Уклонение {dodge}");
         }
 
         public override void GetHit(int strengthAttack)
