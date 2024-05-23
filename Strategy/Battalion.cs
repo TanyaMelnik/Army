@@ -177,7 +177,6 @@ namespace Magic
                             }
                         }
                     }
-                    
                 }
                 j++;
             }
@@ -185,7 +184,6 @@ namespace Magic
 
         public void MakeMeleeFight()
         {
-            Console.WriteLine("Начало кулочного боя");
             ProxyDie proxy = new(new Battalion(army1,army2));
             for (int i = 0; i < 3; i++) 
             {
@@ -200,7 +198,6 @@ namespace Magic
                     if (army1[i].Health() < 0) proxy.DeleteUnit(army1, i);
                 }
             }
-            Console.WriteLine("Конец кулочного боя");
         }
 
         // СДЕЛАТЬ по другому, если не будет графики

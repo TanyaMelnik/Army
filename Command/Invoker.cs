@@ -30,7 +30,7 @@ namespace Magic
 
         public bool UndoCommand()
         {
-            if (_count < 0)
+            if (_count >= 0)
             {
                 // Отменить i 
                 _commands[_count].Undo();

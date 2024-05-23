@@ -55,14 +55,16 @@ namespace Magic
                             break;
                         case 2:
                             bool flagUndo = invoker.UndoCommand();
-                            if (flagUndo == false) Console.WriteLine("Отмену выполнить невозможно! Сначала сделайте действие!");
+                            if (!flagUndo) Console.WriteLine("Отмену выполнить невозможно! Сначала сделайте действие!");
+                            else Console.WriteLine(invoker.GetStategy().Show());
                             game = true;
                             break;
                         case 3:
                             if (game)
                             {
                                 bool flagRedo = invoker.RedoCommand();
-                                if (flagRedo == false) Console.WriteLine("Повтор выполнить невозможно! Сначала отмените действие!");
+                                if (!flagRedo) Console.WriteLine("Повтор выполнить невозможно! Сначала отмените действие!");
+                                else Console.WriteLine(invoker.GetStategy().Show());
                             }
                             else Console.WriteLine("В армии нет людей");
                             break;
