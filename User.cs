@@ -56,8 +56,9 @@ namespace Magic
                 }
 
                 // Основной цикл игры
+                bool flag = true;
                 bool game = true;
-                while (game)
+                while (flag)
                 {
                     Console.WriteLine("Выберите пункт меню");
                     Console.WriteLine("1. Сделать ход");
@@ -79,25 +80,38 @@ namespace Magic
                     switch (menu)
                     {
                         case 1:
-                            ICommand StartMakeMove = new MakeMove(typeConstruction);
-                            invoker.AddCommand(StartMakeMove);
-                            game = invoker.ExecuteCommand();
+                            if (game)
+                            {
+                                ICommand StartMakeMove = new MakeMove(typeConstruction);
+                                invoker.AddCommand(StartMakeMove);
+                                game = invoker.ExecuteCommand();
+                            }
+                            else Console.WriteLine("В армии нет людей");
                             break;
                         case 2:
                             bool flagUndo = invoker.UndoCommand();
                             if (flagUndo == false) Console.WriteLine("Отмену выполнить невозможно! Сначала сделайте действие!");
+                            game = true;
                             break;
                         case 3:
-                            bool flagRedo = invoker.RedoCommand();
-                            if (flagRedo == false) Console.WriteLine("Повтор выполнить невозможно! Сначала отмените действие!");
+                            if (game)
+                            {
+                                bool flagRedo = invoker.RedoCommand();
+                                if (flagRedo == false) Console.WriteLine("Повтор выполнить невозможно! Сначала отмените действие!");
+                            }
+                            else Console.WriteLine("В армии нет людей");
                             break;
                         case 4:
-                            ICommand ChangeTypeConstruction = new ChangeTypeConstruction(typeConstruction);
-                            invoker.AddCommand(ChangeTypeConstruction);
-                            invoker.ExecuteCommand();
+                            if (game)
+                            {
+                                ICommand ChangeTypeConstruction = new ChangeTypeConstruction(typeConstruction);
+                                invoker.AddCommand(ChangeTypeConstruction);
+                                invoker.ExecuteCommand();
+                            }
+                            else Console.WriteLine("В армии нет людей");
                             break;
                         case 5:
-                            game = false;
+                            flag = false;
                             break;
                         case 6:
                             while (game)
