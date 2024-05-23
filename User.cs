@@ -36,11 +36,11 @@ namespace Magic
                 Console.WriteLine("2. Три в ряд");
                 Console.WriteLine("3. Стенка на стенку");
                 int TypeConstruction = -1;
+                Console.Write("Ваш ответ: ");
                 while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
                 {
                     Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
                 }
-                Console.Write("Ваш ответ: ");
                 ITypeConstruction typeConstruction = new Сolumn(army1, army2);
                 switch (TypeConstruction)
                 {
@@ -69,11 +69,12 @@ namespace Magic
                     Console.WriteLine("5. Закончить текущую игру");
                     Console.WriteLine("6. Проиграть игру до конца");
                     int menu;
-                    while (!int.TryParse(Console.ReadLine(), out menu) || menu < 1 || menu > 5)
+                    Console.Write("Ваш ответ: ");
+                    while (!int.TryParse(Console.ReadLine(), out menu) || menu < 1 || menu > 6)
                     {
                         Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
                     }
-                    Console.Write("Ваш ответ: ");
+                    
 
                     // Инициализация изначальных данных
                     Invoker invoker = new Invoker();
