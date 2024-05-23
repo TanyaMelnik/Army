@@ -51,9 +51,9 @@ namespace Magic
             }
             return false;
         }
-        public ITypeConstruction? GetStategy()
+        public ITypeConstruction GetStategy()
         {
-            return _commands.Count != 0 ? _commands[_commands.Count - 1]._TypeConstruction :null ;
+            return _count >=0 ? _commands[_count]._TypeConstruction : User.ChooseStrategy();
         }
     }
 }

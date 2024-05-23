@@ -17,24 +17,12 @@ namespace Magic
                 // Инициализация настроек. Это не пункт меню, так как это устанавливается один раз и это нельзя поменять
                 UserSettings();
 
-                // Создание первой армии.
-                AbstractArmyFactory abstractArmyFactory1 = AddUnitStats();
-                ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1);
-                List<IUnit> army1 = armyCreatedFactories1.CreateArmy();
-
-                // Создание второй армии.
-                AbstractArmyFactory abstractArmyFactory2 = AddUnitStats();
-                ArmyCreatedFactories armyCreatedFactories2 = SelectSetUnits(abstractArmyFactory2);
-                List<IUnit> army2 = armyCreatedFactories2.CreateArmy();
-
-                // Выбор армии, которая ходит первая
-                ChoiseFirstArmy(ref army1, ref army2);
-
                 // Основной цикл игры
                 bool flag = true;
                 bool game = true;
                 // Инициализация изначальных данных
                 Invoker invoker = new Invoker();
+                invoker.GetStategy().Show();
                 while (flag)
                 {
                     Console.WriteLine("Выберите пункт меню");
@@ -56,7 +44,7 @@ namespace Magic
                         case 1:
                             if (game)
                             {
-                                ICommand StartMakeMove = new MakeMove(typeConstruction);
+                                ICommand StartMakeMove = new MakeMove(invoker.GetStategy());
                                 invoker.AddCommand(StartMakeMove);
                                 game = invoker.ExecuteCommand();
                             }
@@ -78,7 +66,7 @@ namespace Magic
                         case 4:
                             if (game)
                             {
-                                ICommand ChangeTypeConstruction = new ChangeTypeConstruction(typeConstruction);
+                                ICommand ChangeTypeConstruction = new ChangeTypeConstruction(invoker.GetStategy());
                                 invoker.AddCommand(ChangeTypeConstruction);
                                 invoker.ExecuteCommand();
                             }
@@ -90,13 +78,14 @@ namespace Magic
                         case 6:
                             while (game)
                             {
-                                ICommand StartMakeMoveAll = new MakeMove(typeConstruction);
+                                ICommand StartMakeMoveAll = new MakeMove(invoker.GetStategy());
                                 invoker.AddCommand(StartMakeMoveAll);
                                 game = invoker.ExecuteCommand();
                             }
                             if (game == false) Console.WriteLine("В армии нет людей");
                             break;
                     }
+                    invoker.GetStategy().Show();
                 }
 
                 Console.WriteLine("Хотите начать новую игру? ");
@@ -113,8 +102,20 @@ namespace Magic
             }
         }
 
-        public static ITypeConstruction ChooseStrategy(ref List<IUnit> army1, ref List<IUnit> army2)
+        public static ITypeConstruction ChooseStrategy()
         {
+            // Создание первой армии.
+            AbstractArmyFactory abstractArmyFactory1 = AddUnitStats();
+            ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1);
+            List<IUnit> army1 = armyCreatedFactories1.CreateArmy();
+
+            // Создание второй армии.
+            AbstractArmyFactory abstractArmyFactory2 = AddUnitStats();
+            ArmyCreatedFactories armyCreatedFactories2 = SelectSetUnits(abstractArmyFactory2);
+            List<IUnit> army2 = armyCreatedFactories2.CreateArmy();
+
+            // Выбор армии, которая ходит первая
+            ChoiseFirstArmy(ref army1, ref army2);
             // Выбор построения армий, вынести в отдельную функцию
             Console.WriteLine("Выберите тип построения армий");
             Console.WriteLine("1. Колонна");
