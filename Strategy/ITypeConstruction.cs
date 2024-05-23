@@ -8,15 +8,17 @@ namespace Magic
 {
     interface ITypeConstruction
     {
+        public List<IUnit> Army1 { get; set; }
+        public List<IUnit> Army2 { get; set; }
         // Ближний бой
-        void MakeMeleeFight(List<IUnit> army1, List<IUnit> army2);
+        void MakeMeleeFight();
         // Специальные свойства
-        void DoSpecialProperties(List<IUnit> army1, List<IUnit> army2);
+        void DoSpecialProperties();
         // Проверка убитых солдат
         void Update(List<IUnit> army);
         // Проверка на декораторы
-        void CheckDecorator(List<IUnit> army1, List<IUnit> army2);
+        void CheckDecorator();
         // Состав армии 
-        string Show(List<IUnit> army1, List<IUnit> army2);
+        string Show();
     }
 }

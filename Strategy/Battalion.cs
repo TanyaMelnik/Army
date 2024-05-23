@@ -4,7 +4,15 @@ namespace Magic
 {
     class Battalion : ITypeConstruction, Dead
     {
-        public void CheckDecorator(List<IUnit> army1, List<IUnit> army2)
+        private List<IUnit> army1;
+        private List<IUnit> army2;
+        public List<IUnit> Army1 { get => army1; set => army1 = value; }
+        public List<IUnit> Army2 { get => army2; set => army2 = value; }
+        public Battalion(List<IUnit> _army1, List<IUnit> _army2)
+        {
+            (army1, army2) = (_army1, _army2);
+        }
+        public void CheckDecorator()
         {
             for (int i = 1; i < army1.Count - 1; i++)
             {
@@ -48,7 +56,7 @@ namespace Magic
             }
         }
 
-        public void DoSpecialProperties(List<IUnit> army1, List<IUnit> army2)
+        public void DoSpecialProperties()
         {
             // Счётчик для army1
             int i = 1;
@@ -173,9 +181,9 @@ namespace Magic
             }
         }
 
-        public void MakeMeleeFight(List<IUnit> army1, List<IUnit> army2)
+        public void MakeMeleeFight()
         {
-            ProxyDie proxy = new(new Battalion());
+            ProxyDie proxy = new(new Battalion(army1,army2));
             for (int i = 0; i < 3; i++) 
             {
                 if (i < army1.Count() && i < army2.Count())
@@ -192,7 +200,7 @@ namespace Magic
         }
 
         // СДЕЛАТЬ по другому, если не будет графики
-        public string Show(List<IUnit> army1, List<IUnit> army2)
+        public string Show()
         {
            StringBuilder s = new();
             s.Append("Армия 1: \n");
@@ -215,7 +223,7 @@ namespace Magic
                 // Если нашли мертвого юнита - удаляем его из армии.
                 if (army[i].Health() <= 0)
                 {
-                    ProxyDie proxy = new(new Сolumn());
+                    ProxyDie proxy = new(new Сolumn(army1, army2));
                     proxy.DeleteUnit(army, i);
                 }
             }

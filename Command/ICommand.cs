@@ -9,7 +9,7 @@ namespace Magic
     // Интерфейс команды, объявляющий метод Execute
     interface ICommand
     {
-        void Execute();
+        bool Execute();
         void Undo();
         void Redo();
     }

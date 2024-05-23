@@ -10,7 +10,15 @@ namespace Magic
     // Стенка на стенку
     class WallToWall : ITypeConstruction,Dead
     {
-        public void CheckDecorator(List<IUnit> army1, List<IUnit> army2)
+        private List<IUnit> army1;
+        private List<IUnit> army2;
+        public List<IUnit> Army1 { get => army1; set => army1 = value; }
+        public List<IUnit> Army2 { get => army2; set => army2 = value; }
+        public WallToWall(List<IUnit> _army1, List<IUnit> _army2)
+        {
+            (army1, army2) = (_army1, _army2);
+        }
+        public void CheckDecorator()
         {
             // Защищающаяся армия ( с меньшим количеством)
             List<IUnit> defender = army1.Count < army2.Count ? army1 : army2;
@@ -40,7 +48,7 @@ namespace Magic
             army.RemoveAt(numberUnit);
         }
         // Т.К. стенка на стенку, то спец свойства будут применяться только у одной армии
-        public void DoSpecialProperties(List<IUnit> army1, List<IUnit> army2)
+        public void DoSpecialProperties()
         {
             // Защищающаяся армия ( с меньшим количеством)
             List<IUnit> defender = army1.Count < army2.Count ? army1 : army2;
@@ -69,9 +77,9 @@ namespace Magic
             Update(defender);
         }
 
-        public void MakeMeleeFight(List<IUnit> army1, List<IUnit> army2)
+        public void MakeMeleeFight()
         {
-            ProxyDie proxy = new(new Сolumn());
+            ProxyDie proxy = new(new Сolumn(army1, army2));
             // Количество совпадающих армий.
             int minCountArmy = army1.Count < army2.Count ? army1.Count : army2.Count;
             // Сначала сражения 
@@ -93,7 +101,7 @@ namespace Magic
             }
         }
 
-        public string Show(List<IUnit> army1, List<IUnit> army2)
+        public string Show()
         {
             // Защищающаяся армия ( с меньшим количеством)
             List<IUnit> defender = army1.Count < army2.Count ? army1 : army2;
@@ -126,7 +134,7 @@ namespace Magic
                 // Если нашли мертвого юнита - удаляем его из армии.
                 if (army[i].Health() <= 0)
                 {
-                    ProxyDie proxy = new(new Сolumn());
+                    ProxyDie proxy = new(new Сolumn(army1, army2));
                     proxy.DeleteUnit(army, i);
                 }
             }

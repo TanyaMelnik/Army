@@ -10,13 +10,22 @@ namespace Magic
     // Колонна
     class Сolumn : ITypeConstruction, Dead
     {
+        private List<IUnit> army1;
+        private List<IUnit> army2;
+        public List<IUnit> Army1 { get => army1; set => army1 = value; }
+        public List<IUnit> Army2 { get => army2; set => army2 = value; }
+
+        public Сolumn(List<IUnit> _army1, List<IUnit> _army2)
+        {
+            (army1, army2) = (_army1, _army2);
+        }
         public void DeleteUnit(List<IUnit> army, int numberUnit)
         {
             // Смещение юнита вперёд
             army.RemoveAt(numberUnit);
         }
 
-        public void DoSpecialProperties(List<IUnit> army1, List<IUnit> army2)
+        public void DoSpecialProperties()
         {
             // Счётчик для army1
             int i = 1;
@@ -97,14 +106,14 @@ namespace Magic
                 // Если нашли мертвого юнита - удаляем его из армии.
                 if (army[i].Health() <= 0)
                 {
-                    ProxyDie proxy = new(new Сolumn());
+                    ProxyDie proxy = new(new Сolumn(army1,army2));
                     proxy.DeleteUnit(army, i);
                 }
             }
         }
-        public void MakeMeleeFight(List<IUnit> army1, List<IUnit> army2)
+        public void MakeMeleeFight()
         {
-            ProxyDie proxy = new(new Сolumn());
+            ProxyDie proxy = new(new Сolumn(army1, army2));
             army2[0].GetHit(army1[0].Attack());
             if (army2[0].Health() < 0) proxy.DeleteUnit(army2, 0);
             if (army2.Count > 0)
@@ -114,7 +123,7 @@ namespace Magic
             }
         }
 
-        public string Show(List<IUnit> army1, List<IUnit> army2)
+        public string Show()
         {
             StringBuilder s = new();
             s.Append("Армия 1: \n");
@@ -130,7 +139,7 @@ namespace Magic
             return s.ToString();
         }
 
-        public void CheckDecorator(List<IUnit> army1, List<IUnit> army2)
+        public void CheckDecorator()
         {
             for (int i = 1; i < army1.Count - 1; i++)
             {

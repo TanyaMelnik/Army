@@ -4,29 +4,45 @@
     // Команда для пунктов: сделать, отменить и повторить ход
     class MakeMove : ICommand
     {
-        List<IUnit> army1;
-        List<IUnit> army2;
+        public ITypeConstruction _typeConstruction;
+        public List<IUnit> oldArmy1;
+        public List<IUnit> oldArmy2;
 
-        public MakeMove(List<IUnit> army1, List<IUnit> army2)
+        public MakeMove(ITypeConstruction typeConstruction)
         {
-            this.army1 = army1;
-            this.army2 = army2;
+            _typeConstruction = typeConstruction;
+            oldArmy1 = [];
+            oldArmy2=[];
         }
 
         // Сделать новый ход
-        public void Execute()
+        public bool Execute()
         {
-            throw new NotImplementedException();
+            // Сохраняем состояние старых армий с новыми ссылками
+            foreach (var unit in _typeConstruction.Army1)
+            {
+                oldArmy1.Add(unit.MakeClone());
+            }
+            foreach (var unit in _typeConstruction.Army2)
+            {
+                oldArmy2.Add(unit.MakeClone());
+            }
+            // Делаем ход для ближнего боя 
+             _typeConstruction.MakeMeleeFight();
+            // Ход спец свойств
+            _typeConstruction.DoSpecialProperties();
+            // false - игра закончена
+            return _typeConstruction.Army1.Count >=1 && _typeConstruction.Army2.Count >= 1;
         }
 
         public void Undo()
         {
-            throw new NotImplementedException();
+            (_typeConstruction.Army1, _typeConstruction.Army2, oldArmy1, oldArmy2) = (oldArmy1, oldArmy2, _typeConstruction.Army1, _typeConstruction.Army2);
         }
-
+        // Отменить и повторить.
         public void Redo()
         {
-            throw new NotImplementedException();
+            (_typeConstruction.Army1, _typeConstruction.Army2, oldArmy1, oldArmy2) = (oldArmy1, oldArmy2, _typeConstruction.Army1, _typeConstruction.Army2);
         }
     }
 }
