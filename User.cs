@@ -29,7 +29,7 @@ namespace Magic
                 Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
             }
             Console.Write("Ваш ответ: ");
-            ITypeConstruction typeConstruction;
+            ITypeConstruction typeConstruction = new Сolumn();
             switch (TypeConstruction)
             {
                 case 1:
@@ -41,6 +41,7 @@ namespace Magic
                 case 3:
                     typeConstruction = new WallToWall();
                     break;
+
             }
 
             // Создание первой армии.
