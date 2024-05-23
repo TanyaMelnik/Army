@@ -25,6 +25,8 @@ namespace Magic
             }
             Console.Write("Ваш ответ: ");
 
+            // 
+
             // Создание первой армии.
             AbstractArmyFactory abstractArmyFactory1 = AddUnitStats();
             ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1);
@@ -38,7 +40,8 @@ namespace Magic
             // Выбор армии, которая ходит первая
             ChoiseFirstArmy(ref army1, ref army2);
 
-
+            // Счётчик, чтобы бежать по командам.
+            int count = 0;
             Console.WriteLine("Выберите пункт меню");
             Console.WriteLine("1. Сделать ход");
             Console.WriteLine("2. Отменить ход");
@@ -51,10 +54,14 @@ namespace Magic
                 Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
             }
             Console.Write("Ваш ответ: ");
+            // Инициализация изначальных данных
+            ICommand StartMakeMove = new MakeMove(army1, army2);
+            ICommand StartChangeTypeConstruction = new ChangeTypeConstruction(TypeConstruction);
             switch (menu)
             {
                 case 1:
                     
+                    //invoker.AddCommand(createFileCommand);
                     break;
                 case 2:
                     
@@ -63,7 +70,16 @@ namespace Magic
 
                     break;
                 case 4:
-
+                    Console.WriteLine("Выберите тип построения армий");
+                    Console.WriteLine("1. Колонна");
+                    Console.WriteLine("2. Три в ряд");
+                    Console.WriteLine("3. Стенка на стенку");
+                    while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
+                    {
+                        Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
+                    }
+                    Console.Write("Ваш ответ: ");
+                    ICommand ChangeTypeConstruction = new ChangeTypeConstruction(TypeConstruction);
                     break;
                 default:
                     //Возможно не надо

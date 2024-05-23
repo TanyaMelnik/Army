@@ -11,6 +11,16 @@
     // Команда для пунктов: сделать, отменить и повторить ход
     public class MakeMove : ICommand
     {
+        List<IUnit> army1;
+        List<IUnit> army2;
+
+        public MakeMove(List<IUnit> army1, List<IUnit> army2)
+        {
+            this.army1 = army1;
+            this.army2 = army2;
+        }
+
+        // Сделать новый ход
         public void Execute()
         {
             throw new NotImplementedException();
@@ -36,11 +46,19 @@
     // Реализация - менять команды без пользователя ( программа сама меняет на следующую)
     public class ChangeTypeConstruction : ICommand
     {
-        ITypeConstruction _TypeConstruction;
+        int typeConstruction;
+        ITypeConstruction _typeConstruction;
+
+        public ChangeTypeConstruction(int typeConstruction)
+        {
+            this.typeConstruction = typeConstruction;
+        }
+
+        //ITypeConstruction _TypeConstruction;
         // Меняем стратегию и запоминаем старую
         public void Execute()
         {
-            _oldITypeConstruction = _newITypeConstruction;
+            //_oldITypeConstruction = _newITypeConstruction;
             //_newITypeConstruction= newITypeConstruction;
         }
 
@@ -54,6 +72,34 @@
         {
             return;
         }
+    }
+
+    class Invoker
+    {
+        private List<ICommand> _commands = new List<ICommand>();
+
+        /*public void AddCommand(ICommand command)
+        {
+            _commands.Add(command);
+        }
+
+        public void ExecuteCommands()
+        {
+            foreach (var command in _commands)
+            {
+                command.Execute();
+            }
+            _commands.Clear();
+        }
+
+        public void UndoCommands()
+        {
+            for (int i = _commands.Count - 1; i >= 0; i--)
+            {
+                _commands[i].Undo();
+            }
+            _commands.Clear();
+        }*/
     }
 }
 
