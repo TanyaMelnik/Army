@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
-    // Интерфейс команды, объявляющий метод Execute
     interface ICommand
     {
-        public ITypeConstruction _TypeConstruction { get; set; }
+        public ITypeConstruction TypeConstruction { get; set; }
         bool Execute();
         void Undo();
         void Redo();

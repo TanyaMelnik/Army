@@ -3,7 +3,7 @@ namespace Magic
 {
     class Bowman : IUnit, ISpecialProperty, ICloneable, IHealtheble
     {
-        public override string Name() => name;
+        public override string Name() => name ?? "";
         public Bowman((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 20;
@@ -14,9 +14,9 @@ namespace Magic
         }
 
         // Уникальные характеристики лучника.
-        int radiusAttack = 10;
-        int arrowDamage = 40;
-        double procent = 0.9;
+        readonly int radiusAttack = 10;
+        readonly int arrowDamage = 40;
+        readonly double procent = 0.9;
 
         public override string ToString()
         {
@@ -30,14 +30,14 @@ namespace Magic
 
         public void Heal(int powerTreatment)
         {
-            // Нельзя лечить больше, чем максимальное здоровье
+            // Нельзя лечить больше, чем максимальное здоровье.
             health = (health + powerTreatment) < Settings.GetInstance(0, 0).Health ? (health + powerTreatment) : Settings.GetInstance(0, 0).Health;
         }
         public override void GetHit(int strengthAttack)
         {
-            Random random = new Random();
+            Random random = new ();
             double randomNumber = random.NextDouble();
-            //Если уклонение не произошло => unit получает урон 
+            //Если уклонение не произошло => unit получает урон.
             if (dodge < randomNumber)
             {
                 if (defense >= strengthAttack) defense -= strengthAttack;
@@ -73,13 +73,15 @@ namespace Magic
 
         public override IUnit MakeClone()
         {
-            var a = new Bowman((attack - 20, dodge - 0.3));
-            a.health = health;
-            a.defense = defense;
+            var a = new Bowman((attack - 20, dodge - 0.3))
+            {
+                health = health,
+                defense = defense
+            };
             return new LogGetAttack(a, (attack - 20, dodge - 0.3));
         }
 
-        public IUnit DoSpecialPropertyСolumn(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        public IUnit? DoSpecialPropertyСolumn(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             if (procent >= new Random().NextDouble())
             {
@@ -91,9 +93,9 @@ namespace Magic
                         int countEnemy = radiusAttack - number;
                         // Если количество противников меньше найденного числа.
                         if (countEnemy > enemyArmy.Count) countEnemy = enemyArmy.Count;
-                        // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно
+                        // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно.
                         int aim = new Random().Next(0, countEnemy);
-                        // Цель выбрана - enemyArmy[aim]
+                        // Цель выбрана - enemyArmy[aim].
                         enemyArmy[aim].GetHit(arrowDamage);
                     }
                 }
@@ -101,7 +103,7 @@ namespace Magic
             return null;
         }
 
-        public IUnit DoSpecialPropertyBattalion(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        public IUnit? DoSpecialPropertyBattalion(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             if (procent >= new Random().NextDouble())
             {
@@ -109,15 +111,15 @@ namespace Magic
                 {
                     if (number < radiusAttack*3)
                     {
-                        // Теоретическое количество врагов, в которых он может попасть. нужно разделить на 3, округлить вверх и умнножить на 3
+                        // Теоретическое количество врагов, в которых он может попасть. нужно разделить на 3, округлить вверх и умнножить на 3.
                         double a = (radiusAttack * 3 - number) / 3.0;
                         double b = Math.Ceiling(a);
                         int countEnemy = (int)b*3;
                         // Если количество противников меньше найденного числа.
                         if (countEnemy > enemyArmy.Count) countEnemy = enemyArmy.Count;
-                        // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно
+                        // Рандомно выбираем цель. От 0 включительно до countEnemy не включительно.
                         int aim = new Random().Next(0, countEnemy);
-                        // Цель выбрана - enemyArmy[aim]
+                        // Цель выбрана - enemyArmy[aim].
                         enemyArmy[aim].GetHit(arrowDamage);
                     }
                 }
@@ -125,24 +127,24 @@ namespace Magic
             return null;
         }
 
-        public IUnit DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        public IUnit? DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             if (procent >= new Random().NextDouble())
             {
                 if (enemyArmy.Count > 0)
                 {
-                    // Первый враг, в который может попасть лучник
+                    // Первый враг, в который может попасть лучник.
                     int endEnemy = enemyArmy.Count - 1 >= number - radiusAttack + 1 ? enemyArmy.Count - 1 : -1;
-                    // Если радиус меньше чем дальность до первого врага
+                    // Если радиус меньше чем дальность до первого врага.
                     if (endEnemy<0)
                     {
                         return null;
                     }
-                    // Последний враг, в который может попасть лучник
+                    // Последний враг, в который может попасть лучник.
                     int startEnemy = number - radiusAttack + 1>= 0? number - radiusAttack + 1:0;
-                    // Рандомно выбираем цель. От startEnemy включительно до endEnemy не включительно
+                    // Рандомно выбираем цель. От startEnemy включительно до endEnemy не включительно.
                     int aim = new Random().Next(startEnemy, endEnemy+1);
-                    // Цель выбрана - enemyArmy[aim]
+                    // Цель выбрана - enemyArmy[aim].
                     enemyArmy[aim].GetHit(arrowDamage);
                 }
             }

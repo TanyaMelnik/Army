@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
-    // Команда для смены построения
-    // Реализация - менять команды без пользователя ( программа сама меняет на следующую)
     class ChangeTypeConstruction : ICommand
     {
+        /// <summary>
+        /// Команда, которую нужно сменить.
+        /// </summary>
         private ITypeConstruction _typeConstruction;
-        public ITypeConstruction _TypeConstruction { get => _typeConstruction; set => _typeConstruction = value; }
+        public ITypeConstruction TypeConstruction { get => _typeConstruction; set => _typeConstruction = value; }
         private readonly ITypeConstruction[] strategy;
 
         public ChangeTypeConstruction(ITypeConstruction oldTypeConstruction)
@@ -22,8 +23,6 @@ namespace Magic
             strategy = [new Сolumn(_typeConstruction.Army1, _typeConstruction.Army2), new Battalion(_typeConstruction.Army1, _typeConstruction.Army2), new WallToWall(_typeConstruction.Army1, _typeConstruction.Army2)];
         }
 
-        //ITypeConstruction _TypeConstruction;
-        // Меняем стратегию и запоминаем старую
         public bool Execute()
         {
             for (int i = 0; i < strategy.Length; i++)
@@ -48,7 +47,6 @@ namespace Magic
             }
         }
 
-        // Здесь ничего не будет, это чтобы работал интерфейс 
         public void Redo()
         {
             for (int i = 0; i < strategy.Length; i++)

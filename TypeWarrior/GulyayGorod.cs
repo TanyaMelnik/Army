@@ -6,21 +6,25 @@ namespace Magic
     class GulyayGorod
     {
         public string type = "Щит гуляй город";
-        // Здоровье
+        // Здоровье.
         public int strength = 200;
-        // Сила атаки
+        // Сила атаки.
         public int power = 0;
-        // Стоимость
+        // Стоимость.
         public int cost =2;
         public void GetDemage(int strengthAttack)
         {
             strength-=strengthAttack;
         }
     }
-    // Адаптер AdapterGulyayGorod реализует интерфейс IUnit и использует GulyayGorod
+
+    /// <summary>
+    /// Адаптер AdapterGulyayGorod реализует интерфейс IUnit и использует GulyayGorod.
+    /// </summary>
+    /// <param name="percentAttackAndDodge">Процент атаки и уклонения.</param>
     class AdapterGulyayGorod((int percentAttack, double percentDodge) percentAttackAndDodge) : IUnit(percentAttackAndDodge)
     {
-        private GulyayGorod gulyayGorod = new();
+        private readonly GulyayGorod gulyayGorod = new();
 
         public override string Name() => gulyayGorod.type;
         public override int Health()
@@ -35,7 +39,6 @@ namespace Magic
         {
             return 0;
         }
-
         public override double Dodge()
         {
             return 0;

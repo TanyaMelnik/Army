@@ -2,7 +2,7 @@ namespace Magic
 {
     class HeavyWarrior : IUnit,IHealtheble
     {
-        public override string Name() => name;
+        public override string Name() => name ?? "";
         public HeavyWarrior((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 50;
@@ -18,14 +18,14 @@ namespace Magic
         }
         public void Heal(int powerTreatment)
         {
-            // Ќельз€ лечить больше, чем максимальное здоровье
+            // Ќельз€ лечить больше, чем максимальное здоровье.
             health = (health + powerTreatment) < Settings.GetInstance(0, 0).Health ? (health + powerTreatment) : Settings.GetInstance(0, 0).Health;
         }
         public override void GetHit(int strengthAttack)
         {
-            Random random = new Random();
+            Random random = new ();
             double randomNumber = random.NextDouble();
-            //≈сли уклонение не произошло => unit получает урон 
+            //≈сли уклонение не произошло => unit получает урон. 
             if (dodge < randomNumber)
             {
                 if (defense >= strengthAttack) defense -= strengthAttack;
@@ -62,9 +62,11 @@ namespace Magic
 
         public override IUnit MakeClone()
         {
-            var a = new HeavyWarrior((attack - 50, dodge - 0.05));
-            a.health = health;
-            a.defense = defense;
+            var a = new HeavyWarrior((attack - 50, dodge - 0.05))
+            {
+                health = health,
+                defense = defense
+            };
             return new LogGetAttack(a, (attack - 50, dodge - 0.05));
         }
     }

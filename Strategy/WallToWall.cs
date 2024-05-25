@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
-    // Стенка на стенку
-    class WallToWall : ITypeConstruction,Dead
+    class WallToWall : ITypeConstruction,IDead
     {
         private List<IUnit> army1;
         private List<IUnit> army2;
@@ -20,16 +19,16 @@ namespace Magic
         }
         public void CheckDecorator()
         {
-            // Защищающаяся армия ( с меньшим количеством)
+            // Защищающаяся армия ( с меньшим количеством).
             List<IUnit> defender = army1.Count < army2.Count ? army1 : army2;
-            // Атакующая армия ( с большим количеством)
+            // Атакующая армия ( с большим количеством).
             List<IUnit> attacker = army1.Count > army2.Count ? army1 : army2;
             for (int i = defender.Count; i < attacker.Count - 1; i++)
             {
-                // Если нашли легкого солдата
+                // Если нашли легкого солдата.
                 if (attacker[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
                 {
-                    // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем 
+                    // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем. 
                     if (attacker[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
                     {
                         attacker[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(attacker[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
@@ -44,10 +43,9 @@ namespace Magic
 
         public void DeleteUnit(List<IUnit> army, int numberUnit)
         {
-            // Смещение юнита справа
+            // Смещение юнита справа.
             army.RemoveAt(numberUnit);
         }
-        // Т.К. стенка на стенку, то спец свойства будут применяться только у одной армии
         public void DoSpecialProperties()
         {
             // Защищающаяся армия ( с меньшим количеством)
@@ -62,7 +60,7 @@ namespace Magic
                 {
                     // Обёртка для логирования 
                     var proxy = new ProxyLogSpecial(unit1);
-                    IUnit newUnit = proxy.DoSpecialPropertyWallToWall(attacker, defender, i);
+                    IUnit? newUnit = proxy.DoSpecialPropertyWallToWall(attacker, defender, i);
                     // Если генетик склонировал солдата
                     if (newUnit != null)
                     {
@@ -82,15 +80,15 @@ namespace Magic
             ProxyDie proxy = new(new Сolumn(army1, army2));
             // Количество совпадающих армий.
             int minCountArmy = army1.Count < army2.Count ? army1.Count : army2.Count;
-            // Сначала сражения 
+            // Сначала сражения. 
             for (int i = 0;i < minCountArmy; i++)
             {
-                // Если произошли сдвиги и солдат остался без противника
+                // Если произошли сдвиги и солдат остался без противника.
                 if (i >= army1.Count || i >= army2.Count)
                 { 
                     break;
                 }
-                // Если противник есть 
+                // Если противник есть. 
                 army2[i].GetHit(army1[i].Attack());
                 if (army2[i].Health() < 0) proxy.DeleteUnit(army2, i);
                 if (i<army2.Count)
@@ -103,23 +101,21 @@ namespace Magic
 
         public string Show()
         {
-            // Защищающаяся армия ( с меньшим количеством)
+            // Защищающаяся армия ( с меньшим количеством).
             List<IUnit> defender = army1.Count < army2.Count ? army1 : army2;
-            // Атакующая армия ( с большим количеством)
-            List<IUnit> attacker = army1.Count >= army2.Count ? army1 : army2;
             StringBuilder s= new ();
             s.Append("Армия 1: \t Армия 2: \n");
             for (int i = 0; i < defender.Count; i++)
             {
-                s.Append(army1[i].ToString()+ "\t" + army2[i].ToString()+"\n");
+                s.Append(army1[i] + "\t" + army2[i]+"\n");
             }
             for (int i = defender.Count; i < army1.Count; i++)
             {
-                s.Append(army1[i].ToString() +"нет воина\n");
+                s.Append(army1[i] +"    нет воина\n");
             }
             for (int i = defender.Count; i < army2.Count; i++)
             {
-                s.Append("нет воина\t" + army2[i].ToString() + "\n");
+                s.Append("нет воина\t" + army2[i] + "\n");
             }
             return s.ToString();
         }

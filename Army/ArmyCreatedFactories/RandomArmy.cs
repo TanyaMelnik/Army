@@ -17,20 +17,19 @@ namespace Magic
             List<IUnit> army = [];
             while (cost > 0)
             {
-                // Получаем случайный индекс типа юнита из словаря
+                // Получаем случайный индекс типа юнита из словаря.
                 int randomIndex = random.Next(unitCost.Count);
 
-                // Получаем тип юнита по случайному индексу
+                // Получаем тип юнита по случайному индексу.
                 Type unitType = unitCost.Keys.ElementAt(randomIndex);
 
                 // Получаем стоимость юнита
                 int unitCostValue = unitCost.Values.ElementAt(randomIndex);
 
-                // Если стоимость юнита не превышает оставшийся бюджет
+                // Если стоимость юнита не превышает оставшийся бюджет.
                 if (unitCostValue <= cost)
                 {
-                    // Создаем экземпляр юнита и добавляем его в армию
-                    //var unitInstance = Activator.CreateInstance(unitType) as IUnit;
+                    // Создаем экземпляр юнита и добавляем его в армию.
                     var unit = CreateUnit(unitType);
                     if (unit != null)
                     {

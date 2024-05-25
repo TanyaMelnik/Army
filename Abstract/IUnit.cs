@@ -2,7 +2,10 @@ namespace Magic
 {
     public abstract class IUnit((int percentAttack, double percentDodge) percentAttackAndDodge)
     {
-        protected string name;
+        /// <summary>
+        /// Тип юнита.
+        /// </summary>
+        protected string ?name;
         public abstract string Name();
         /// <summary>
         /// Здоровье юнита.
@@ -25,7 +28,7 @@ namespace Magic
         protected double dodge = percentAttackAndDodge.percentDodge;
         public abstract double Dodge();
         /// <summary>
-        /// Доп защита.
+        /// Защита.
         /// </summary>
         protected int defense;
         public abstract int Defense();
@@ -34,7 +37,10 @@ namespace Magic
         /// </summary>
         /// <returns>Строку, представляющий юнит.</returns>
         public override abstract string ToString();
-
+        /// <summary>
+        /// Метод получения удара.
+        /// </summary>
+        /// <param name="strengthAttack">Получаемый урон.</param>
         public abstract void GetHit(int strengthAttack);
         public abstract IUnit MakeClone();
 

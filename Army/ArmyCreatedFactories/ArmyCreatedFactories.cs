@@ -9,37 +9,41 @@ namespace Magic
         /// Словарь с каждым unit и их соответствующей стоимостью.
         /// </summary>
         public readonly Dictionary<Type, int> unitCost;
-        // Фабрика создания unit
+        /// <summary>
+        /// Фабрика создания unit.
+        /// </summary>
         protected AbstractArmyFactory army;
-        // Метод, который создаёт армию конкретного способа
+        /// <summary>
+        ///  Метод, который создаёт армию конкретного способа.
+        /// </summary>
+        /// <returns>Армию.</returns>
         public abstract List<IUnit> CreateArmy();
         public ArmyCreatedFactories(AbstractArmyFactory army) {
            
-            // Выбираем конкретную фабрику создания unit
+            // Выбираем конкретную фабрику создания unit.
             this.army = army;
             unitCost = [];
-            // Получаем текущую сборку (assembly)
+            // Получаем текущую сборку (assembly).
             Assembly assembly = Assembly.GetExecutingAssembly();
 
-            // Получаем массив всех типов в текущей сборке
+            // Получаем массив всех типов в текущей сборке.
             Type[] unitTypes = assembly.GetTypes()
-                // Фильтруем только те типы, которые являются наследниками IUnit
+                // Фильтруем только те типы, которые являются наследниками IUnit.
                 .Where(t => t.IsSubclassOf(typeof(IUnit)))
-                // Преобразуем результат в массив
+                // Преобразуем результат в массив.
                 .ToArray();
 
-            // Перебираем каждый найденный тип
+            // Перебираем каждый найденный тип.
             foreach (Type unitType in unitTypes)
             {
-                // Получаем конструктор с параметрами для типа юнита
+                // Получаем конструктор с параметрами для типа юнита.
                 var constructor = unitType.GetConstructor([typeof((int, double))]);
                 if (constructor != null)
                 {
-                    // Создаем экземпляр типа, передавая параметры конструктору
-                    var unitInstance = constructor.Invoke(new object[] { (1, 1.0) }) as IUnit;
+                    // Создаем экземпляр типа, передавая параметры конструктору.
 
-                    // Добавляем тип IUnit и его стоимость в словарь
-                    if (unitInstance != null)
+                    // Добавляем тип IUnit и его стоимость в словарь.
+                    if (constructor.Invoke(new object[] { (1, 1.0) }) is IUnit unitInstance)
                     {
                         unitCost.Add(unitType, unitInstance.Cost());
                     }

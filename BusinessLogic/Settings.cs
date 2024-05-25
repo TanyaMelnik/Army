@@ -1,31 +1,38 @@
 ﻿namespace Magic
 {
-
-    // Паттерн Singleton - паттерн, порождающий объекты.
-    // Назначение: Гарантирует, что у класса есть только один экземпляр и предоставляет к нему глобальную точку доступа.
-    // Одиночка используется в случае, если в системе необходим объект только в единственном экземпляре.
-    // Пользователь может установить настройки один раз и менять их не имеет права.
     public class Settings
     {
-        static object locker = new object();
+        static readonly object locker = new ();
 
-        // Приватное статическое поле instance, которое хранит единственный экземпляр класса.
+        /// <summary>
+        /// Приватное статическое поле instance, которое хранит единственный экземпляр класса.
+        /// </summary>
         private static Settings? instance;
-
         public int Health { get; }
         public int Cost { get; }
 
-        // Звук при убийстве unit 
-        public static bool sound;
+        /// <summary>
+        /// Звук при убийстве unit 
+        /// </summary>
+        public static bool sound=true;
 
-    // Приватный конструктор предотвращает создание экземпляров класса извне.
-    private Settings(int helpHealth, int helpCost)
+        /// <summary>
+        ///  Приватный конструктор предотвращает создание экземпляров класса извне.
+        /// </summary>
+        /// <param name="helpHealth">Здоровье юнитов.</param>
+        /// <param name="helpCost">Сумма для покупки юнитов.</param>
+        private Settings(int helpHealth, int helpCost)
         {
             Health = helpHealth;
             Cost = helpCost;
         }
 
-        // Через публичное статическое свойство GetInstance можно получить доступ к единственному экземпляру класса.
+        /// <summary>
+        /// Метод получения единственного экземпляра.
+        /// </summary>
+        /// <param name="helpHealth">Здоровье юнитов.</param>
+        /// <param name="helpCost">Сумма для покупки юнитов.</param>
+        /// <returns></returns>
         public static Settings GetInstance(int helpHealth, int helpCost)
         {
             lock (locker)
@@ -37,14 +44,6 @@
                 instance = new Settings(helpHealth, helpCost);
                 return instance;
             }
-        }
-
-
-        // УДАЛИТЬ ЭТО (ПОКА ДЛЯ ПРОВЕРКИ)
-        public void Print()
-        {
-            Console.WriteLine(Health);
-            Console.WriteLine(Cost);
         }
     }
 }

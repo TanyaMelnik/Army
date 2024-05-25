@@ -13,7 +13,6 @@ namespace Magic
         /// Показатель увеличения текущих показателей силы и уклонения.
         /// </summary>
         protected abstract (int, double) PercentAttackAndDodge { get; }
-        // Методы, которые создают конкретеные IUnit.
         public IUnit CreateLightUnit() {
             return new LogGetAttack(new LightWarrior(PercentAttackAndDodge), PercentAttackAndDodge);
         }

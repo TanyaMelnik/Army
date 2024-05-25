@@ -1,7 +1,7 @@
 namespace Magic {
     class LightWarrior : IUnit, ICloneable,IHealtheble
     {
-        public override string Name() => name;
+        public override string Name() => name ?? "";
 
         public LightWarrior((int , double ) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
@@ -24,12 +24,12 @@ namespace Magic {
         }
         public void Heal(int powerTreatment)
         {
-            // Ќельз€ лечить больше, чем максимальное здоровье
+            // Ќельз€ лечить больше, чем максимальное здоровье.
             health = (health + powerTreatment) < Settings.GetInstance(0, 0).Health ? (health + powerTreatment) : Settings.GetInstance(0, 0).Health;
         }
         public override void GetHit(int strengthAttack)
         {
-            Random random = new Random();
+            Random random = new();
             double randomNumber = random.NextDouble();
             //≈сли уклонение не произошло => unit получает урон 
             if (dodge < randomNumber)
@@ -57,7 +57,6 @@ namespace Magic {
         {
             return defense;
         }
-
         public override double Dodge()
         {
             return dodge;
@@ -69,9 +68,11 @@ namespace Magic {
         }
         public override IUnit MakeClone()
         {
-            var a = new LightWarrior((attack - 40, dodge - 0.2));
-            a.health = health;
-            a.defense = defense;
+            var a = new LightWarrior((attack - 40, dodge - 0.2))
+            {
+                health = health,
+                defense = defense
+            };
             return new LogGetAttack(a, (attack - 40, dodge - 0.2));
         }
     } 

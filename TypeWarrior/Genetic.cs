@@ -3,11 +3,11 @@ namespace Magic
 {
     class Genetic : IUnit, ISpecialProperty, IHealtheble
     {
-        public override string Name() => name;
+        public override string Name() => name ?? "";
         /// <summary>
-        /// Процент клонирования - 10%
+        /// Процент клонирования - 10%.
         /// </summary>
-        double procentClone=0.1;
+        readonly double procentClone = 0.1;
         public Genetic((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 20;
@@ -24,14 +24,14 @@ namespace Magic
 
         public void Heal(int powerTreatment)
         {
-            // Нельзя лечить больше, чем максимальное здоровье
+            // Нельзя лечить больше, чем максимальное здоровье.
             health = (health + powerTreatment) < Settings.GetInstance(0, 0).Health ? (health + powerTreatment) : Settings.GetInstance(0, 0).Health;
         }
         public override void GetHit(int strengthAttack)
         {
-            Random random = new Random();
+            Random random = new();
             double randomNumber = random.NextDouble();
-            //Если уклонение не произошло => unit получает урон 
+            //Если уклонение не произошло => unit получает урон.
             if (dodge < randomNumber)
             {
                 if (defense >= strengthAttack) defense -= strengthAttack;
@@ -67,21 +67,20 @@ namespace Magic
 
         public override IUnit MakeClone()
         {
-            var a = new Genetic((attack - 20, dodge - 0.4));
-            a.health = health;
-            a.defense = defense;
+            var a = new Genetic((attack - 20, dodge - 0.4))
+            {
+                health = health,
+                defense = defense
+            };
             return new LogGetAttack(a, (attack - 20, dodge - 0.4));
         }
 
-        public IUnit DoSpecialPropertyСolumn(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        public IUnit? DoSpecialPropertyСolumn(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
-            // Вероятность клонирования 10% ПОМЕНЯТЬ
             if (procentClone >= new Random().NextDouble())
             {
                 for (int i = 0; i < ownArmy.Count; i++)
                 {
-                    // Если его можно клонировать 
-                    // LogGetAttack unitTemp = (LogGetAttack)ownArmy[i];
                     if (ownArmy[i] is LogGetAttack lightUnit && lightUnit.unit is ICloneable clone)
                     {
                         return clone.Clone();
@@ -91,14 +90,12 @@ namespace Magic
             return null;
         }
 
-        public IUnit DoSpecialPropertyBattalion(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        public IUnit? DoSpecialPropertyBattalion(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             if (procentClone >= new Random().NextDouble())
             {
                 for (int i = 0; i < ownArmy.Count; i++)
                 {
-                    // Если его можно клонировать 
-                    // LogGetAttack unitTemp = (LogGetAttack)ownArmy[i];
                     if (ownArmy[i] is LogGetAttack lightUnit && lightUnit.unit is ICloneable clone)
                     {
                         return clone.Clone();
@@ -108,14 +105,12 @@ namespace Magic
             return null;
         }
 
-        public IUnit DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
+        public IUnit? DoSpecialPropertyWallToWall(List<IUnit> ownArmy, List<IUnit> enemyArmy, int number)
         {
             if (procentClone >= new Random().NextDouble())
             {
                 for (int i = 0; i < ownArmy.Count; i++)
                 {
-                    // Если его можно клонировать 
-                    // LogGetAttack unitTemp = (LogGetAttack)ownArmy[i];
                     if (ownArmy[i] is LogGetAttack lightUnit && lightUnit.unit is ICloneable clone)
                     {
                         return clone.Clone();

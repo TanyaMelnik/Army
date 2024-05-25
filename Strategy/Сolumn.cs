@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
-    // Колонна
-    class Сolumn : ITypeConstruction, Dead
+    class Сolumn : ITypeConstruction, IDead
     {
         private List<IUnit> army1;
         private List<IUnit> army2;
@@ -21,43 +20,40 @@ namespace Magic
         }
         public void DeleteUnit(List<IUnit> army, int numberUnit)
         {
-            // Смещение юнита вперёд
+            // Смещение юнита вперёд.
             army.RemoveAt(numberUnit);
         }
 
         public void DoSpecialProperties()
         {
-            // Счётчик для army1
+            // Счётчик для army1.
             int i = 1;
-            // Счётчик для army2
+            // Счётчик для army2.
             int j = 1;
             if (army2.Count < 2 && army1.Count < 2)
             {
                 return;
             }
-            // Величина армий для проверки 
+            // Величина армий для проверки. 
             int army1Count = army1.Count;
             int army2Count = army2.Count;
-            // Добавить проверки + генетик !!!
             while (i < Math.Max(army1Count, army2Count) && j < Math.Max(army1Count, army2Count))
             {
-                // Величина армий для проверки 
                 army1Count = army1.Count;
                 army2Count = army2.Count;
-                // Применяем специальное свойство из первой армии 
+                // Применяем специальное свойство из первой армии. 
                 if (i < army1.Count)
                 {
                     if (army1[i] is LogGetAttack unitTemp1 && unitTemp1.unit is ISpecialProperty unit1)
                     {
                         var proxy = new ProxyLogSpecial(unit1);
-                        // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
                         if (army1.Count > 0 && army2.Count > 0)
                         {
-                            IUnit newUnit = proxy.DoSpecialPropertyСolumn(army1, army2, i);
-                            // Если генетик склонировал солдата
+                            IUnit? newUnit = proxy.DoSpecialPropertyСolumn(army1, army2, i);
+                            // Если генетик склонировал солдата.
                             if (newUnit != null)
                             {
-                                // Вставляем нового солдата перед ним
+                                // Вставляем нового солдата перед ним.
                                 army1.Insert(i, newUnit);
                                 i++;
                             }
@@ -70,7 +66,7 @@ namespace Magic
                     }
                     i++;
                 }
-                // Применяем специальное свойство из второй армии 
+                // Применяем специальное свойство из второй армии. 
                 if (j < army2.Count)
                 {
                     if (army2[j] is LogGetAttack unitTemp2 && unitTemp2.unit is ISpecialProperty unit2)
@@ -78,12 +74,12 @@ namespace Magic
                         var proxy = new ProxyLogSpecial(unit2);
                         if (army1.Count > 0 && army2.Count > 0)
                         {
-                            // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial
-                            IUnit newUnit2 = proxy.DoSpecialPropertyСolumn(army2, army1, j);
-                            // Если генетик склонировал солдата
+                            // Вызов метода DoSpecialProperty через экземпляр ProxyLogSpecial.
+                            IUnit? newUnit2 = proxy.DoSpecialPropertyСolumn(army2, army1, j);
+                            // Если генетик склонировал солдата.
                             if (newUnit2 != null)
                             {
-                                // Вставляем нового солдата перед ним
+                                // Вставляем нового солдата перед ним.
                                 army2.Insert(j, newUnit2);
                                 j++;
                             }
@@ -98,7 +94,6 @@ namespace Magic
                 }
             }
         }
-        // Метод который обновляет армии.
         public void Update(List<IUnit> army)
         {
             for (int i = 0; i < army.Count; i++)
@@ -129,12 +124,12 @@ namespace Magic
             s.Append("Армия 1: \n");
             for (int i = 0; i < army1.Count; i++)
             {
-                s.Append(army1[i].ToString()+"\n");
+                s.Append(army1[i]+"\n");
             }
             s.Append("Армия 2: \n");
             for (int i = 0; i < army2.Count; i++)
             {
-                s.Append(army2[i].ToString() + "\n");
+                s.Append(army2[i] + "\n");
             }
             return s.ToString();
         }
@@ -143,10 +138,10 @@ namespace Magic
         {
             for (int i = 1; i < army1.Count - 1; i++)
             {
-                // Если нашли легкого солдата
+                // Если нашли легкого солдата.
                 if (army1[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
                 {
-                    // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем 
+                    // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем.
                     if (army1[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
                     {
                         army1[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
@@ -159,10 +154,10 @@ namespace Magic
             }
             for (int i = 1; i < army2.Count - 1; i++)
             {
-                // Если нашли легкого солдата
+                // Если нашли легкого солдата.
                 if (army2[i] is LogGetAttack lightUnit && lightUnit.unit is LightWarrior)
                 {
-                    // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем 
+                    // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем. 
                     if (army2[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
                     {
                         army2[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));

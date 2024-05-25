@@ -11,10 +11,8 @@ namespace Magic
     {
         public static void WriteInFile(string logFilePath, string text)
         {
-            using (StreamWriter log = File.AppendText(logFilePath))
-            {
-                log.WriteLine(text);
-            }
+            using StreamWriter log = File.AppendText(logFilePath);
+            log.WriteLine(text);
         }
     }
 }

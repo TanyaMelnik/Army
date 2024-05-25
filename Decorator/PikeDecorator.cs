@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
-    // Конкретные декораторы - пика
     public class PikeDecorator : OptionDecorator
     {
+        /// <summary>
+        /// Декоратор-пика.
+        /// </summary>
+        /// <param name="unit">Юнит, получивший свойства.</param>
+        /// <param name="persentAttackAndDodge">Процент атаки и уклонения.</param>
         public PikeDecorator(IUnit unit, (int, double) persentAttackAndDodge) : base(unit, persentAttackAndDodge)
         {
             // Характеристики опции.
@@ -18,18 +22,18 @@ namespace Magic
             defense = 10;
             name = unit.Name() + " с пикой";
         }
-        public override string Name() => name;
+        public override string Name() => name ?? "";
         public override int Attack() => unit.Attack() + attack;
         public override int Defense() => unit.Defense() + defense;
         public override double Dodge() => unit.Dodge();
         public override int Health() => unit.Health();
         public override void GetHit(int strengthAttack)
         {
-            // Если опция сбивается 
+            // Если опция сбивается. 
             if (strengthAttack - defense >= 0)
             {
                 unit.GetHit(strengthAttack - defense);
-                // Убираем опцию
+                // Убираем опцию.
                 defense = 0;
                 attack = 0;
                 name = unit.Name();

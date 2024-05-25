@@ -14,15 +14,13 @@ namespace Magic
             {
                 Console.WriteLine("Начинаем новую игру!");
 
-                // Инициализация настроек. Это не пункт меню, так как это устанавливается один раз и это нельзя поменять
+                // Инициализация настроек. Это не пункт меню, так как это устанавливается один раз и это нельзя поменять.
                 UserSettings();
-
-                // Основной цикл игры
+                // Основной цикл игры.
                 bool flag = true;
                 bool game = true;
-                // Инициализация изначальных данных
-                Invoker invoker = new Invoker();
-                //Console.WriteLine(invoker.GetStategy().Show());
+                // Инициализация изначальных данных.
+                Invoker invoker = new();
                 while (flag)
                 {
                     Console.WriteLine("Выберите пункт меню");
@@ -45,18 +43,18 @@ namespace Magic
                             {
                                 ICommand StartMakeMove = new MakeMove(invoker.GetStategy());
                                 Console.WriteLine("Армия до битвы:");
-                                Console.WriteLine(StartMakeMove._TypeConstruction.Show());
+                                Console.WriteLine(StartMakeMove.TypeConstruction.Show());
                                 invoker.AddCommand(StartMakeMove);
                                 game = invoker.ExecuteCommand();
                                 Console.WriteLine("Армия после битвы:");
-                                Console.WriteLine(StartMakeMove._TypeConstruction.Show());
+                                Console.WriteLine(StartMakeMove.TypeConstruction.Show());
                             }
                             else Console.WriteLine("В армии нет людей");
                             break;
                         case 2:
                             bool flagUndo = invoker.UndoCommand();
                             if (!flagUndo) Console.WriteLine("Отмену выполнить невозможно! Сначала сделайте действие!");
-                            else Console.WriteLine(invoker.Commands[invoker.Count + 1]._TypeConstruction.Show());               
+                            else Console.WriteLine(invoker.Commands[invoker.Count + 1].TypeConstruction.Show());               
                             game = true;
                             break;
                         case 3:
@@ -64,7 +62,7 @@ namespace Magic
                             {
                                 bool flagRedo = invoker.RedoCommand();
                                 if (!flagRedo) Console.WriteLine("Повтор выполнить невозможно! Сначала отмените действие!");
-                                else Console.WriteLine(invoker.Commands[invoker.Count + 1]._TypeConstruction.Show());
+                                else Console.WriteLine(invoker.Commands[invoker.Count + 1].TypeConstruction.Show());
                             }
                             else Console.WriteLine("В армии нет людей");
                             break;
@@ -87,13 +85,11 @@ namespace Magic
                                 ICommand StartMakeMoveAll = new MakeMove(invoker.GetStategy());
                                 invoker.AddCommand(StartMakeMoveAll);
                                 game = invoker.ExecuteCommand();
-                                Console.WriteLine(StartMakeMoveAll._TypeConstruction.Show());
+                                Console.WriteLine(StartMakeMoveAll.TypeConstruction.Show());
                             }
                             if (game == false) Console.WriteLine("В армии нет людей");
                             break;
                     }
-                    //Console.WriteLine(invoker.GetStategy().Show());
-                   // Console.WriteLine(Show(invoker.GetStategy()));
                 }
 
                 Console.WriteLine("Хотите начать новую игру? ");
@@ -110,46 +106,37 @@ namespace Magic
             }
         }
 
-        private static bool Show(ITypeConstruction typeConstruction)
-        {
-            throw new NotImplementedException();
-        }
-
         public static ITypeConstruction ChooseStrategy()
         {
-            // Создание первой армии.
-            AbstractArmyFactory abstractArmyFactory1 = AddUnitStats();
-            ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1);
+            // Создание первой армии. 
+            AbstractArmyFactory abstractArmyFactory1 = AddUnitStats() ?? new BlackBoxArmy(); ;
+            ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1)?? new RandomArmy(abstractArmyFactory1); 
             List<IUnit> army1 = armyCreatedFactories1.CreateArmy();
 
             // Создание второй армии.
-            AbstractArmyFactory abstractArmyFactory2 = AddUnitStats();
-            ArmyCreatedFactories armyCreatedFactories2 = SelectSetUnits(abstractArmyFactory2);
+            AbstractArmyFactory abstractArmyFactory2 = AddUnitStats() ?? new BlackBoxArmy(); ;
+            ArmyCreatedFactories armyCreatedFactories2 = SelectSetUnits(abstractArmyFactory2) ?? new RandomArmy(abstractArmyFactory2); ;
             List<IUnit> army2 = armyCreatedFactories2.CreateArmy();
 
-            // Выбор армии, которая ходит первая
+            // Выбор армии, которая ходит первая.
             ChoiseFirstArmy(ref army1, ref army2);
-            // Выбор построения армий, вынести в отдельную функцию
+            // Выбор построения армий, вынести в отдельную функцию.
             Console.WriteLine("Выберите тип построения армий");
             Console.WriteLine("1. Колонна");
             Console.WriteLine("2. Три в ряд");
             Console.WriteLine("3. Стенка на стенку");
-            int TypeConstruction = -1;
             Console.Write("Ваш ответ: ");
+            int TypeConstruction;
             while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
             {
                 Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
             }
-            //ITypeConstruction typeConstruction = new Сolumn(army1, army2);
-            switch (TypeConstruction)
+            return TypeConstruction switch
             {
-                case 1:
-                    return new Сolumn(army1, army2);
-                case 2:
-                    return new Battalion(army1, army2);
-                default:
-                    return new WallToWall(army1, army2);
-            }
+                1 => new Сolumn(army1, army2),
+                2 => new Battalion(army1, army2),
+                _ => new WallToWall(army1, army2),
+            };
         }
 
 
@@ -162,15 +149,11 @@ namespace Magic
             // Ввод пользователем длительности игры.
             int health = Healht();
 
-            // ПОМЕНЯТЬ
-            Settings.sound = false;
-
-/*            Console.Write("Включить звук при убийстве юнита - введите true. Выключить звуки - введите false:  ");
+            Console.Write("Включить звук при убийстве юнита - введите true. Выключить звуки - введите false:  ");
             while (!bool.TryParse(Console.ReadLine(), out Settings.sound))
             {
                 Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
-            }*/
-
+            }
             // Паттерн Singleton. 
             Settings.GetInstance(health, cost);
 
@@ -181,7 +164,7 @@ namespace Magic
 
             Console.CursorVisible = false;
 
-            string[] menuItems = { "Короткие", "Средние", "Длинные" };
+            string[] menuItems = ["Короткие", "Средние", "Длинные"];
             int selectedItemIndex = 0;
 
             while (true)
@@ -245,11 +228,11 @@ namespace Magic
             return cost;
         }
 
-        static AbstractArmyFactory AddUnitStats()
+        static AbstractArmyFactory? AddUnitStats()
         {
-            AbstractArmyFactory abstractArmyFactory = null;
+            AbstractArmyFactory? abstractArmyFactory = null;
 
-            string[] menuItems = { "С сильной атакой", "С большим процентом уклонения", "С рандомными характеристиками" };
+            string[] menuItems = ["С сильной атакой", "С большим процентом уклонения", "С рандомными характеристиками"];
             int selectedItemIndex = 0;
 
             while (true)
@@ -298,15 +281,14 @@ namespace Magic
         {
             Console.Clear();
             if (index == 0) return new AttackArmy();
-            else if (index == 1) return new DodgeArmy();
-            else if (index == 2) return new BlackBoxArmy();
-            return null;
+            else if (index == 1) return new DodgeArmy(); 
+            return new BlackBoxArmy();
         }
-        static ArmyCreatedFactories SelectSetUnits(AbstractArmyFactory abstractArmyFactory)
+        static ArmyCreatedFactories? SelectSetUnits(AbstractArmyFactory abstractArmyFactory)
         {
-            ArmyCreatedFactories armyCreatedFactories = null;
+            ArmyCreatedFactories? armyCreatedFactories = null;
 
-            string[] menuItems = { "Сбалансированно", "Рандомно" };
+            string[] menuItems = ["Сбалансированно", "Рандомно"];
             int selectedItemIndex = 0;
 
             while (true)
@@ -355,8 +337,7 @@ namespace Magic
         {
             Console.Clear();
             if (index == 0) return new BalanceArmy(abstractArmyFactory);
-            else if (index == 1) return new RandomArmy(abstractArmyFactory);
-            return null;
+            return new RandomArmy(abstractArmyFactory);
         }
 
         static void PrintArmy(List<IUnit> army)
@@ -377,66 +358,8 @@ namespace Magic
             }
             if (choise == 2)
             {
-                List<IUnit> armyHelp = army1;
-                army1 = army2;
-                army2 = armyHelp;
+                (army2, army1) = (army1, army2);
             }
-        }
-        public void Show(Battalion typeConstruction)
-        {
-            StringBuilder s = new();
-            s.Append("Армия 1: \n");
-            for (int i = 0; i < typeConstruction.Army1.Count; i++)
-            {
-                s.Append(typeConstruction.Army1[i].ToString() + "\n");
-            }
-            s.Append("Армия 2: \n");
-            for (int i = 0; i < typeConstruction.Army2.Count; i++)
-            {
-                s.Append(typeConstruction.Army2[i].ToString() + "\n");
-            }
-            Console.WriteLine(s.ToString());
-        }
-        public void Show(Сolumn typeConstruction)
-        {
-            StringBuilder s = new();
-            s.Append("Армия 1: \n");
-            for (int i = 0; i < typeConstruction.Army1.Count; i++)
-            {
-                s.Append(typeConstruction.Army1[i].ToString() + "\n");
-            }
-            s.Append("Армия 2: \n");
-            for (int i = 0; i < typeConstruction.Army2.Count; i++)
-            {
-                s.Append(typeConstruction.Army2[i].ToString() + "\n");
-            }
-            Console.WriteLine(s.ToString());
-        }
-        public void Show(WallToWall typeConstruction)
-        {
-            // Защищающаяся армия ( с меньшим количеством)
-            List<IUnit> defender = typeConstruction.Army1.Count < typeConstruction.Army2.Count ? typeConstruction.Army1 : typeConstruction.Army2;
-            // Атакующая армия ( с большим количеством)
-            List<IUnit> attacker = typeConstruction.Army1.Count > typeConstruction.Army2.Count ? typeConstruction.Army1 : typeConstruction.Army2;
-            StringBuilder s = new();
-            s.Append("Армия 1: \t Армия 2: \n");
-            for (int i = 0; i < defender.Count; i++)
-            {
-                s.Append(defender[i].ToString() + "\t" + attacker[i].ToString() + "\n");
-            }
-            // Если разное количество в армиях
-            for (int i = defender.Count; i < attacker.Count; i++)
-            {
-                if (attacker.Count == typeConstruction.Army1.Count)
-                {
-                    s.Append(typeConstruction.Army1[i].ToString() + "\n");
-                }
-                else
-                {
-                    s.Append("\t" + typeConstruction.Army2[i].ToString() + "\n");
-                }
-            }
-            Console.WriteLine(s.ToString());
         }
 
     }
@@ -447,48 +370,3 @@ namespace Magic
 
 
 
-
-
-/*            MakeMeleeFight a = new(army1, army2);
-            Console.WriteLine(a.deffender.ToString());
-            a.Execute();
-            Console.WriteLine(a.deffender.ToString());*/
-
-
-
-
-
-
-//Запуск основного цикла игры.
-//int countStep = 1;
-// Пока в одной из армий остались воины.
-/*            while (army1.Count > 0 && army2.Count > 0)
-            {
-                Console.WriteLine("Ход номер " + countStep);
-                // Проверка на декораторы, ПОМЕНЯТЬ
-                Game.CheckDecorator(army1);
-                Game.CheckDecorator(army2);
-                // Вывод армий на экран.
-                Console.WriteLine("Армия 1:");
-                PrintArmy(army1);
-                Console.WriteLine();
-                Console.WriteLine("Армия 2:");
-                PrintArmy(army2);
-                Console.WriteLine();
-
-                // Для первых 
-                Game.Fight(army1, army2);
-
-                // Вывод армий на экран.
-                Console.WriteLine("Армия 1 после того, как первые побились:");
-                PrintArmy(army1);
-                Console.WriteLine();
-                Console.WriteLine("Армия 2 после того, как первые побились::");
-                PrintArmy(army2);
-                Console.WriteLine();
-
-                // Для спец свойств.
-                Game.DoSpecial(army1, army2);
-
-                countStep++;
-            }*/

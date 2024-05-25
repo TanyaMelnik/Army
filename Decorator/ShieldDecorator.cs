@@ -1,13 +1,15 @@
 ﻿using Magic;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Magic
 {
-    // Конкретные декораторы - щит
+    /// <summary>
+    /// Декоратор-щит.
+    /// </summary>
+    /// <param name="unit">Юнит, получивший свойства.</param>
+    /// <param name="persentAttackAndDodge">Процент атаки и уклонения.</param>
     public class ShieldDecorator : OptionDecorator
     {
         public ShieldDecorator(IUnit unit, (int, double) persentAttackAndDodge) : base(unit, persentAttackAndDodge)
@@ -16,7 +18,7 @@ namespace Magic
             defense = 30;
             name = unit.Name() + " с щитом";
         }
-        public override string Name() => name;
+        public override string Name() => name ?? "";
         public override int Attack() => unit.Attack();
         public override int Defense() => unit.Defense() + defense;
         public override double Dodge() => unit.Dodge();
@@ -24,11 +26,11 @@ namespace Magic
         public override int Cost() => unit.Cost();
         public override void GetHit(int strengthAttack)
         {
-            // Если опция сбивается 
+            // Если опция сбивается. 
             if (strengthAttack - defense >= 0)
             {
                 unit.GetHit(strengthAttack - defense);
-                // Убираем опцию
+                // Убираем опцию.
                 defense = 0;
                 name = unit.Name();
             }

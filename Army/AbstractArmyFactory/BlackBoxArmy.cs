@@ -15,7 +15,7 @@ namespace Magic
         protected override (int, double) PercentAttackAndDodge {
             get
             {
-                Random rand = new Random();
+                Random rand = new ();
                 int randomAttack = rand.Next(0, 26);
                 double randomDodge = rand.NextDouble() * 0.2;
                 return (randomAttack, randomDodge);
