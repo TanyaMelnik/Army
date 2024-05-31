@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
+    /// <summary>
+    /// Интерфейс, определение Command.
+    /// Строка идентификатора "M:Magic.ICommand".
+    /// </summary>
     interface ICommand
     {
         public ITypeConstruction TypeConstruction { get; set; }
