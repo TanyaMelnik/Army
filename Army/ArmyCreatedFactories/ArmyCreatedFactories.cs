@@ -3,21 +3,35 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace Magic
 {
+    /// <summary>
+    ///  Класс армии с супер уклонениями.
+    ///  Строка идентификатора "T:Magic.ArmyCreatedFactories".
+    /// </summary>
     abstract class ArmyCreatedFactories
     {
         /// <summary>
         /// Словарь с каждым unit и их соответствующей стоимостью.
+        /// Строка идентификатора "F:Magic.ArmyCreatedFactories.unitCost".
         /// </summary>
         public readonly Dictionary<Type, int> unitCost;
+
         /// <summary>
         /// Фабрика создания unit.
+        /// Строка идентификатора "F:Magic.ArmyCreatedFactories.army".
         /// </summary>
         protected AbstractArmyFactory army;
+
         /// <summary>
         ///  Метод, который создаёт армию конкретного способа.
         /// </summary>
-        /// <returns>Армию.</returns>
+        /// <returns>Армия.</returns>
         public abstract List<IUnit> CreateArmy();
+
+        /// <summary>
+        ///  Метод, который создаёт армию через фабрику.
+        ///  Строка идентификатора "M:Magic.ArmyCreatedFactories.ArmyCreatedFactories".
+        /// </summary>
+        /// <param name="army">Тип армии.</param>
         public ArmyCreatedFactories(AbstractArmyFactory army) {
            
             // Выбираем конкретную фабрику создания unit.
@@ -41,7 +55,6 @@ namespace Magic
                 if (constructor != null)
                 {
                     // Создаем экземпляр типа, передавая параметры конструктору.
-
                     // Добавляем тип IUnit и его стоимость в словарь.
                     if (constructor.Invoke(new object[] { (1, 1.0) }) is IUnit unitInstance)
                     {
@@ -50,6 +63,12 @@ namespace Magic
                 }
             }
         }
+
+        /// <summary>
+        ///  Метод создания юнита.
+        ///  Строка идентификатора "M:Magic.ArmyCreatedFactories.CreateUnit".
+        /// </summary>
+        /// <param name="unitType">Тип юнита.</param>
         protected IUnit? CreateUnit(Type unitType)
         {
             if (unitType == typeof(LightWarrior))
@@ -58,7 +77,7 @@ namespace Magic
             }
             else if (unitType == typeof(HeavyWarrior))
             {
-                return army.CreateHeavyUnitUnit();
+                return army.CreateHeavyUnit();
             }
             else if (unitType == typeof(Genetic))
             {

@@ -1,16 +1,18 @@
 ﻿using Magic;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Magic
 {
+    /// <summary>
+    ///  Класс баланса армии.
+    ///  Строка идентификатора "T:Magic.BalanceArmy".
+    /// </summary>
     class BalanceArmy(AbstractArmyFactory army) : ArmyCreatedFactories(army)
     {
+        /// <summary>
+        ///  Метод создания армии.
+        ///  Строка идентификатора "M:Magic.BalanceArmy.CreateArmy".
+        /// </summary>
         public override List<IUnit> CreateArmy()
         {
             int cost = Settings.GetInstance(0, 0).Cost;
@@ -25,6 +27,7 @@ namespace Magic
                     if (cost <= 0){
                         return army;
                     }
+
                     var unitType = unitTypePair.Key;
                     var unitCostValue = unitTypePair.Value;
 
@@ -38,6 +41,7 @@ namespace Magic
                     }
                 }
             }
+
             return army;
         }
     }

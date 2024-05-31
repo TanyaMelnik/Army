@@ -8,10 +8,15 @@ using System.Threading.Tasks;
 namespace Magic
 {
     /// <summary>
-    /// Армия с супер уклонением.
+    ///  Класс армии с супер уклонениями.
+    ///  Строка идентификатора "T:Magic.DodgeArmy".
     /// </summary>
     class DodgeArmy : AbstractArmyFactory
     {
+        /// <summary>
+        /// Метод супер атаки и урона.
+        /// Строка идентификатора "M:Magic.DodgeArmy.PercentAttackAndDodge".
+        /// </summary>
         protected override (int, double) PercentAttackAndDodge { get => (0, 0.2); }
     }
 }

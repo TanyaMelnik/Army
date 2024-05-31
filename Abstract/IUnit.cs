@@ -2,7 +2,7 @@ namespace Magic
 {
     /// <summary>
     ///  Класс юнита.
-    ///  Строка идентификатора "T:Image_Restoring_v2.IUnit".
+    ///  Строка идентификатора "T:Magic.IUnit".
     /// </summary> 
     public abstract class IUnit((int percentAttack, double 
         percentDodge) percentAttackAndDodge)
@@ -51,7 +51,7 @@ namespace Magic
 
         /// <summary>
         /// Метод стоимости юнита.
-        /// Строка идентификатора "M:Magic.IUnit.Cost)".
+        /// Строка идентификатора "M:Magic.IUnit.Cost".
         /// </summary>
         public abstract int Cost();
 
@@ -63,7 +63,7 @@ namespace Magic
 
         /// <summary>
         /// Метод уклонения юнита.
-        /// Строка идентификатора "M:Magic.IUnit.Dodge)".
+        /// Строка идентификатора "M:Magic.IUnit.Dodge".
         /// </summary>
         public abstract double Dodge();
 
@@ -75,7 +75,7 @@ namespace Magic
 
         /// <summary>
         /// Метод защиты.
-        /// Строка идентификатора "M:Magic.IUnit.Defense)".
+        /// Строка идентификатора "M:Magic.IUnit.Defense".
         /// </summary>
         public abstract int Defense();
 
@@ -93,7 +93,7 @@ namespace Magic
 
         /// <summary>
         /// Метод клонирования юнита.
-        /// Строка идентификатора "M:Magic.IUnit.MakeClone)".
+        /// Строка идентификатора "M:Magic.IUnit.MakeClone".
         /// </summary>
         public abstract IUnit MakeClone();
 

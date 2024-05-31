@@ -8,10 +8,15 @@ using System.Threading.Tasks;
 namespace Magic
 {
     /// <summary>
-    /// Армия с рандомными показателями.
-    /// </summary>
+    ///  Класс армии с рандомными показателями.
+    ///  Строка идентификатора "T:Magic.BlackBoxArmy".
+    /// </summary> 
     class BlackBoxArmy : AbstractArmyFactory
     {
+        /// <summary>
+        /// Метод рандомной атаки и урона.
+        /// Строка идентификатора "M:Magic.BlackBoxArmy.PercentAttackAndDodge".
+        /// </summary>
         protected override (int, double) PercentAttackAndDodge {
             get
             {

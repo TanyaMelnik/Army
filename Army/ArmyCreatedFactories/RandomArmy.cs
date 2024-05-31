@@ -1,20 +1,26 @@
-﻿using Magic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Magic
+﻿namespace Magic
 {
+    /// <summary>
+    ///  Класс рандомной армии.
+    ///  Строка идентификатора "T:Magic.RandomArmy".
+    /// </summary>
     class RandomArmy(AbstractArmyFactory army) : ArmyCreatedFactories(army)
     {
+        /// <summary>
+        /// Поле, содержащее рандомное значение.
+        /// Строка идентификатора "F:Magic.RandomArmy.random".
+        /// </summary>
         private readonly Random random = new();
 
+        /// <summary>
+        ///  Метод создания рандомной армии.
+        ///  Строка идентификатора "M:Magic.RandomArmy.CreateArmy".
+        /// </summary>
         public override List<IUnit> CreateArmy()
         {
             int cost = Settings.GetInstance(0, 0).Cost;
             List<IUnit> army = [];
+
             while (cost > 0)
             {
                 // Получаем случайный индекс типа юнита из словаря.
@@ -35,10 +41,12 @@ namespace Magic
                     {
                         army.Add(unit);
                     }
+
                     // Вычитаем стоимость юнита из оставшегося бюджета
                     cost -= unitCostValue;
                 }
             }
+
             return army;
         }
     }
