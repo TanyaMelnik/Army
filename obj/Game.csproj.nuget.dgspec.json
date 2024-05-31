@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tanya\\Desktop\\Game\\Game.csproj": {}
+    "C:\\рэу\\ппа\\лаба\\Army1\\Game.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tanya\\Desktop\\Game\\Game.csproj": {
+    "C:\\рэу\\ппа\\лаба\\Army1\\Game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tanya\\Desktop\\Game\\Game.csproj",
+        "projectUniqueName": "C:\\рэу\\ппа\\лаба\\Army1\\Game.csproj",
         "projectName": "Game",
-        "projectPath": "C:\\Users\\Tanya\\Desktop\\Game\\Game.csproj",
-        "packagesPath": "C:\\Users\\Tanya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tanya\\Desktop\\Game\\obj\\",
+        "projectPath": "C:\\рэу\\ппа\\лаба\\Army1\\Game.csproj",
+        "packagesPath": "C:\\Users\\elayzandra\\.nuget\\packages\\",
+        "outputPath": "C:\\рэу\\ппа\\лаба\\Army1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tanya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\elayzandra\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -55,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
