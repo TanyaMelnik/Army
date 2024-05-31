@@ -22,11 +22,11 @@ namespace Magic
                     // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем. 
                     if (i % 3 != 2 && i + 1 <= army1.Count - 1 && army1[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
                     {
-                        army1[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                        army1[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HorseDecorator(army1[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
                     }
                     if (i % 3 != 0 && i - 1 >= 0 && army1[i - 1] is LogGetAttack heavyUnit2 && heavyUnit2.unit is HeavyWarrior)
                     {
-                        army1[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i - 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                        army1[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HorseDecorator(army1[i - 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
                     }
                 }
             }
@@ -38,11 +38,11 @@ namespace Magic
                     // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем. 
                     if (i % 3 != 2 && i + 1 <= army2.Count - 1 && army2[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
                     {
-                        army2[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                        army2[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HorseDecorator(army1[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
                     }
                     if (i % 3 != 0 && i - 1 >= 0 && army2[i - 1] is LogGetAttack heavyUnit2 && heavyUnit2.unit is HeavyWarrior)
                     {
-                        army2[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(army1[i - 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                        army2[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HorseDecorator(army1[i - 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
                     }
                 }
             }

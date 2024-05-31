@@ -1,64 +1,59 @@
 ﻿namespace Magic
 {
     /// <summary>
-    ///  Класс щита.
-    ///  Строка идентификатора "T:Magic.ShieldDecorator".
-    /// </summary>   
-    public class ShieldDecorator : OptionDecorator
+    ///  Класс коня.
+    ///  Строка идентификатора "T:Magic.HelmDecorator".
+    /// </summary>
+    public class HorseDecorator : OptionDecorator
     {
         /// <summary>
-        /// Метод, содержащий декоратор-щит.
-        /// Строка идентификатора "M:Magic.ShieldDecorator.PikeDecorator".
+        /// Метод, содержащий декоратор - конь. 
+        /// Строка идентификатора "M:Magic.HorseDecorator.HorseDecorator".
         /// </summary>
         /// <param name="unit">Юнит, получивший свойства.</param>
         /// <param name="persentAttackAndDodge">Процент атаки и уклонения.</param>
-        public ShieldDecorator(IUnit unit, (int, double) persentAttackAndDodge) : 
+        public HorseDecorator(IUnit unit, (int, double) persentAttackAndDodge) : 
             base(unit, persentAttackAndDodge)
         {
             // Характеристики опции.
-            defense = 30;
-            name = unit.Name() + " с щитом";
+            attack = 25;
+            defense = 20;
+            name = unit.Name() + " с конём";
         }
 
         /// <summary>
         /// Метод имени. 
-        /// Строка идентификатора "M:Magic.ShieldDecorator.Name".
+        /// Строка идентификатора "M:Magic.HorseDecorator.Name".
         /// </summary>
         public override string Name() => name ?? "";
 
         /// <summary>
         /// Метод атаки. 
-        /// Строка идентификатора "M:Magic.ShieldDecorator.Attack".
+        /// Строка идентификатора "M:Magic.HorseDecorator.Attack".
         /// </summary>
-        public override int Attack() => unit.Attack();
+        public override int Attack() => unit.Attack() + attack;
 
         /// <summary>
         /// Метод защиты. 
-        /// Строка идентификатора "M:Magic.ShieldDecorator.Defense".
+        /// Строка идентификатора "M:Magic.HorseDecorator.Defense".
         /// </summary>
         public override int Defense() => unit.Defense() + defense;
 
         /// <summary>
         /// Метод урона. 
-        /// Строка идентификатора "M:Magic.ShieldDecorator.Dodge".
+        /// Строка идентификатора "M:Magic.HorseDecorator.Dodge".
         /// </summary>
         public override double Dodge() => unit.Dodge();
 
         /// <summary>
-        /// Метод здоровья. 
-        /// Строка идентификатора "M:Magic.ShieldDecorator.Health".
-        /// </summary>
-        public override int Health() => unit.Health();
-
-        /// <summary>
         /// Метод стоимости. 
-        /// Строка идентификатора "M:Magic.ShieldDecorator.Cost".
+        /// Строка идентификатора "M:Magic.HorseDecorator.Cost".
         /// </summary>
         public override int Cost() => unit.Cost();
 
         /// <summary>
         /// Метод получения удара. 
-        /// Строка идентификатора "M:Magic.ShieldDecorator.GetHit(Magic.int)".
+        /// Строка идентификатора "M:Magic.HorseDecorator.GetHit(Magic.int)".
         /// </summary>
         public override void GetHit(int strengthAttack)
         {
@@ -68,6 +63,7 @@
                 unit.GetHit(strengthAttack - defense);
                 // Убираем опцию.
                 defense = 0;
+                attack = 0;
                 name = unit.Name();
             }
             else
@@ -77,8 +73,14 @@
         }
 
         /// <summary>
+        /// Метод здоровья. 
+        /// Строка идентификатора "M:Magic.HorseDecorator.Health".
+        /// </summary>
+        public override int Health() => unit.Health();
+
+        /// <summary>
         /// Метод вывода. 
-        /// Строка идентификатора "M:Magic.ShieldDecorator.ToString".
+        /// Строка идентификатора "M:Magic.HorseDecorator.ToString".
         /// </summary>
         /// <returns>Вывод.</returns>     
         public override string ToString()
@@ -89,7 +91,7 @@
 
         /// <summary>
         /// Метод клонирования. 
-        /// Строка идентификатора "M:Magic.ShieldDecorator.MakeClone".
+        /// Строка идентификатора "M:Magic.HorseDecorator.MakeClone".
         /// </summary>
         /// <returns>Клон.</returns>     
         public override IUnit MakeClone()

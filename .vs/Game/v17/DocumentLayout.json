@@ -3,20 +3,80 @@
   "WorkspaceRootPath": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\decorator\\optiondecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:decorator\\optiondecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\decorator\\horsedecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:decorator\\horsedecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\decorator\\helmdecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:decorator\\helmdecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\command\\makemove.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:command\\makemove.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\command\\invoker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:command\\invoker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\command\\changetypeconstruction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:command\\changetypeconstruction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\command\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:command\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\army\\armycreatedfactories\\randomarmy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:army\\armycreatedfactories\\randomarmy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\army\\armycreatedfactories\\balancearmy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:army\\armycreatedfactories\\balancearmy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\businesslogic\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:businesslogic\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\army\\armycreatedfactories\\armycreatedfactories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:army\\armycreatedfactories\\armycreatedfactories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\abstract\\iunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:abstract\\iunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\abstract\\ispecialproperty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:abstract\\ispecialproperty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\army\\abstractarmyfactory\\dodgearmy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:army\\abstractarmyfactory\\dodgearmy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\abstract\\ihealtheble.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\army\\abstractarmyfactory\\attackarmy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:army\\abstractarmyfactory\\attackarmy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\army\\abstractarmyfactory\\blackboxarmy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:army\\abstractarmyfactory\\blackboxarmy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\army\\abstractarmyfactory\\abstractarmyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:army\\abstractarmyfactory\\abstractarmyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\abstract\\icloneable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:abstract\\icloneable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\abstract\\ihealtheble.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:abstract\\ihealtheble.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|c:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\army1\\abstract\\icloneable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:abstract\\icloneable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\abstract\\ispecialproperty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8BE304E-F67A-4336-886A-5BCBB5755679}|Game.csproj|solutionrelative:abstract\\ispecialproperty.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +86,216 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OptionDecorator.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Decorator\\OptionDecorator.cs",
+              "RelativeDocumentMoniker": "Decorator\\OptionDecorator.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Decorator\\OptionDecorator.cs",
+              "RelativeToolTip": "Decorator\\OptionDecorator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T22:51:48.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HorseDecorator.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Decorator\\HorseDecorator.cs",
+              "RelativeDocumentMoniker": "Decorator\\HorseDecorator.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Decorator\\HorseDecorator.cs",
+              "RelativeToolTip": "Decorator\\HorseDecorator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T22:45:26.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HelmDecorator.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Decorator\\HelmDecorator.cs",
+              "RelativeDocumentMoniker": "Decorator\\HelmDecorator.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Decorator\\HelmDecorator.cs",
+              "RelativeToolTip": "Decorator\\HelmDecorator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T22:38:26.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MakeMove.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Command\\MakeMove.cs",
+              "RelativeDocumentMoniker": "Command\\MakeMove.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Command\\MakeMove.cs",
+              "RelativeToolTip": "Command\\MakeMove.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T22:31:16.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Invoker.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Command\\Invoker.cs",
+              "RelativeDocumentMoniker": "Command\\Invoker.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Command\\Invoker.cs",
+              "RelativeToolTip": "Command\\Invoker.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAgwB4AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T22:22:23.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ICommand.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Command\\ICommand.cs",
+              "RelativeDocumentMoniker": "Command\\ICommand.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Command\\ICommand.cs",
+              "RelativeToolTip": "Command\\ICommand.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T22:21:18.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ChangeTypeConstruction.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Command\\ChangeTypeConstruction.cs",
+              "RelativeDocumentMoniker": "Command\\ChangeTypeConstruction.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Command\\ChangeTypeConstruction.cs",
+              "RelativeToolTip": "Command\\ChangeTypeConstruction.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T22:01:51.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Settings.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\BusinessLogic\\Settings.cs",
+              "RelativeDocumentMoniker": "BusinessLogic\\Settings.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\BusinessLogic\\Settings.cs",
+              "RelativeToolTip": "BusinessLogic\\Settings.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACkAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T21:49:41.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RandomArmy.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\ArmyCreatedFactories\\RandomArmy.cs",
+              "RelativeDocumentMoniker": "Army\\ArmyCreatedFactories\\RandomArmy.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\ArmyCreatedFactories\\RandomArmy.cs",
+              "RelativeToolTip": "Army\\ArmyCreatedFactories\\RandomArmy.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T21:46:07.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BalanceArmy.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\ArmyCreatedFactories\\BalanceArmy.cs",
+              "RelativeDocumentMoniker": "Army\\ArmyCreatedFactories\\BalanceArmy.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\ArmyCreatedFactories\\BalanceArmy.cs",
+              "RelativeToolTip": "Army\\ArmyCreatedFactories\\BalanceArmy.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T21:44:20.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ArmyCreatedFactories.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\ArmyCreatedFactories\\ArmyCreatedFactories.cs",
+              "RelativeDocumentMoniker": "Army\\ArmyCreatedFactories\\ArmyCreatedFactories.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\ArmyCreatedFactories\\ArmyCreatedFactories.cs",
+              "RelativeToolTip": "Army\\ArmyCreatedFactories\\ArmyCreatedFactories.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAYwDgAAABQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T21:32:04.882Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DodgeArmy.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\AbstractArmyFactory\\DodgeArmy.cs",
+              "RelativeDocumentMoniker": "Army\\AbstractArmyFactory\\DodgeArmy.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\AbstractArmyFactory\\DodgeArmy.cs",
+              "RelativeToolTip": "Army\\AbstractArmyFactory\\DodgeArmy.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T21:30:51.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BlackBoxArmy.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\AbstractArmyFactory\\BlackBoxArmy.cs",
+              "RelativeDocumentMoniker": "Army\\AbstractArmyFactory\\BlackBoxArmy.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\AbstractArmyFactory\\BlackBoxArmy.cs",
+              "RelativeToolTip": "Army\\AbstractArmyFactory\\BlackBoxArmy.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T21:29:51.025Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AttackArmy.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\AbstractArmyFactory\\AttackArmy.cs",
+              "RelativeDocumentMoniker": "Army\\AbstractArmyFactory\\AttackArmy.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\AbstractArmyFactory\\AttackArmy.cs",
+              "RelativeToolTip": "Army\\AbstractArmyFactory\\AttackArmy.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T21:27:47.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AbstractArmyFactory.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\AbstractArmyFactory\\AbstractArmyFactory.cs",
+              "RelativeDocumentMoniker": "Army\\AbstractArmyFactory\\AbstractArmyFactory.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Army\\AbstractArmyFactory\\AbstractArmyFactory.cs",
+              "RelativeToolTip": "Army\\AbstractArmyFactory\\AbstractArmyFactory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T20:59:12.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IUnit.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\IUnit.cs",
+              "RelativeDocumentMoniker": "Abstract\\IUnit.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\IUnit.cs",
+              "RelativeToolTip": "Abstract\\IUnit.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T19:16:50.943Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -42,54 +310,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "IUnit.cs",
-              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\IUnit.cs",
-              "RelativeDocumentMoniker": "Abstract\\IUnit.cs",
-              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\IUnit.cs",
-              "RelativeToolTip": "Abstract\\IUnit.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAWAAAA",
+              "DocumentIndex": 16,
+              "Title": "ICloneable.cs",
+              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\ICloneable.cs",
+              "RelativeDocumentMoniker": "Abstract\\ICloneable.cs",
+              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\ICloneable.cs",
+              "RelativeToolTip": "Abstract\\ICloneable.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T19:16:50.943Z",
+              "WhenOpened": "2024-05-31T19:16:40.193Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 18,
               "Title": "ISpecialProperty.cs",
               "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\ISpecialProperty.cs",
               "RelativeDocumentMoniker": "Abstract\\ISpecialProperty.cs",
               "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\ISpecialProperty.cs",
               "RelativeToolTip": "Abstract\\ISpecialProperty.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-31T19:16:46.841Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 17,
               "Title": "IHealtheble.cs",
               "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\IHealtheble.cs",
               "RelativeDocumentMoniker": "Abstract\\IHealtheble.cs",
               "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\IHealtheble.cs",
               "RelativeToolTip": "Abstract\\IHealtheble.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-31T19:16:44.6Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ICloneable.cs",
-              "DocumentMoniker": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\ICloneable.cs",
-              "RelativeDocumentMoniker": "Abstract\\ICloneable.cs",
-              "ToolTip": "C:\\\u0440\u044D\u0443\\\u043F\u043F\u0430\\\u043B\u0430\u0431\u0430\\Army1\\Abstract\\ICloneable.cs",
-              "RelativeToolTip": "Abstract\\ICloneable.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-31T19:16:40.193Z",
               "EditorCaption": ""
             }
           ]

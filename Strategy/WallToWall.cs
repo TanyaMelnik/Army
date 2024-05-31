@@ -31,11 +31,11 @@ namespace Magic
                     // А рядом с ним тяжелые солдаты => легкий солдат становится оруженосцем. 
                     if (attacker[i + 1] is LogGetAttack heavyUnit1 && heavyUnit1.unit is HeavyWarrior)
                     {
-                        attacker[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(attacker[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                        attacker[i + 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HorseDecorator(attacker[i + 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
                     }
                     if (attacker[i - 1] is LogGetAttack heavyUnit2 && heavyUnit2.unit is HeavyWarrior)
                     {
-                        attacker[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HourseDecorator(attacker[i - 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
+                        attacker[i - 1] = new HelmDecorator(new ShieldDecorator(new PikeDecorator(new HorseDecorator(attacker[i - 1], (0, 0)), (0, 0)), (0, 0)), (0, 0));
                     }
                 }
             }
