@@ -5,8 +5,16 @@ using System.Text;
 
 namespace Magic
 {
+    /// <summary>
+    /// Класс пользовательского вывода.
+    /// Строка идентификатора "T:Magic.User".
+    /// </summary> 
     class User
     {
+        /// <summary>
+        /// Метод пользовательского вывода.
+        /// Строка идентификатора "M:Magic.User.UserGame".
+        /// </summary>
         public static void UserGame()
         {
             bool games = true;
@@ -14,13 +22,17 @@ namespace Magic
             {
                 Console.WriteLine("Начинаем новую игру!");
 
-                // Инициализация настроек. Это не пункт меню, так как это устанавливается один раз и это нельзя поменять.
+                // Инициализация настроек. Это не пункт меню,
+                // так как это устанавливается один раз и это нельзя поменять.
                 UserSettings();
+
                 // Основной цикл игры.
                 bool flag = true;
                 bool game = true;
+
                 // Инициализация изначальных данных.
                 Invoker invoker = new();
+
                 while (flag)
                 {
                     Console.WriteLine("Выберите пункт меню");
@@ -32,7 +44,8 @@ namespace Magic
                     Console.WriteLine("6. Проиграть игру до конца");
                     int menu;
                     Console.Write("Ваш ответ: ");
-                    while (!int.TryParse(Console.ReadLine(), out menu) || menu < 1 || menu > 6)
+                    while (!int.TryParse(Console.ReadLine(), out menu) 
+                        || menu < 1 || menu > 6)
                     {
                         Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
                     }
@@ -106,10 +119,14 @@ namespace Magic
             }
         }
 
+        /// <summary>
+        /// Метод пользовательского выбора.
+        /// Строка идентификатора "M:Magic.User.ChooseStrategy".
+        /// </summary>
         public static ITypeConstruction ChooseStrategy()
         {
             // Создание первой армии. 
-            AbstractArmyFactory abstractArmyFactory1 = AddUnitStats() ?? new BlackBoxArmy(); ;
+            AbstractArmyFactory abstractArmyFactory1 = AddUnitStats() ?? new BlackBoxArmy(); 
             ArmyCreatedFactories armyCreatedFactories1 = SelectSetUnits(abstractArmyFactory1)?? new RandomArmy(abstractArmyFactory1); 
             List<IUnit> army1 = armyCreatedFactories1.CreateArmy();
 
@@ -120,17 +137,21 @@ namespace Magic
 
             // Выбор армии, которая ходит первая.
             ChoiseFirstArmy(ref army1, ref army2);
+
             // Выбор построения армий, вынести в отдельную функцию.
             Console.WriteLine("Выберите тип построения армий");
             Console.WriteLine("1. Колонна");
             Console.WriteLine("2. Три в ряд");
             Console.WriteLine("3. Стенка на стенку");
             Console.Write("Ваш ответ: ");
+
             int TypeConstruction;
+
             while (!int.TryParse(Console.ReadLine(), out TypeConstruction) || TypeConstruction < 1 || TypeConstruction > 3)
             {
                 Console.Write("Неправильный ввод данных. Попробуйте ещё раз: ");
             }
+
             return TypeConstruction switch
             {
                 1 => new Сolumn(army1, army2),
@@ -139,8 +160,10 @@ namespace Magic
             };
         }
 
-
-
+        /// <summary>
+        /// Метод пользовательских настроек.
+        /// Строка идентификатора "M:Magic.User.UserSettings".
+        /// </summary>
         static void UserSettings()
         {
             // Ввод стоимость армий пользователем.
@@ -158,6 +181,11 @@ namespace Magic
             Settings.GetInstance(health, cost);
 
         }
+
+        /// <summary>
+        /// Метод пользовательских настроек.
+        /// Строка идентификатора "M:Magic.User.Healht".
+        /// </summary>
         static int Healht()
         {
             int health = -1;
@@ -217,6 +245,11 @@ namespace Magic
             else if (index == 2) return 100;
             return 0;
         }
+
+        /// <summary>
+        /// Метод установки стоимости.
+        /// Строка идентификатора "M:Magic.User.SetCost".
+        /// </summary>
         static int SetCost()
         {
             int cost;
@@ -228,6 +261,10 @@ namespace Magic
             return cost;
         }
 
+        /// <summary>
+        /// Метод добавления.
+        /// Строка идентификатора "M:Magic.User.AddUnitStats".
+        /// </summary>
         static AbstractArmyFactory? AddUnitStats()
         {
             AbstractArmyFactory? abstractArmyFactory = null;
@@ -277,6 +314,11 @@ namespace Magic
             }
             return abstractArmyFactory;
         }
+
+        /// <summary>
+        /// Метод добавления.
+        /// Строка идентификатора "M:Magic.User.ExecuteMenuItemStats".
+        /// </summary>
         static AbstractArmyFactory ExecuteMenuItemStats(int index)
         {
             Console.Clear();
@@ -284,6 +326,11 @@ namespace Magic
             else if (index == 1) return new DodgeArmy(); 
             return new BlackBoxArmy();
         }
+
+        /// <summary>
+        /// Метод формирования.
+        /// Строка идентификатора "M:Magic.User.SelectSetUnits".
+        /// </summary>
         static ArmyCreatedFactories? SelectSetUnits(AbstractArmyFactory abstractArmyFactory)
         {
             ArmyCreatedFactories? armyCreatedFactories = null;
@@ -333,13 +380,23 @@ namespace Magic
             }
             return armyCreatedFactories;
         }
-        static ArmyCreatedFactories ExecuteMenuItemSetUnits(int index, AbstractArmyFactory abstractArmyFactory)
+
+        /// <summary>
+        /// Метод армии.
+        /// Строка идентификатора "M:Magic.User.ExecuteMenuItemSetUnits".
+        /// </summary>
+        static ArmyCreatedFactories ExecuteMenuItemSetUnits(int index, 
+            AbstractArmyFactory abstractArmyFactory)
         {
             Console.Clear();
             if (index == 0) return new BalanceArmy(abstractArmyFactory);
             return new RandomArmy(abstractArmyFactory);
         }
 
+        /// <summary>
+        /// Метод вывода армии.
+        /// Строка идентификатора "M:Magic.User.PrintArmy".
+        /// </summary>
         static void PrintArmy(List<IUnit> army)
         {
             for (int i = 0;i < army.Count; i++)
@@ -348,6 +405,10 @@ namespace Magic
             }
         }
 
+        /// <summary>
+        /// Метод выбора хода армии.
+        /// Строка идентификатора "M:Magic.User.ChoiseFirstArmy".
+        /// </summary>
         static void ChoiseFirstArmy(ref List<IUnit> army1, ref List<IUnit> army2)
         {
             Console.WriteLine("Выберите армию, которая ходит первая (1 или 2): ");
@@ -361,12 +422,5 @@ namespace Magic
                 (army2, army1) = (army1, army2);
             }
         }
-
     }
-
 }
-
-
-
-
-
