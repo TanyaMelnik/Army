@@ -6,22 +6,46 @@
     /// </summary>
     interface ITypeConstruction
     {
+        /// <summary>
+        /// Поле первой армии.
+        /// Строка идентификатора "F:Magic.ITypeConstruction.Army1".
+        /// </summary>
         public List<IUnit> Army1 { get; set; }
+
+        /// <summary>
+        /// Поле второй армии.
+        /// Строка идентификатора "F:Magic.ITypeConstruction.Army2".
+        /// </summary>
         public List<IUnit> Army2 { get; set; }
 
-        // Ближний бой
+        /// <summary>
+        /// Метод ближнего боя.
+        /// Строка идентификатора "M:Magic.ITypeConstruction.MakeMeleeFight".
+        /// </summary>
         void MakeMeleeFight();
 
-        // Специальные свойства
+        /// <summary>
+        /// Метод специальных свойств.
+        /// Строка идентификатора "M:Magic.ITypeConstruction.DoSpecialProperties".
+        /// </summary>
         void DoSpecialProperties();
 
-        // Проверка убитых солдат
+        /// <summary>
+        /// Метод проверки убитых солдат.
+        /// Строка идентификатора "M:Magic.ITypeConstruction.Update(Magic.IUnit)".
+        /// </summary>
         void Update(List<IUnit> army);
 
-        // Проверка на декораторы
+        /// <summary>
+        /// Метод проверки на декораторы.
+        /// Строка идентификатора "M:Magic.ITypeConstruction.CheckDecorator".
+        /// </summary>
         void CheckDecorator();
 
-        // Состав армии 
+        /// <summary>
+        /// Метод состава армии.
+        /// Строка идентификатора "M:Magic.ITypeConstruction.Show".
+        /// </summary>
         string Show();
     }
 }

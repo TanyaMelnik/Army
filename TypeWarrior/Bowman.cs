@@ -1,9 +1,21 @@
-
 namespace Magic
 {
+    /// <summary>
+    ///  Класс лучника.
+    ///  Строка идентификатора "T:Magic.Сolumn".
+    /// </summary> 
     class Bowman : IUnit, ISpecialProperty, ICloneable, IHealtheble
     {
+        /// <summary>
+        /// Метод названия.
+        /// Строка идентификатора "M:Magic.Bowman.Name".
+        /// </summary>
         public override string Name() => name ?? "";
+
+        /// <summary>
+        /// Метод параметров лучника.
+        /// Строка идентификатора "M:Magic.Bowman.Bowman(int, double)".
+        /// </summary>
         public Bowman((int, double) percentAttackAndDodge) : base(percentAttackAndDodge)
         {
             attack += 20;
@@ -14,7 +26,16 @@ namespace Magic
         }
 
         // Уникальные характеристики лучника.
+        /// <summary>
+        /// Поле радиуса атаки лучника.
+        /// Строка идентификатора "F:Magic.Bowman.radiusAttack".
+        /// </summary>
         readonly int radiusAttack = 10;
+
+        /// <summary>
+        /// Поле урона лучника.
+        /// Строка идентификатора "F:Magic.Bowman.arrowDamage".
+        /// </summary>
         readonly int arrowDamage = 40;
         readonly double procent = 0.9;
 
